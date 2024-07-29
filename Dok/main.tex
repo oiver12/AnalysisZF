@@ -1,0 +1,2124 @@
+\documentclass[a3paper, 11pt, landscape]{scrartcl}
+
+\usepackage[german]{babel} %choose your language
+\usepackage[landscape, margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amscd, amsmath, amssymb, blindtext, empheq, enumitem, multicol, parskip}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{esint}
+\usepackage{wrapfig}
+\usepackage{setspace}
+\usepackage{trfsigns}
+
+\usepackage{mathtools}
+\usepackage{cmbright,bm}
+\usepackage{esvect}
+
+\usepackage[compact]{titlesec}
+\titlespacing{\section}{0pt}{*0}{*0}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+
+\parindent 0pt
+\pagestyle{empty}
+\setlength{\unitlength}{1cm}
+\setlist{leftmargin = *}
+
+\setlength{\parskip}{0cm}
+\setlength{\parindent}{0em}
+
+\def\StyleColor{Apricot}
+
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\divg}{div}
+\DeclareMathOperator\arctanh{arctanh}
+\newcommand{\Rd}{\mathbb{R}^d}
+\newcommand{\diff}{\,d}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\fOmegaRn}{f:\Omega \subseteq\Rn\to\mathbb{R}}
+\newcommand{\fOmegaRnRm}{f:\Omega \subseteq\Rn\to\mathbb{R}^m}
+\newcommand{\xZeroRd}{x_0\in\mathbb{R}^d}
+\newcommand{\interior}[1]{%
+  {\kern0pt#1}^{\mathrm{o}}%
+}
+
+\usepackage{color}
+\definecolor{section}{RGB}{255, 189, 155}
+\definecolor{subsection}{RGB}{255, 216, 204}
+\definecolor{subsubsection}{RGB}{255, 238, 219}
+
+\definecolor{titletext}{RGB}{0,0,0}
+\definecolor{formula}{RGB}{220,230,255}
+
+
+\definecolor{section}{HTML}{f4ad29}
+\definecolor{subsection}{HTML}{F0C929}
+\definecolor{subsubsection}{HTML}{FBE6C2}
+% \definecolor{formula}{HTML}{AC0D0D}
+
+
+
+
+% section color box
+\setkomafont{section}{\mysection}
+\newcommand{\mysection}[1]{
+    \Large \bfseries
+    \setlength{\fboxsep}{0cm}
+    \colorbox{section}{
+        \begin{minipage}{\linewidth-0.11cm}
+            \vspace*{1pt}
+            \leftskip2pt 
+            \rightskip\leftskip
+            {\color{titletext} #1}
+            \vspace*{1pt}
+        \end{minipage}
+    }}
+%subsection color box
+\setkomafont{subsection}{\mysubsection}
+\newcommand{\mysubsection}[1]{
+    \normalsize \bfseries
+    \setlength{\fboxsep}{0cm}
+    \colorbox{subsection}{
+        \begin{minipage}{\linewidth}
+            \vspace*{1pt}
+            \leftskip2pt 
+            \rightskip\leftskip 
+            {\color{titletext} #1}
+            \vspace*{1pt}
+        \end{minipage}
+    }}
+    
+%subsubsection color box
+\setkomafont{subsubsection}{\mysubsubsection}
+\newcommand{\mysubsubsection}[1]{
+    \normalsize \bfseries
+    \setlength{\fboxsep}{0cm}
+    \colorbox{subsubsection}{
+        \begin{minipage}{\linewidth}
+            \vspace*{1pt}
+            \leftskip2pt 
+            \rightskip\leftskip
+            {\color{titletext} #1}
+            \vspace*{1pt}
+        \end{minipage}
+    }}    
+
+
+\newcommand{\dis}[1]{\hspace{#1cm}}
+    
+% equation box        
+\newcommand{\eqbox}[1]{\fcolorbox{section}{formula}{\hspace{0.5em}$\displaystyle#1$\hspace{0.5em}}}
+
+%macro for vectors 
+%\newcommand{\vect}[1]{\vec{#1}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+
+%code snippet
+\newcommand{\code}[1]{\texttt{#1}}
+
+%\renewcommand{\familydefault}{cmss}
+
+\DeclareSymbolFont{letters}{OML}{ztmcm}{m}{it}
+\DeclareSymbolFontAlphabet{\mathnormal}{letters}
+
+%\everymath{\displaystyle}  %bigger equations
+\begin{document}
+%\setcounter{secnumdepth}{0} %no enumeration of sections
+	\begin{multicols*}{3}
+	
+	
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\iffalse
+\section*{Disclaimer}
+			\vspace{0.2cm}
+			Diese Zusammenfassung wurde zur Vorlesung "`Informatik I"' von Dr. Malte Schwerhoff und Dr. Hermann Lehner (FS20) erstellt. Die Zusammenfassung soll und darf gerne modifiziert werden (Latex-Files liegen bei), und soll dann auch weiterhin anderen Studenten zur Verfügung stehen. \\
+			
+			Für Korrektheit und Vollständigkeit ist keine Gewähr. Fehler bitte an jloehle@ee.ethz.ch melden, sodass auch weitere davon profitieren können.\\
+			
+			Josephine Loehle und Leo Landolt, \today		
+			
+			\vfill\null
+			\pagebreak
+\fi
+
+\section{Grundlagen}
+
+	\subsection{Quantoren}
+	
+		\subsubsection{Overview}
+		\vspace{0.1cm}
+		
+		\begin{tabular} {c l l}
+			\textbf{Typ} & \textbf{Aussage} & \textbf{Bsp.} \\
+			\hline
+			$\forall x $ & für alle x & $\forall x \in \mathbb{N}:x > -1$ \\
+			$\exists x$ & es existiert mindestens ein x & $ \exists x \in \mathbb{R} :x>1$\\
+			
+			$\exists! x$ & es existiert genau ein x & $\exists! x \in \mathbb{R} : x=1$\\
+			$\nexists x$ & es existiert kein x & $\nexists x \in \mathbb{N}:x=1.5$\\
+			$\land$ & Logisches AND & $A \land B$\\
+			$\lor$ & Logisches OR & $A \lor B$\\
+			$\neg$ & Logisches NOT & $\neg B$\\
+			$\cup$ & Mengenvereinigung & $A \cup B$ \\
+			$\cap$ & Schnittmenge & $A\cap B$ \\
+		    $\O$ & Leere Menge & $\{2,3\}\cap \{4,1\}=\O$
+			
+			\end{tabular}\\
+			
+			\vspace{0.1cm}
+		
+		\subsubsection{Regeln für Negation}
+		\vspace{0.1cm}
+		\begin{tabular}{l l}
+			$\neg (A \lor B)$ & $\neg A \land \neg B$ (De Morgan'sche Regel) \\
+			$\neg (A \land B)$ & $\neg A \lor \neg B$ (De Morgan'sche Regel) \\
+			$\neg (\forall x, A(x))$ & $\exists x, \neg A(x)$ \\
+			$\neg (\exists x, A(x))$ & $\forall x , \neg A(x)$ \\
+			$\neg (A \Rightarrow B) $ & $A \land \neg B$\\
+			$A\Rightarrow B$ & $\neg B \Rightarrow \neg A$ (Kontraposition)
+		\end{tabular}
+		 % \centerline{$\pm d_0$.$d_1$...$d_{p-1}$*$\beta^e$ = F*($\beta$, p, e$_{min}$, e$_{max}$)}
+	
+	\subsection{Abbildungen}
+	\subsubsection{Surjektivität}
+	\begin{itemize}
+	    \item Die Abbildung $f:A\to B$ heisst surjektiv, falls es zu jedem y mindestens ein x gibt mit $f(x) = y$, $\forall y \in B, \exists x \in A: f(x)=y$
+	\end{itemize}
+	
+	\subsubsection{Injektivität}
+	\begin{itemize}
+	    \item Die Abbildung $f:A\to B$ heisst injektiv, falls es zu jedem $y$ höchstens ein $x$ gibt mit $f(x) = y$, $\forall y \in B, \exists! x \in A: f(x)=y$, sowie $f(x_1)=f(x_2)\iff x_1 = x_2$
+	    \item Wenn $f'>0$, dann ist die Funktion streng monoton steigend und injektiv.
+	\end{itemize}
+	\subsubsection{Bijektivität}
+	\begin{itemize}
+	    \item Eine Abbildung $f$ heisst bijektiv, falls sie surjektiv und injektiv ist. 
+	\end{itemize}
+	\subsubsection{Beispiel}
+	\begin{itemize}
+	    \item Seien \(X, Y\) Mengen und \(f: X \rightarrow Y, g: Y \rightarrow X\) Abbildungen, es gilt \(g \circ f=i d_{X}\)\\
+	    $\Rightarrow f \text{ injektiv },\quad g \text{ surjektiv }$
+	    
+	\end{itemize}
+	
+		\subsection{Manipulation von Summen und Produkten}
+		\begin{itemize}
+		    \item Teleskopsummen: $\sum_{k=1}^{n}\left(a_{k}-a_{k-1}\right)=a_{n}-a_{0}$, $\sum_{k=m}^n (a_k-a_{k+1}) = a_m - a_{n+1}$
+		    \item $\prod_{k=1}^{n} \frac{a_{k}}{a_{k-1}}=\frac{a_{n}}{a_{0}}, \quad\left(\text { wobei } a_{k} \neq 0 \text { für } k=0, \ldots, n\right)$
+		    \item $\sum_{k=1}^{n} \frac{1}{k(k+1)}=1-\frac{1}{1+n}$
+		    \item $\prod_{k=1}^{n}\left(1+\frac{1}{n+k}\right)=2-\frac{1}{n+1}$
+		\end{itemize}
+		
+		\subsection{Supremum und Infimum}
+		\begin{itemize}
+		    \item Supremum $s$ ist grösste Schranke einer Menge A, $a\leq s, \forall a \in A$\\
+		    Sei $O$ die Menge aller oberen Schranken von $A$, die Vollständigkeit von $\mathbb{R}$ impliziert die Existenz eines Supremums $s$ mit $a\leq s \leq o$ und $s\in O$
+		    \item Infimum $i$ ist kleinste Schranke einer Menge A, $a\geq i, \forall i \in A$
+		    \item $\inf A = - \sup -A$
+		    \item $\inf -A = - \sup A$
+		\end{itemize}
+		
+		\subsection{Partialbruchzerlegung}
+		\begin{enumerate}
+		    \item Polynom $f(x)=\frac{P_n(x)}{Q_m(x)}$ gegeben. Polynomdivision (falls $n>m$) mit Rest (ganzrational + echt gebrochen)
+		    \item Nullstellen von $Q_m(x)$ berechnen
+		    \item Nullstellen ihrem Partialbruch zuordnen
+		    \begin{itemize}
+		        \item relle r-fache Nullstelle $x_0$:\\
+		        $$\frac{A_1}{(x-x_0)}+\frac{A_2}{(x-x_0)^2}+...+\frac{A_r}{(x-x_0)^r}$$
+		        \item komplexe r-fache Nullstelle ($b^2>a^2$):\\
+		        $$\frac{A_1 x+B_1}{(x^2+2ax+b)}+\frac{A_2 x+B_2}{(x^2+2ax+b)^2}+...+\frac{A_r x+B_r}{(x^2+2ax+b)^r}$$
+		    \end{itemize}
+		    \item Gleichungen aufstellen
+		    \item Koeffizientenvergleich
+		\end{enumerate}
+		
+		\subsection{Vollständige Induktion}
+		\begin{itemize}
+		    \item Zu Beweisen: Aussage $A(n)$ ist wahr für alle $n>n_0, \quad n\in\mathbb{N}$
+		    \begin{enumerate}
+		        \item \textbf{Induktionsverankerung}: Zeige $A(n_0)$ direkt
+		        \item \textbf{Induktionsannahme}: Nehme an $A(n)$ gilt für ein $n\geq n_0$
+		        \item \textbf{Induktionsschritt}: Beweise $A(n+1)$ mit der Induktionsvoraussetzung. Daraus folgt $A(n),\quad \forall n \geq n_0$
+		    \end{enumerate}
+		\end{itemize}
+		
+		\subsection{Dreiecksungleichung}
+		\begin{itemize}
+		    \item $|x + y| \leq |x|+|y|$
+		    \item $|x-y| \geq | (|x|-|y|) |$
+		\end{itemize}
+		
+	\section{Folgen}
+        \subsection{Sätze zu Folgen}
+        
+        \subsubsection{Theorem 2.8.3, beschränkte Folgen, Bolzano-Weierstrass}
+        \begin{itemize}
+            \item Monotone Folge \( (a_n) \) konvergiert nur dann und wenn Folge beschränkt: \\
+            Eine monoton steigende Folge besitzt das Supremum als Grenzwert: $\lim_{n\to +\infty}a_n = \sup\{a_n | n \in \mathbb{N} \}$ \\
+            Eine mononton fallende Folge besitzt das Infinum als Grenzwert: $\lim_{n\to +\infty}a_n = \inf\{a_n | n \in \mathbb{N} \}$
+        \end{itemize}
+		
+		\subsubsection{Cauchy-Folgen}
+        \begin{itemize}
+            \item $\forall \varepsilon>0, \exists N \in \mathbb{N}, \forall n \geqslant N, \forall m \geqslant N,\left|a_{n}-a_{m}\right|<\varepsilon$ 
+            \item Eine Folge $(a_n)$ von komplexen Zahlen konvergiert, nur dann und wenn es eine Cauchy-Folge ist. Somit kann man, ohne den Grenzwert zu kennen, zeigen, dass eine Folge konvergiert.
+        \end{itemize}
+        
+        \subsubsection{Anwendung des Cauchy-Satzes, Satz 2.8.10}
+        \begin{itemize}
+            \item $0 \leq c < 1, \quad | a_{n+2}-a_{n+1} \leq c | a_{n+1}-a_n | |$ 
+            \item $(a_n)$ konvergiert.
+        \end{itemize}
+        
+        \subsubsection{Bolzano-Weierstrass, beschränkte Folge}
+        \begin{itemize}
+            \item Sei $(a_n)_{n\in\mathbb{N}}$ eine beschränkte Folge von komplexen Zahlen, dann hat $(a_n)$ mindestens einen Häufungspunkt.
+        \end{itemize}
+        
+        \subsubsection{Konvergenz zu $\infty$}
+        \begin{itemize}
+            \item Eine reelle Folge $(a_n)$ konvergiert zu $\infty$ wenn $\forall T \in \mathbb{R}, \exists N \in \mathbb{N}: a_n > T \forall n \geq N$
+            \item umgekehrt für $-\infty$ wenn $a_n<T$
+        \end{itemize}
+
+		\subsection{Grenzwerte}
+		\subsubsection{Wichtige Grenzwerte}
+		\begin{itemize}
+		    \item $\lim\limits_{n\rightarrow \infty} \frac{1}{n^s}=0\hspace{10pt} \forall s\in \mathbb{Q^+}$
+		    \item $\lim\limits_{n\rightarrow \infty} q^n=0 \hspace{10pt} \forall q\in \mathbb{C}\hspace{7pt} \vert q\vert <1$
+		    \item $\lim\limits_{n\rightarrow \infty} \sqrt[n]{a}=1 \hspace{10pt} \forall a\in \mathbb{R^+}$
+		    \item $\lim\limits_{n\rightarrow \infty} \frac{n^k}{z^n}=0 \hspace{10pt} \forall k \in \mathbb{N}$
+		    \item $\lim\limits_{x\rightarrow\infty} x^{\pm\frac{1}{x}}=e^{\pm\frac{1}{x}\cdot\ln(x)}=1$
+		    \item $\lim\limits_{x\rightarrow\infty} \frac{\sin (x)}{x}=1$
+		    \item $\lim\limits_{n\rightarrow \infty} \sqrt[n]{n}=1$
+		    \item $\lim\limits_{x \rightarrow \infty}\frac{x}{\ln(1+x)}=\infty$
+		    \item $\lim\limits_{x \rightarrow \infty}\frac{\ln(x)}{x^n}=0$
+		    \item $\lim\limits_{x \rightarrow \infty}\frac{\ln(x)}{\sqrt[n]{x}}=0 $
+		    \item $\lim\limits_{x \rightarrow 0^+}\frac{1}{x}=\infty$
+		    \item $\lim\limits_{x \rightarrow 0^-}\frac{1}{x}=-\infty$
+		    \item $\lim\limits_{x \rightarrow 0}\frac{1-\cos(x)}{x}=0$
+		    \item $\lim\limits_{x \rightarrow 0}\frac{x^2}{1-\cos(x)}=2$
+		    \item $\lim\limits_{x \rightarrow 0^+}\ln(x)=-\infty$
+		    \item $\lim\limits_{x \rightarrow 0}\frac{\ln(1+x)}{x}=1$
+		    \item $\lim\limits_{x \rightarrow 0}\frac{a^x-1}{x}=\ln(a)$
+		    \item $\lim\limits_{x\to 0+}\ln x = -\infty$
+		    \item $\lim\limits_{x\to 0} \frac{\ln x}{x}=-\infty$
+		    \item $a_{n+1} = \frac{1}{2}(a_n + \frac{c}{a_n})$ mit $c\geq 1, \quad a_1 = c$, Folge hat Grenzwert $a=\sqrt{c}$ (Beweis mit Theorem 2.8.3)
+		\end{itemize}
+		\subsubsection{l'Hopital}
+		\begin{itemize}
+		    \item Kann in Grenzwertberechnungen angewendet werden, bei welchen man einen unbestimmten Ausdruck erhält wie $\frac{0}{0}, \quad 0 \cdot \infty,  \quad \infty - \infty, \quad \frac{\infty}{\infty}, \quad 0^0, \quad \infty^0, \quad 1^\infty$
+		    \item $\lim_{x \rightarrow x_0} \frac{f(x)}{g(x)}=\lim_{x \rightarrow x_0} \frac{f'(x)}{g'(x)}= \cdots =\lim_{x \rightarrow x_0} \frac{f^{(n)}(x)}{g^{(n)}(x)}$ mit $f, g$ stetig und differenzierbar
+		    \item Wenn Ausdruck von Form $0\cdot \infty $ oder $ \infty-\infty$ annimmt, dann muss zuerst umgeformt werden:\\
+		    Beispiel 1 ($0 \cdot \infty$): $f(x) \cdot g(x) = \frac{f(x)}{\tfrac{1}{g(x)}} = \frac{\phi(x)}{\psi(x)}$\\
+		    Beispiel 2 ($\infty-\infty$): $f(x) - g(x) = \frac{1}{\tfrac{1}{f(x)}} - \frac{1}{\tfrac{1}{g(x)}} = \frac {\tfrac{1}{g(x)} - \tfrac{1}{f(x)}}{\tfrac{1}{f(x)\cdot g(x)}} = \frac{\phi(x)}{\psi(x)}$
+		\end{itemize}
+		
+		\subsubsection{Spezielle Methoden für Grenzwertberechnung}
+		\begin{itemize}
+		    \item $lim_{x\to 0^+} x^x = lim_{x\to 0^+} e^{x\ln (x)}$, da $e^x$ stetig ist, kann $lim_{x\to 0^+} x \ln x$ betrachtet werden. \\
+		    Für $x<1$ gilt: $\ln (x)=2(\ln (x) - \ln (\sqrt{x}))=\frac{2}{c} (x-\sqrt{x})$ für ein $c\in ]x,\sqrt{x}[$ gemäss Mittelwertsatz\\
+		    Da $\frac{1}{x}$ fallend ist, gilt $0>\ln (x) >\frac{2}{x} (x-\sqrt{x})=2-\frac{2}{\sqrt{x}} \Rightarrow 0>x\ln (x) >2x - 2\sqrt{x}$ mit Sandwich-Kriterium gilt nun $lim_{x\to 0^+} x \ln x = 0$ und $lim_{x\to 0^+} x^x=e^0=1$
+		    \item $\lim _{x \rightarrow a}\left(1+\frac{1}{\odot}\right)^{\odot}=e$ oder $\left.\lim _{x \rightarrow a}(1+\bigodot)\right)^{\frac{1}{\odot}}=e$ wobei $\odot$ ein Term ist der zu 0 geht für $x\to a$\\
+		    $\left.\lim\limits _{x \rightarrow+\infty}\left(1-\frac{3}{x}\right)^{2 x}=\lim \limits_{x \rightarrow \infty}\left[\left(1+\frac{1}{-\frac{x}{3}}\right)^{-\frac{x}{3}}\right]\right]^{-\frac{3}{x} \cdot 2 \cdot x} = e^{-6}$
+		    \item $\lim _{x \rightarrow a} \frac{\sin \bigodot}{\bigodot}=1$ wobei $\odot$ ein Term ist der zu 0 geht für $x\to a$
+		\end{itemize}
+		
+		\section{Reihen}
+		\subsection{Sätze zu Reihen}
+		\subsubsection{Theorem 2.10.7}
+		\begin{itemize}
+		    \item Wenn eine Reihe $\sum a_n$ absolut konvergiert, konvergiert sie und es gilt:
+		    \item $\left|\sum_{n=1}^{+\infty} a_{n}\right| \leqslant \sum_{n=1}^{+\infty}\left|a_{n}\right|$
+		\end{itemize}
+		\subsubsection{Leibniz-Kriterium}
+		\begin{itemize}
+		    \item Sei $(a_n)$ eine monoton fallende Folge, die zu $0$ konvergiert, die Reihe $\sum_{n=1}^{+\infty}(-1)^{n-1} a_{n}$ konvergiert.
+		\end{itemize}
+		\subsubsection{Quotientenkriterium}
+		\begin{itemize}
+		    \item Sei $(a_n)$ Folge komplexer Zahlen mit $a_n\neq 0, \forall n\in\mathbb{N}$\\
+		    $| \frac{a_{n+1}}{a_n}|\leq c, \forall n \geq N$\\
+		    wenn $0\leq c < 1$, dann ist $\sum_{n=1}^\infty (a_n)$ absolut konvergent.
+		\end{itemize}
+		\subsubsection{Bedingte Konvergenz, Serie 5}
+		\begin{itemize}
+		    \item Seien $(a_n),(b_n)$ zwei Folgen mit folgenden Eigenschaften:\\
+		    1) $(a_n)$ ist monoton fallend und konvergiert gegen 0.\\
+		    2) Alle Partialsummen der Folge $(b_n)$ sind beschränkt durch gemeinsame Schranke $C>0: \forall n \in \mathbb{N}: | \sum_{k=1}^n b_k |\leq C$\\
+		    Somit konvergiert die Reihe $\sum_{k=1}^\infty a_k b_k$
+		\end{itemize}
+		\subsubsection{Wurzelkriterium}
+		\begin{itemize}
+		    \item Sei $(a_n)$ eine beliebige Folge mit Eigenschaft $\lim_{n\to\infty} \sqrt[^n]{|a_n|} = q$\\
+		    für $q<1$ konvergiert absolut $\sum_{n=1}^\infty |a_n|$\\
+		    für $q>1$ divergiert die Reihe
+		\end{itemize}
+		
+		\subsection{Konvergenzkriterien}
+		\subsubsection{Allgemein}
+		\begin{itemize}
+		    \item $\sum_{n=1}^{+\infty} \frac{1}{n^{k}}$ konvergiert für $k > 1$ und divergiert für $k \leq 1$
+		    \item $\sum_{n=0}^{+\infty} \frac{n^{k}}{b^{n}}$ konvergiert absolut für $|b|>1, \quad k \in \mathbb{R}$
+		    \item $\sum_{n=0}^{+\infty} \frac{a^{n}}{n !}$ konvergiert absolut für alle $a \in \mathbb{C}$
+		\end{itemize}
+		\subsubsection{Nullfolgenkriterium}
+		\begin{itemize}
+		    \item Falls $a_n$ keine Nullfolge bildet, so divergiert die Reihe $\sum_{n=0}^{\infty}a_n$
+		\end{itemize}
+		
+		\subsubsection{Majorantenkriterium}
+		\begin{itemize}
+		    \item Sei $\sum_{n=0}^{\infty}b_n$ eine konvergente Reihe und $a_n$ die Elemente einer Folge mit $a_n \le b_n \hspace{3pt} \forall n$, so konvergiert auch die Reihe $\sum_{n=0}^{\infty} a_n$
+		\end{itemize}
+		
+		\subsubsection{Minorantenkriterium}
+		\begin{itemize}
+		    \item Sei $\sum_{n=0}^{\infty}b_n$ eine divergente Reihe und $a_n$ die Elemente einer Folge mit $a_n \ge b_n \hspace{3pt} \forall n$, so divergiert auch die Reihe $\sum_{n=0}^{\infty} a_n$ (meistens ist $\sum_{n=0}^{\infty}b_n$ die harmonische Reihe)
+		\end{itemize}
+		
+		\subsubsection{Integralkriterium, Serie 13}
+		\begin{itemize}
+		    \item Sei $p \in \mathbb{Z}$, $f: [p, \infty) \rightarrow [0, \infty)$ monoton fallend und das Integral $\int_{p}^{\infty}f(x)$d$x$ existiert, dann konvergiert auch $\sum_{n=p}^{\infty}f(n)$ und es gilt die Abschätzung:\\
+		    $\sum_{n=p+1}^{\infty}f(n) \le \int_{p}^{\infty}f(x)\text{d}x \le \sum_{n=p}^{\infty}f(n)$\\
+		    $\sum_{n=p}^\infty a_n$ konvergiert $\iff \int_p^\infty a(x)\,dx$ konvergiert 
+		\end{itemize}
+	
+	    \subsection{Potenzreihen}
+	    \subsubsection{Definition}
+	    \begin{itemize}
+	        \item Eine Potenzreihe hat folgende Form
+				$f(x)=\sum_{n=1}^{\infty}a_n(x-x_0)^n \hspace{10pt} x_0: \text{Entwicklungspunkt}$
+	    \end{itemize}
+	    \subsubsection{Konvergenzradius}
+	    \begin{itemize}
+	        \item Sei $R$ der Konvergenzradius einer Potenzreihe. Dann konvergiert die Potenzreihe absolut $\forall x \in \mathbb{C}$, $\vert x-x_0 \vert < R$ und divergiert für $\vert x-x_0 \vert > R$.\\
+	        \begin{itemize}{Anmerkungen:}
+						\item[i)] Der Konvergenzradius berechnet sich wie folgt: $R=\frac{1}{Q} = \frac{1}{L}$
+						\item[ii)] Der Rand $\vert x-x_0 \vert = R$ muss separat betrachtet werden
+					\end{itemize}
+	    \end{itemize}
+	
+		\subsection{Summen von häufigen endlichen Reihen}
+		\begin{itemize}
+			\item $\sum\limits_{k=0}^{\infty} q^k = \frac{1}{1-q}$
+			\item Summe der ersten n Glieder der harmonischen Reihe für $q\neq 1$: $s_n = a_0\frac{q^{n+1}-1}{q-1} = a_0\frac{1-q^{n+1}}{1-q}$
+			\item $\sum_{k=1}^n k=\frac{n(n+1)}{2}$
+			\item $\sum_{k=1}^n k^2=\frac{n(n+1)(2n+1)}{6}=\frac{n^3}{3}+\frac{n^2}{2}+\frac{n}{6}$
+			\item $\sum_{k=1}^n k^3=\left[\frac{n(n+1)}{2}\right]^2=\frac{n^4}{4}+\frac{n^3}{2}+\frac{n^2}{4}$
+			\item $\sum_{k=0}^{n} x^k = \frac{1-x^{n+1}}{1-x}$
+			\item $\sum_{k=0}^n (1+x^{2^k})=\frac{1-x^{2^{n+1}}}{1-x}$
+			\item Riemann Zeta-Funktion bei 2: $\zeta(2)=\sum_{n=1}^{+\infty} \frac{1}{n^{2}}=\frac{\pi^{2}}{6}$
+			\item $\sum_{k=1}^n \frac{k}{2^k}=2-\frac{n+2}{2^n}$
+			\item $\sum_{k=1}^n \frac{1}{4k^2-1}=\frac{n}{2n+1}$
+			\item $x+x^{2}+\ldots+x^{k}=\frac{x^{k+1}-x}{x-1}$
+		\end{itemize}
+		\subsection{Summen von häufigen unendlichen Reihen, und andere Taylorpolynome}
+		\begin{itemize}
+			\item $e^x=\sum_{k=0}^\infty \frac{x^k}{k!} = 1+x+\frac{x^2}{2}+\frac{x^3}{3!}+\frac{x^4}{4!}+...$
+			\item $\sum_{k=0}^\infty k\frac{x^k}{k!} = x e^x$ (kam nicht vor in Vorlesung)
+			\item $\sin (x) =\sum_{k=0}^\infty \frac{(-1)^k x^{2k+1}}{(2k+1)!} = \frac{e^{ix}-e^{-ix}}{2i} = x -\frac{x^3}{3!}+\frac{x^5}{5!}+...$
+			\item $\sinh(x)=\sum_{k=0}^\infty \frac{x^{2k+1}}{(2k+1)!}=x+\frac{x^3}{3!}+\frac{x^5}{5!}+...$
+			\item $\cos (x)=\sum_{k=0}^\infty \frac{(-1)^k x^{2k}}{(2k)!} = \frac{e^{ix}+e^{-ix}}{2}= 1 - \frac{x^2}{2!}+\frac{x^4}{4!}+...$
+			\item $\cosh (x)=\sum_{k=0}^\infty \frac{x^{2k}}{(2k)!} = \frac{e^{x}+e^{-x}}{2} = 1 + \frac{x^2}{2!}+\frac{x^4}{4!}+...$
+			\item $\tan(x)=\sum_{k=1}^\infty \frac{(-1)^{k-1}(2^{2k}-1)2^{2k}B_{2k}x^{2k-1}}{(2k)!}=x-\frac{x^3}{3}+\frac{2x^5}{15}+... ,\quad (|x|<\frac{\pi}{2})$
+			\item $ \tanh (x) = x-\frac{x^3}{3}+\frac{2x^5}{15}-...$
+			\item $\arctan (x)= \sum_{k=0}^{\infty} \frac{(-1)^{k} x^{1+2 k}}{1+2 k}$
+			\item $\ln(x+1) = x -\frac{x^2}{2}+\frac{x^3}{3}+...$
+			\item $(1+x)^a=1+ax+\frac{a(a+1)}{2}x^2+...$
+			\item Mengoli-Reihe: $\sum_{n=1}^\infty \frac{1}{n(n+1)}=\sum_{n=1}^\infty \frac{1}{n}-\frac{1}{n+1} = 1$ (Mittlere Terme kürzen sich immer weg, so dass $lim_{n\to\infty} 1 - \frac{1}{n+1}=1$ bleibt)
+			\item $\sqrt[3]{1+x}=\sum_{n=0}^{\infty}\left(\begin{array}{l}\frac{1}{3} \\n\end{array}\right) x^{n}$
+		\end{itemize}
+		
+	\section{Funktionen}
+	\subsection{Sätze zu Funktionen}
+	\subsubsection{Definition stetige Funktion}
+	\begin{itemize}
+	    \item $f: D \to \mathbb{R}$ ist an einem Punkt $x_0$ stetig, wenn \\
+	    $\forall \epsilon > 0, \exists \delta > 0, \forall x \in D, (| x-x_0|<\delta \to | f(x) - f(x_0) | < \epsilon)$
+	    \item für Stetigkeit auf ganzem Definitionsbereich: \\ 
+	    $\forall x_0 \in D, \forall \epsilon > 0, \exists \delta > 0, \forall x \in D, (| x-x_0|<\delta \to | f(x) - f(x_0) | < \epsilon)$
+	\end{itemize}
+	
+	\subsubsection{Stetige Funktion Abschätzung anderer Funktion}
+	\begin{itemize}
+	    \item Sei $D\subset\mathbb{R}$ mit $f, g: D \to\mathbb{C}$, sei $g$ stetig, wenn\\
+	    $|f(x)-f(y)|\leq | g(x)-g(y)|$ für alle $x,y\in D$, dann ist $f$ stetig auf $D$
+	\end{itemize}
+	
+	\subsubsection{Lipschitz-Stetig}
+	\begin{itemize}
+	    \item $\forall x,y \in D, \quad |f(x) -f(y)| \leq c|x-y|$ mit $c\in \mathbb{R_+}$
+	\end{itemize}
+	
+	\subsubsection{Stetigkeit einer Funktion mit Folge}
+	\begin{itemize}
+	    \item Sei $D \subseteq \mathbb{R}$, sei $f:D\to \mathbb{C}$, dann ist $f$ stetig bei $x_0\in D$ dann und nur dann wenn für irgendeine Folge $(a_n) \in D$ zu $x_0$ konvergiert, erhalten wir: $\lim_{n\to\infty}f(a_n)=f(x_0)$
+	\end{itemize}
+	\subsubsection{Zwischenwertsatz, Intermediate value theorem}
+	\begin{itemize}
+	    \item Sei $D \subseteq \mathbb{R}$, sei $f:D\to \mathbb{C}$ stetig, sei $a<b, \quad a,b \in D$, wenn \\
+	    $f(a)<f(b)$ (resp. $f(a)>f(b)$) \\
+	    dann für irgendein $c\in [f(a),f(b)]$ (resp. $c\in[f(b),f(a)]$), gibt es ein $x\in [a,b]$, so dass $f(x)=c$ (Das Bild einer stetigen Funktion ist ein Intervall)
+	\end{itemize}
+	
+	\subsubsection{Extremum Theorem}
+	\begin{itemize}
+	    \item Sei $a<b, \quad a,b\in \mathbb{R}$, sei $f:[a,b]\to \mathbb{R}$ stetig, dann hat die Menge der Bildwerte \\
+	    $f([a,b])=\{f(x) | x \in [a,b]\}\subseteq \mathbb{R}$
+	    \\ ein Minimum und Maximum.
+	\end{itemize}
+	
+	\subsubsection{Stetige, strikt monotone Funktion ist injektiv}
+	\begin{itemize}
+	    \item Sei $D$ ein Interval. Eine stetige Funktion $f:D\to\mathbb{R}$ ist injektiv $\iff$ wenn sie strikt monoton ist.
+	\end{itemize}
+	
+	\subsubsection{Stetige, strikt monotone Funktion hat stetige Inverse}
+	\begin{itemize}
+	    \item Sei $f:D\to\mathbb{R}$ eine stetige, strikt monotone Funktion, sei $J = f(D)$ das Bild von $f$. Die Inverse $f^{-1}:J\to D$ der Bijektion $f:D\to J$ ist stetig.
+	\end{itemize}
+	
+	\subsubsection{Mean-value Theorem}
+	\begin{itemize}
+	    \item Sei $D \subseteq\mathbb{R}$ und $f:D\to\mathbb{R}$ differenzierbar, sei $a<b$ Elemente aus $D$, dann gibt es ein $c\in]a,b[$ so dass \\
+	    $\frac{f(b)-f(a)}{b-a}=f'(c)$
+	\end{itemize}
+	
+	\subsubsection{Minima und Maxima einer Funktion}
+	\begin{itemize}
+	    \item Sei $f:D\to\mathbb{R}$ differenzierbar und $f'(x_0)=0$\\
+	    wenn $f''(x_0)<0$ handelt es sich um ein lokales Maximum\\
+	    wenn $f''(x_0)>0$ handelt es sich um ein lokales Minimum\\
+	    wenn $f''(x_0)=0$ handelt es sich um einen Sattelpunkt
+	\end{itemize}
+	
+	\subsubsection{Monoton steigend / fallend mit Ableitung}
+	\begin{itemize}
+	    \item Sei $f:D\to\mathbb{R}$ differenzierbar und $f'(x_0)=0$\\
+	    $f$ ist steigend, dann und nur dann wenn $f'(x_0)\neq 0$ für ganzen Definitionsbereich\\
+	    $f$ ist monoton steigend, dann und nur dann wenn $f'(x_0) > 0$ für ganzen Definitionsbereich\\
+	    $f$ ist fallend, dann und nur dann wenn $f'(x_0) \leq 0$ für ganzen Definitionsbereich\\
+	    $f$ ist monoton fallend, dann und nur dann wenn $f'(x_0) < 0$ für ganzen Definitionsbereich
+	\end{itemize}
+	
+	\subsubsection{Lipschitz-stetig mit Ableitung}
+	\begin{itemize}
+	    \item Sei $D:=[a,b]\in\mathbb{R}$ und $f:D\to\mathbb{R}$ eine differenzierbare Funktion mit $f'$ stetig, dann ist $f$ lipschitz stetig und es gilt:\\
+	    $|f(x)-f(y)| \leq M|x-y|$ für alle $x,y\in [a,b]$ mit $M = \max |f'(x)|$
+	\end{itemize}
+	
+	\subsubsection{Divergenz, formal}
+	\begin{itemize}
+	    \item Wenn $\lim_{x\to\infty f(x)=-\infty}$, dann gibt es für alle $M>0$ ein $R>0$ mit $x>R \Rightarrow f(x)<-M$ (genau gleich bei Divergenz zu $\infty$ einfach mit $M$)
+	\end{itemize}
+	
+	\subsubsection{Abschätzungen aus Ableitungen}
+	\begin{itemize}
+	    \item Sei $f,g:[a,b]\to\mathbb{R}$ stetige und differenzierbare Funktionen mit $f(a)\geq g(a)$:\\
+	    für $f'(x)\geq g'(x),\quad \forall x\in ]a,b[$ dann $f(x)\geq g(x), \quad \forall x\in [a,b]$\\
+	    für $f'(x) > g'(x),\quad \forall x\in ]a,b[$ dann $f(x) > g(x), \quad \forall x\in ]a,b]$
+	\end{itemize}
+	
+	\subsubsection{Jede Lipschitz-stetige Funktion ist gleichmässig stetig}
+	
+	\subsection{Stetigkeit überprüfen}
+	\subsubsection{1-dimensional}
+	\begin{align*}
+		&f(x)=
+		\begin{cases}
+			f_1(x) \hspace{10pt} &x<p\\
+			f_2(x) & x>p\\
+			a &x=p\\							
+		\end{cases}
+		&\lim_{x \rightarrow p^-} f_1(x) \overset{!}{=} \lim_{x \rightarrow p^+} f_2(x) \overset{!}{=} a
+	\end{align*}
+
+	\subsubsection{n-dimensional}
+	\begin{itemize}
+	    \item Der Limes $\lim\limits_{x \rightarrow x_0} f(x) \hspace{5pt} x \in \mathbb{R}^n$ muss existieren und eindeutig sein\\
+		\begin{itemize}{Anmerkungen:}
+			\item [i)] Falls $n=2$: Transformiere $x$ und $y$ in Polarkoordinaten, $\varphi$ muss sich dabei rauskürzen, da der Limes sonst nicht eindeutig ist
+			\item [ii)] Falls $n>2$: Nur zeigen, dass der Grenzwert nicht eindeutig ist, sonst zu kompliziert
+		\end{itemize}
+	\end{itemize}
+	
+	\section{Funktionsfolgen}
+	\subsection{Sätze zu Funktionsfolgen}
+	
+	\subsubsection{Konvergenz}
+	\begin{itemize}
+	    \item Sei $D \subseteq \mathbb{C}$, für $n\in\mathbb{N}$ sei $f_n:D\to\mathbb{C}$ eine beliebige Funktion. Sei $f:D\to\mathbb{C}$. \\
+	    Die Folge $(f_n)$ konvergiert zu $f$ auf $D$, wenn \\ $\forall \epsilon >0, \forall x \in D, \exists N \in \mathbb{N}:, \quad | f(x)-f_n(x) | < \epsilon $ für $n \geq N$
+	\end{itemize}
+	
+	\subsubsection{Uniforme (Gleichmässige) Konvergenz}
+	\begin{itemize}
+	    \item Sei $D \subseteq \mathbb{C}$, für $n\in\mathbb{N}$ sei $f_n:D\to\mathbb{C}$ eine beliebige Funktion. Sei $f:D\to\mathbb{C}$. \\
+	    Die Folge $(f_n)$ konvergiert uniform zu $f$ auf $D$, wenn \\
+	    $\forall \epsilon >0, \exists N \in \mathbb{N}:\forall x \in D, \quad | f(x)-f_n(x) | < \epsilon $ für $n \geq N$\\
+	    Einziger Unterschied zu Konvergenz ist, dass $N$ nicht mehr von $x$ abhängig ist. Stärkere Eigenschaft als Konvergenz.\\
+	    Bei Beweisen zu zeigen, dass $|f(x)-f_n(x)|\leq b_n, \forall x\in D$, wobei $(b_n)$ eine fixe Sequenz zu 0 konvergente Folge ist, die unabhängig von x ist. Somit kriegt man $|f(x)-f_n(x)| < \epsilon$ für alle $x\in D$ sobald $b_n < \epsilon$
+	\end{itemize}
+	
+	\subsubsection{Folge von stetigen Funktionen konvergieren uniform auf $f$}
+	\begin{itemize}
+	    \item Wenn eine Funktionenfolge $(f_n)$ auf eine Funktion $f$ uniform konvergiert auf dem Definitionsbereich, dann ist $f$ stetig auf $D$\\
+	    $|f(x) -f(x_0)|\leq |f(x)-f_n(x)|+|f_n(x)-f_n(x_0)|+|f_n(x_0)-f(x_0)|$
+	\end{itemize}
+	\subsubsection{Cauchy für Funktionenfolgen}
+	\begin{itemize}
+	    \item Sei $D\subseteq\mathbb{C}$ und $(f_n)$ eine Funktionsfolge auf $D$\\
+	    $\forall \epsilon > 0, \exists N \in \mathbb{N}: n \geq N, m \geq N,\forall x \in D$ haben wir $|f_n(x)-f_m(x)|<\epsilon$, somit konvergiert $(f_n)$ uniform auf $f$
+	\end{itemize}
+	\subsubsection{Normale Konvergenz}
+	\begin{itemize}
+	    \item Eine Reihe von Funktionen $\sum f_n$ konvergiert normal, wenn jedes $|f_n|$ auf $D$ beschränkt ist mit $b_n\in\mathbb{R}_+$, so dass $\sum b_n$ konvergiert.
+	    \item Normale Konvergenz $\Rightarrow$ Uniforme Konvergenz $\Rightarrow$ $\exists$ stetige Funktion auf Definitionsbereich
+	\end{itemize}
+	
+	\subsection{Kochrezept zur Überprüfung gleichmässiger Konvergenz}
+	\begin{itemize}
+	    \item Gegeben: Folge stetiger Funktionen $f_n:\Omega \subseteq \mathbb{R}\to\mathbb{R}$
+	    \item Gefragt: Konvergiert $f_n$ auf $\Omega$ gleichmässig?
+	\end{itemize}
+	\begin{enumerate}
+	    \item Berechne den punktweisen Limes von $f_n$ auf $\Omega$ für fixes $x\in\Omega$, d.h. $$f(x) =\lim \limits_{n\to\infty} f_n(x)$$
+	    \item Prüfe $f_n$ auf gleichmässige Konvergenz\\
+	    Methoden:
+	    \begin{enumerate}
+	        \item Berechne $\sup \limits_{x\in\Omega} |f_n(x)-f(x)|$, oft nützlich Ableitung nach $x$ von $|f_n(x)-f(x)|$ zu berechnen und gleich null zu setzen.
+	        \item Bilde den Limes für $n\to\infty$: $\lim\limits_{n\to\infty}\sup\limits_{x\in\Omega}|f_n(x)-f(x)|$, konvergiert dies für $n\to \infty$ so gilt gleichmässige konvergenz.
+	    \end{enumerate}
+	    Indirekte Methoden
+	    \begin{enumerate}
+	        \item $ f$ unstetig $\Rightarrow$ keine gleichmässige Konvergenz
+	        \item $f$ stetig, $f_n(x)\leq f_{n+1}(x),\quad\forall x \in\Omega $ und $\Omega$ kompakt $\Rightarrow$ gleichmässige Konvergenz
+	    \end{enumerate}
+	
+	\subsection{Grenzwert und Ableitung vertauschen}
+	\begin{itemize}
+	    \item Sei $f_n:\Omega \to\mathbb{R}$ eine Folge stetiger Funktionen. Falls die folgenden Bedingungen erfüllt sind:
+	    \begin{itemize}
+	        \item die Folgenlieder $f_n$ sind auf $\Omega$ von der Klasse $C^1$
+	        \item $f_n\to f$ punktweise auf $\Omega$
+	        \item $f_n'\to g$ gleichmässig auf $\Omega$
+	    \end{itemize}
+	    so ist $f$ auf $\Omega$ von der Klasse $C^1$ und $$f'(x)=g(x),\quad \forall x\in\Omega$$\\
+	    auch $f_n\to f$ gleichmässig auf $\Omega$
+	    
+	\end{itemize}
+	    
+	\end{enumerate}
+	    
+	\section{Ableitungen}
+	\subsection{Basics}
+	\begin{itemize}
+	    \item lineare Approximation $h(x)$ von $f$ bei $x_0$: $h(x)=f(x_0)+f'(x_0)(x-x_0)$ 
+	    \item $f'(x)=\lim _{x \rightarrow x_{0} \atop x \neq x_{0}} \frac{f(x)-f\left(x_{0}\right)}{x-x_{0}} = \lim _{h \rightarrow 0 \atop h \neq 0} \frac{f\left(x_{0}+h\right)-f\left(x_{0}\right)}{h}$
+	    \item Sei $f:D\to \mathbb{R}$ differenzierbar auf $D$, dann ist $f$ stetig auf $D$
+	\end{itemize}
+	
+	\subsection{Ableitungsregeln}
+    \begin{itemize}
+        \item Summenregel: $(f+g)'=f'+g'$
+        \item Produktregel: $(fg)'=f'g + g'f$
+        \item Leibniz-Regel: $(\frac{f}{g})' = \frac{f'g-fg'}{g^2}$ mit $g(x)\neq 0$
+        \item Kettenregel: $f(g(x))'=f'(g(x))\cdot g(x)'$
+        \item Reziprok-Regel: $f$ injektiv und $f'\neq 0 $: $(f^{-1})'(y)=\frac{1}{f'(f^{-1}(y))}$
+        \item Generelle Leibniz-Formel: $(f g)^{(k)}=\sum_{j=0}^{k}\left(\begin{array}{l}k \\ j \end{array}\right) f^{(j)} g^{(k-j)}$
+        \item Ableitung des Integrals: $\frac{d}{dx}\int_ {\varphi(x)}^{\psi (x)}f(t)\,dt = f(\psi(x))\cdot \psi'(x)-f(\varphi(x))\cdot\varphi'(x)$
+    \end{itemize}
+    \subsubsection{Newtons Algorithmus}
+    \begin{itemize}
+        \item Newtons Algorithmus zur Bestimmung von Nullstellen:\\
+        $x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}$ für $n\leq 1$
+    \end{itemize}
+
+    \subsection{Häufige Ableitungen}
+    \begin{itemize}
+        \item $(e^x)' = e^x$
+        \item $(e^{ax})' = ae^{ax}$
+        \item $\sin x ' = \cos x$
+        \item $\cos x ' = -\sin x$
+        \item $\ln'(x)=\frac{1}{x}, \quad \forall x >0$
+        \item $(x^a)' = ax^{a-1}$ mit $a\in \mathbb{R}$ auf $]0,\infty[$
+        \item $(a^x)'=\ln(a)a^x$
+        \item $(\sqrt[x]{a})^{\prime}=-\frac{a^{\frac{1}{x}} \ln (a)}{x^{2}}$
+        \item $\arccos ^{\prime}(x)=-\frac{1}{\sqrt{1-x^{2}}}, \quad \arcsin ^{\prime}(x)=\frac{1}{\sqrt{1-x^{2}}}$ auf $]-1,1[$
+        \item $\tan'(x)=\frac{1}{\cos^2(x)}=1 + \tan^2(x)$
+        \item $\arctan ^{\prime}(x)=\frac{1}{\tan ^{\prime}(\arctan (x))}=\frac{1}{1+x^2}$ für alle $x\in \mathbb{R}\quad \arctan (x) \in [-\frac{\pi}{2},\frac{\pi}{2}], \forall x \in \mathbb{R}$ 
+        \item $\tanh'(x)=1-\tanh ^2(x)=\frac{1}{\cosh^2(x)}$
+        \item $(\sinh ^{-1})' (x)=\frac{1}{\sqrt{1+x^2}}$
+        \item $g(x)=\frac{1}{x}$, $\quad g^{(k)}(x)=\frac{(-1)^{k} k !}{x^{k+1}}$
+    \end{itemize}
+    
+    \subsubsection{Inverse hyperbolische Funktionen}
+    \begin{itemize}
+        \item $\frac{d}{dx} \operatorname{arsinh} x {}= \frac{1}{\sqrt{x^2+1}}, \text{ for all real } x$
+        \item $\frac{d}{dx} \operatorname{arcosh} x  {}= \frac{1}{\sqrt{x^2-1}}, \text{ for all real } x>1$
+        \item $\frac{d}{dx} \operatorname{artanh} x  {}= \frac{1}{1-x^2}, \text{ for all real } |x|<1$
+        \item $\frac{d}{dx} \operatorname{arcoth} x  {}= \frac{1}{1-x^2}, \text{ for all real } |x|>1$
+        \item $\frac{d}{dx} \operatorname{arsech} x  {}= \frac{-1}{x\sqrt{1-x^2}}, \text{ for all real } x \in (0,1)$
+        \item $\frac{d}{dx} \operatorname{arcsch} x  {}= \frac{-1}{|x|\sqrt{1+x^2}}, \text{ for all real } x\text{, except } 0$
+    \end{itemize}
+    
+    \subsection{Konvexe Funktion}
+    \subsubsection{Definition}
+    \begin{itemize}
+        \item Eine Menge $A\subseteq \mathbb{R}^2$ ist konvex, wenn die Strecke zwischen zwei Punkten in $A$ immer in $A$ enthalten ist.\\
+        Also $x_1,x_2\in A$ und $t(x_1) +(1-t)x_2,\quad 0\leq t\leq 1$ ist in A
+        \item Eine Funktion $f:D\to\mathbb{R}$ ist konvex, wenn die Menge $A_f = \{(x,y)\in\mathbb{R}^2 | y \geq f(x)\}\subseteq\mathbb{R}^2$ konvex ist.
+        \item $f$ ist konvex, wenn $f\in C^2$ und $f''\geq 0$ für alle $x\in D$, also $f'$ steigend auf $D$ ist.
+        \item Eine Funktion $f$ ist konvex dann und nur dann wenn für alle $x\neq y$ in $D$ und für $t\in [0,1]$ gilt:\\
+        $f(t x+(1-t) y) \leq t f(x)+(1-t) f(y)$
+        \item $f$ ist konvex, wenn für jede Zahl $k\in\mathbb{N}$, jedes unterschiedliche Element $(x_1,...,x_k)$ und die nicht-negativen Zahlen $(p_1,...,p_k)$ mit $p_1+...+p_k=1$, dann gilt\\
+        $f(p_1x+...+p_k x_k)\leq f(x_1)+...+p_k f(x_k)$
+    \end{itemize}
+    
+    \subsubsection{Ungleichungen gültig bei konvexen Funktionen}
+    \begin{itemize}
+        \item Sei $f:D\to\mathbb{R}$ stetig und konvex, für $x<y<z \in D$ gilt: $\frac{f(y)-f(x)}{y-x} \leq \frac{f(z)-f(x)}{z-x} \leq \frac{f(z)-f(y)}{z-y}$ \\
+        $f$ ist konvex, wenn für alle $x,x_0\in D$ gilt: $f(x)\geq f(x_0)+f'(x_0)(x-x_0)$, zu obiger Abschätzung umstellen und dann zeigen, dass $\frac{f(y)-f\left(x_{0}\right)}{y-x_{0}} \leq \frac{f(x)-f\left(x_{0}\right)}{x-x_{0}}$ für $y\in ]x_0,x[$ mit  $\lim_{y\to x_0} \frac{f(y)-f\left(x_{0}\right)}{y-x_{0}} = f'(x_0)$ gilt und umgekehrt für $y\in ]x,x_0[$
+    \end{itemize}
+	
+	\subsection{Taylor Polynome}
+	\subsubsection{Definition}
+	\begin{itemize}
+	    \item Sei eine Funktion $f\in C^k$ und $x_0\in D$\\
+	    $T_k f(x;x_0)=\sum_{n=0}^k\frac{f^(n)(x_0)}{n!}(x-x_0)^n$ ist das k-te Taylor Polynom von $f$ bei $x_0$
+	    \item Fehler: Sei $f\in C^{k+1}$, für jedes $x\in D$ gibt es ein $c\in[x,x_0]$ so dass\\
+	    $f(x)=T_{k} f\left(x ; x_{0}\right)+\frac{f^{(k+1)}(c)}{(k+1) !}\left(x-x_{0}\right)^{k+1}$
+	    \item Fehler 2: Sei $f\in C^{k+1}$, dann $f(x)=T_k f(x;x_0)+(x-x_0)^k r(x)$ mit $\lim_{x\to x_0}r(x)=0$\\
+	    also $\lim _{x \rightarrow x_{0}} \frac{1}{\left(x-x_{0}\right)^{k}}\left(f(x)-T_{k} f\left(x ; x_{0}\right)\right)=0$ (irgendwas mit km digits of precision ?!)
+	\end{itemize}
+	\subsubsection{Integral Variante}
+	\begin{itemize}
+	    \item Let $k \in \mathbf{N}_{0}$. Let $I \subset \mathbf{R}$ be an interval and let $f: I \rightarrow \mathbf{R}$ be function that is in $C^{k+1}(I) .$ Let $x_{0} \in I .$ For any $x \in I$, we have
+        $$
+        f(x)=T_{k} f\left(x ; x_{0}\right)+\frac{1}{k !} \int_{x_{0}}^{x} f^{(k+1)}(t)(x-t)^{k} d t
+        $$
+	\end{itemize}
+
+    
+    	
+	\subsubsection{Taylorpolynom $f(x)=g(x)h(x)$ aus zwei bekannten Reihen}
+	\begin{itemize}
+	    \item Taylorreihe von $f$ ergibt sich aus Produkt der beiden bekannten Reihen, mit allgemeiner Leibnizformel für Ableitungen:\\
+	    $f(x)=\sum_{n=0}^{\infty} c_{n} x^{n}, \quad \text { mit } c_{n}=\sum_{k+\ell=n} a_{k} b_{\ell}$
+	    \item Beispiel: $g(x):=\frac{1}{2+x}=\frac{1}{2} \sum_{n=0}^{\infty}(-1)^{n}\left(\frac{x}{2}\right)^{n}$ \\
+	    $h(x):=\sin (x)=\sum_{k=0}^{\infty}(-1)^{k} \frac{x^{2 k+1}}{(2 k+1) !}$\\
+	    $a_k=\frac{(-1)^k}{2^{k+1}}$ und $b_{\ell}=\left\{\begin{aligned}
+0 & \text { falls } \ell \text { gerade, } \\
+(-1)^{\frac{\ell-1}{2}} \cdot \frac{1}{\ell !} & \text { falls } \ell \text { ungerade }
+\end{aligned}\right.$\\
+        Somit kriegt man: $c_1 = a_0 b_1=\frac{1}{2}$, $c_2=a_1 b_1 = -\frac{1}{4}$, $c_3=a_0 b_3 + a_2 b_1 = -\frac{1}{12}+\frac{1}{8}=\frac{1}{24}$\\
+        $f(x)=\frac{x}{2}-\frac{x^2}{4}+\frac{x^3}{24}+R_4(f,0)(x)$
+	\end{itemize}
+	
+	\section{Gewöhnliche Differentialgleichungen}
+	\subsection{Allgemeines Vorgehen}
+	\begin{enumerate}
+	    \item Homogenes Problem lösen
+	    \item \textbf{Eine} Lösung der inhomogenen Gleichung finden
+	    \item Mithile von \textbf{Anfangswerten} das resultierende Gleichungssystem nach unbekannten Konstanten auflösen
+	\end{enumerate}
+	\subsection{Homogene Lösung}
+	\begin{enumerate}
+	    \item $chp(\lambda)$ $=a_0\lambda^0 + a_1\lambda^1 + ... + a_n\lambda^n=0$
+	    \item Nullstellen in den Ansatz einsetzen
+	    \begin{itemize}
+	        \item $\lambda_i$ k-fache reelle Nullstelle \\
+	        $y_{i,t}(x) = x^t e^{\lambda_i x}, \quad 0\leq t < k$
+	        \item $\lambda_i$ und $\lambda_j$ reelle betragsmässig gleiche Nullstelle ($\lambda = \pm a$) \\
+	        $y_i(x) = \cosh(ax),\quad y_j(x) = \sinh(ax)$
+	        \item $\lambda_i$ und $\lambda_j$ komplexe Nullstelle ($\lambda = a \pm bi$) \\
+	        $y_i(x) = e^{ax}\cos(bx), \quad y_j(x)=e^{ax}\sin(bx)$
+	    \end{itemize} 
+	    \item Die einzelnen Teillösungen zusammensetzen: $y_{h}(x)=\sum_{i=1}^{n} C_{i} y_{i}(x)$
+	\end{enumerate}
+	\subsection{Partikuläre Lösung}
+	\begin{itemize}
+	    \item $q(x) = (b_0 + b_1x + ... + b_mx^m)e^{\mu x}, \quad \mu \in \mathbb{R}$ \\
+        Ansatz: $(C_0+...+C_mx^m)x^ke^{\mu x}$
+	\end{itemize}
+	\begin{enumerate}
+	    \item $q(x)$ und deren Parameter identifizieren
+	    \item Man identifiziert $k$, man schaut, ob Chp($\mu$)$=0$ und welche Ordnung die Nullstelle hat.
+	    \item Der gefundene Ansatz kann eingesetzt werden und durch Koeffizientenvergleich wird der Rest gefunden
+	\end{enumerate}
+	\subsection{Matrixexponential}
+	\begin{itemize}
+	    \item $e^{Ax}\coloneqq \sum_{k=0}^{\infty} \frac{A^kx^k}{k!} = I_n + Ax + \frac{A^2x^2}{2}+...$
+	    \item Falls die Matrix $A$ nilpotent ist ($A^q=0$), dann kann man direkt die Definition benutzen
+	    \item Falls die Matrix $A$ eine Diagonalmatrix ist, lässt sich $A^k$ einfach berechnen
+	    \item Die Matrix $A=VDV^{-1}$ ist diagonalisierbar: \\
+	    $e^{Ax} = \sum_{k=0}^{\infty} \frac{(VDV^{-1})^k x^k}{k!} = Ve^{Dx}V^{-1}$
+	\end{itemize}
+	\subsection{Lösen von Differentialgleichungssystemen}
+	\begin{itemize}
+	    \item $\frac{d\textbf{F}(t)}{dt} = A \cdot \textbf{F}(t) \Rightarrow \textbf{F}(t) = e^{At} \cdot \textbf{C}$
+	    \item Damit die DGL eindeutig bestimmt werden kann, müssen $n-$Anfgangswerte für $n-$Freiheitsgrade gegeben sein. Damit die Konstanten $C_i$ erst mit der kompletten Lösung (mit partikulärer Lösung) bestimmen.
+	\end{itemize}
+	
+	
+	
+	\section{Differentialrechnung in $\Rn$}
+    \subsection{Begriffe}
+    \subsubsection{Partielle Differenzierbarkeit}
+    \begin{itemize}
+        \item Sei $\fOmegaRnRm$ ist an der Stelle $a\in \Omega$ nach der Variable $x_i$ partiell differenzierbar, falls\\
+        $\frac{\partial f}{\partial x_i}(a)=\lim_{h\to 0} \frac{f(a_1,...,a_i+h,...,a_n)-f(a_1,...,a_i,...,a_n)}{h}$ existiert und dieser Limes heisst partielle Ableitung nach $x_i$
+    \end{itemize}
+    
+    \subsubsection{Richtungsableitung}
+    \begin{itemize}
+        \item Allgemeiner Fall der partiellen Ableitung\\
+        Sei $\fOmegaRnRm$, für $v\in\Rn$ heisst der Ausdruck, falls existent,\\
+        $D_v f(x_0)=\lim\limits_{h\to 0} \frac{f(x_0 + hv)-f(x_0)}{h}$ \textbf{Richtungsableitung} von $f $ an $x_0$ nach Richtung $v$
+    \end{itemize}
+    
+    \subsubsection{(Totale) Differenzierbarkeit}
+    \begin{itemize}
+        \item Sei $\fOmegaRnRm$ heisst an der Stelle $x_0\in\Omega$ differenzierbar, falls eine lineare Abbildung $A:\Rn\to\mathbb{R}^m$ ($m\times n$-Matrix) existiert für die gilt:\\
+        $\lim\limits_{x\to x_0} \frac{|f(x)-f(x_0) - A(x-x_0)|}{|x-x_0|}=0$ mit $df(x_0):=A$ das Differential von $f$ bei $x_0$
+        \item Differenzierbarkeit $\Rightarrow$ partielle Differenzierbarkeit
+        \item $f$ ist an der Stelle $x_0$ differenzierbar, falls $f$ in der Nähe des Punktes $x_0$ "gut" durch die lineare Funktion $f(x_0)+A(x-x_0)$ approximiert wird.
+        \item Jedes $f\in C^1(\mathbb{R})$ besitzt das Differential: $df(x_0)=\frac{df}{dx}(x_0)dx=f'(x_0)dx$, d.h. $f'(x_0)$ ist die Darstellung von $df(x_0)$ bzgl. der Basis $dx$ von $L(\mathbb{R};\mathbb{R})$
+    \end{itemize}
+    
+    \subsubsection{Zusammenhang Differenzierbarkeit und partielle Ableitungen}
+    \begin{enumerate}
+        \item $f$ von der Klasse $C^1$ an der Stelle $x_0$
+        \item $\Rightarrow f$ differenzierbar an der Stelle $x_0$
+        \item $\Rightarrow f$ partiell differenzierbar an der Stelle $x_0$\\
+        partielle Ableitungen sind stetig an der Stelle $x_0 \Rightarrow (2)$ \\
+        partielle Ableitungen in einer Umgebung von $x_0$ sind stetig $\Rightarrow (1)$
+        \item (2) $\Rightarrow f$ stetig an der Stelle $x_0$
+    \end{enumerate}
+    
+    \begin{itemize}
+        \item Stetige partielle Differenzierbarkeit $\Rightarrow$ totale Differenzierbarkeit $\Rightarrow$ Differenzierbarkeit in jede Richtung $\Rightarrow$ partielle Differenzierbarkeit
+        \item Jeweilige Umkehrung der obigen Aussage gilt nicht
+    \end{itemize}
+    
+    \subsubsection{Jacobi-Matrix}
+    \begin{itemize}
+        \item $$A=df(x_0)=J_f(x)=
+						\begin{pmatrix}
+							\frac{\partial f_1(x)}{\partial x_1} &\cdots &\frac{\partial f_1(x)}{\partial x_n}\\
+							\vdots &\ddots &\vdots\\
+							\frac{\partial f_m(x)}{\partial x_1 } &\cdots &\frac{\partial f_m(x)}{\partial x_n}
+						\end{pmatrix}$$
+    \end{itemize}
+    
+    \subsubsection{Gradient}
+	\begin{itemize}
+	    \item Die partiellen Ableitungen lassen sich in einem Vektor anordnen mit $$\grad(f)=\nabla f(x)=
+						\begin{pmatrix}
+							\frac{\partial f(x)}{\partial x_1}\\
+							\vdots\\
+							\frac{\partial f(x)}{\partial x_n}
+						\end{pmatrix}$$
+		\item Sei $f\in C^1(\Omega)$ und sei $x_0\in\Omega$, dann gibt $\nabla f(x_0)$ die Richtung und den Betrag des steilsten Anstiegs von $f(x)$ an Stelle $x_0$
+		\item Gradient ist die Transponierte von $df$ und es gilt $\grad(f)\cdot \vec{v}=df \vec{v}$
+	\end{itemize}
+	
+	\subsubsection{1-Form}
+	\begin{itemize}
+	    \item Differentialformen sind Abbildungen, die Vektoren linearen Abbildungen zuordnen. Sei \(\lambda: \Omega \subset \mathbb{R}^{n} \rightarrow L\left(\mathbb{R}^{n}, \mathbb{R}\right) .\) So ist die 1-Form gegeben durch $\lambda(x)=\sum_{i=1}^{n} \lambda_{i}(x) d x^{i}$, also jedem $x\in\Omega$ wird eine lineare Abbildung zugewiesen.
+	    \item Für jedes $f \in C^{1}(\Omega) \text { ist das Differential df eine } 1 \text { -Form von der Klasse } C^{0}$
+	\end{itemize}
+	
+	\subsection{Sätze zu Differentialrechnung in $\Rd$}
+	\subsubsection{Klasse $C^1$}
+	\begin{itemize}
+	    \item Die Funktion $f:\Omega\to\mathbb{R}$ heisst von der Klasse $C^1 ,f\in C^1(\Omega )$ falls $f$ an jeder Stelle $x_0\in \Rn$ in jede Richtung $e_i$ partiell differenzierbar ist, und falls die Funktionen $x \to \frac{\partial f}{\partial x^i} (x) , 1 \leq i \leq n$ auf $\Omega$ stetig sind.
+	    \item $f$ ist an der Stelle $x_0$ differenzierbar $\iff$ die partiellen Ableitungen von $f$ existieren in einer Umgebung von $x_0$ und sind an der Stelle $x_0$ stetig.
+	    \item f differenzierbar in $x_0$ $\Rightarrow$ $f$ stetig in $x_0$
+	\end{itemize}
+	
+	\subsubsection{Klasse $C^2$}
+	\begin{itemize}
+	    \item Die Funktion $f$ heisst von der \textbf{Klasse $C^2$}, falls alle partiellen Ableitung von der Klasse $C^1$ sind.
+	\end{itemize}
+	
+	\subsubsection{Satz von Schwarz}
+	\begin{itemize}
+	    \item Sei $f\in C^2(\Omega)$, dann gilt: $\frac{\partial ^2 f}{\partial x_i\partial x_j}=\frac{\partial }{\partial x_i}(\frac{\partial f}{\partial x_j})=\frac{\partial ^2 f}{\partial x_j\partial x_i}, \quad 1\leq i,j \leq n$
+	\end{itemize}
+	
+	\subsubsection{Umkehrsatz}
+	\begin{itemize}
+	    \item Sei $f\in C^1(\Omega; R^n)$ und sei $ df(x_0):\Rn\to\Rn$ invertierbar an einer Stelle $x_0\in\Omega$. Dann existieren Umgebungen $U$ von $x_0$, $V$ von $f(x_0)=y_0$ und eine Funktion $g\in C^1(V,\Rn)$ mit $g=(f|_U)^-1$, das heisst:\\
+	    $g(f(x))=x,\forall x \in U, f(g(y))=y,\forall y\in V$\\
+	    $dg(f(x))=(df(x))^{-1}=$ Inverse der Jacobi-Matrix von $f$
+	\end{itemize}
+	
+	\subsubsection{Diffeomorphismus}
+	\begin{itemize}
+	    \item Seien $U \subset \mathbb{R}^n$, $V \subset \mathbb{R}^n$ offen. Eine bijektive $C^1$-Abbildung $\Phi: U \to V$ heisst Diffeomorphismus, falls die Umkehrabbildung $\Phi^{-1}: V \to U$ wieder $C^1$ ist.
+	\end{itemize}
+	
+	\subsubsection{Kochrezept zur Überprüfung ob Diffeomorphismus}
+	\begin{itemize}
+	    \item Gegeben: $\Phi:U\subseteq\Rn\to V\subseteq\Rn$, ist $\Phi$ ein Diffeomorphismus?
+	    \begin{enumerate}
+	        \item Beweise, dass $\Phi$ stetig differenzierbar ist, berechne Differenzial $d\Phi$ (Jacobi-Matrix) und zeige, dass $\det d\Phi(x)\neq 0,\forall x \in U$\\
+	        Umkehrsatz impliziert, dass $\Phi$ lokal ein Diffeomorphismus ist
+	        \item Beweise, dass $\Phi$ die Menge $U$ bijektiv auf $V$ abbildet.
+	    \end{enumerate}
+	    \item Oder direkt $\Phi^{-1}$ berechnen und $C^1$ zeigen.
+	\end{itemize}
+	
+	\subsubsection{Implizites Funktionentheorem}
+	\begin{itemize}
+	    \item Sei $\Omega \subset \mathbb{R}^{n}=\mathbb{R}^{k} \times \mathbb{R}^{l}$ offen und sei $f: \Omega \rightarrow \mathbb{R}^{l}$ stetig differenzierbar. Ist der Punkt $p_{0}=(a, b) \in \Omega$  (mit $a=$ erste $k$ Koordinaten und $b=$ letzte $l$ Koordinaten von $p_{0}$) regulär mit\\
+        $f(p_{0})=0 \quad$ und $\quad \operatorname{det}(d_{y} f(p_{0})) \neq 0(.$ d.h. $d_{y} f(p_{0})$ ist invertierbar)\\
+        wobei $d_{y} f(p_{0})$ die Untermatrix von $d f(p_{0})$, die die partiellen Ableitungen nach den Koordinaten $y_{1}, ...,y_{l}$ enthält, so lässt sich das Gleichungssystem $f(x, y)=0$ nach den Koordinaten $y$ auflösen. \\
+        Genauer: Es gibt eine offene Umgebung $U$ von $a$ in $\mathbb{R}^{k}$ und eine offene Umgebung $V$ von $b$ in $\mathbb{R}^{l}$ und ein $C^{1}$ Diffeomorphismus $h: U \rightarrow V$, sodass $f(x, h(x))=0 $
+        \item Die Funktion $h$ kann nicht explizit berechnet werden, doch Differential von $h(x)$ ist $d h(x)=-(d_{y} f(x, h(x)))^{-1} \cdot d_{x} f(x, h(x))$
+	\end{itemize} 
+	
+    \subsubsection{Existenzsatz für Extrema}
+        \begin{itemize}
+            \item Ist $\Omega\subseteq\Rn$ kompakt und $f:\Omega\to\mathbb{R}$ stetig auf $\Omega$, so nimmt $f$ auf $\Omega$ Minimum und Maximum an.
+        \end{itemize}
+	
+	\subsection{Differentiationsregeln}
+	\subsubsection{Summen,- Produkt-, Quotientenregel}
+	\begin{itemize}
+	    \item $d(f+g)(x_0)=df(x_0)+dg(x_0)$
+	    \item $d(f\cdot g)(x_0)=g(x_0)df(x_0)+f(x_0)dg(x_0)$
+	    \item $d(\frac{f}{g})(x_0)=\frac{g(x_0)df(x_0)-f(x_0)dg(x_0)}{(g(x_0))^2}$
+	\end{itemize}
+	
+	\subsubsection{Kettenregel 1. Version}
+	\begin{itemize}
+	    \item Sei $g:\Omega\to\mathbb{R}$ an der Stelle $x_0\in\Omega$ differenzierbar, und sei $f:\mathbb{R}\to\mathbb{R}$ differenzierbar bei $g(x_0)$. Dann ist Funktion $f\circ g:\Omega\to\mathbb{R}$ an der Stelle $x_0\in\Omega$ differenzierbar und es gilt:\\
+	    $d(f\circ g)(x_0)=f'(g(x_0))dg(x_0)$
+	\end{itemize}
+	
+	\subsubsection{Kettenregel 2. Version}
+	\begin{itemize}
+	    \item Sei $\Omega\subseteq\Rn$ offen, sei $g:I\subseteq\mathbb{R}\to\Omega$ an der Stelle $t_0\in I$ differenzierbar, und sei $f:\Omega\to\mathbb{R}$ differenzierbar bei $g(t_0)$. Dann ist Funktion $f\circ g:I\to\mathbb{R}$ an der Stelle $t_0\in\Omega$ differenzierbar und es gilt:\\
+	    $d(f\circ g)(t_0)=df(g(t_0))dg(t_0)$ oder\\
+	    $\frac{d}{dt}(f\circ g)(t_0)=df(g(t_0))\frac{dg}{dt}(t_0)$
+	\end{itemize}
+		
+	\subsection{Taylorentwicklung in $\Rn$}
+	\subsubsection{Entwicklung zweier Variabeln}
+	\begin{itemize}
+	    \item $$\begin{aligned}
+f(x, y)=f\left(x_{0}, y_{0}\right) +\frac{\partial f}{\partial x} \Delta x+\frac{\partial f}{\partial y} \Delta y \\
++\frac{1}{2}\left(\frac{\partial^{2} f}{\partial x^{2}}(\Delta x)^{2}+2 \frac{\partial^{2} f}{\partial x \partial y} \Delta x \Delta y+\frac{\partial^{2} f}{\partial y^{2}}(\Delta y)^{2}\right) \\
++\frac{1}{3 !}\left(\frac{\partial^{3} f}{\partial x^{3}}(\Delta x)^{3}+3 \frac{\partial^{3} f}{\partial x^{2} \partial y}(\Delta x)^{2} \Delta y+3 \frac{\partial^{3} f}{\partial x \partial y^{2}} \Delta x(\Delta y)^{2}+\frac{\partial^{3} f}{\partial y^{3}}(\Delta y)^{3}\right)+\cdots
+\end{aligned}$$
+    \item $\Delta x$ bezeichnet die Differenz $(x-x_0)$
+	\end{itemize}
+	
+	\subsubsection{Entwicklung mehrerer Variabeln}
+	\begin{itemize}
+	    \item Entwicklung um Punkt $a$: $$T_nf(x, a)=\sum_{k=0}^{n} \frac{1}{k!}\left(\Delta x_1 \frac{\partial}{\partial x_1}+\cdots+\Delta x_n \frac{\partial}{\partial x_n}\right)^kf(x)\Bigg|_{x=a}$$
+	    \item $\Delta x_i$ bezeichnet die Differenz $(x_i-a_i)$ und es wird zuerst partiell abgeleitet und dann Funktion bei $a$ ausgewertet
+	\end{itemize}
+	
+	\subsection{Kochrezepte}
+	\subsubsection{Überprüfung auf Differenzierbarkeit}
+	\begin{enumerate}
+	    \item Meist ist die Funktion eine Zusammensetzung aus differenzierbaren Funktionen, welche wiederum differenzierbar sind. Nur im Ursprung gibt es Probleme, da Nenner $=0$ ist. Punkt $(0,0)$ untersuchen:
+	    \item Zuerst muss die Funktion auf \textbf{Stetigkeit} überprüft werden. Dazu kann der Polarkoordinatentrick $(x,y)=(r\cos(\varphi),r\sin(\varphi))$ mit $\lim\limits_{r\to 0}$ benutzt werden.\\
+	    Oder man benutzt z.B. einmal die Folge $(\frac{1}{n},\frac{1}{n})$ und $(0,\frac{1}{n})$ und untersucht so die Grenzwerte der Funktion bei $n\to\infty$ unter diesen Folgen (Unstetigkeit zu zeigen gut geeignet)\\
+	    Oder man schätzt einmal mit $|x|<\sqrt{|y|}$ und einmal mit $|x|\geq \sqrt{|y|}$ ab und zeigt, dass jeweils zu 0 konvergiert. z.B. bei $\frac{3 x^{3} y}{3 y^{2}+2 x^{4}}$ versagt Polarkordinatentrick, da noch $\varphi$-Terme im Nenner.
+	    \item \textbf{Differenzierbarkeit} überprüfen:
+	    \begin{enumerate}
+	        \item  Mit der Definition die partiellen Ableitungen bestimmen und somit Differenzial $A$ in $(0,0)$ berechnen.
+	        \item Dann in Definition der Differenzierbarkeit alles einsetzen: $\lim\limits_{x\to x_0} \frac{|f(x)-f(x_0) - A(x-x_0)|}{|x-x_0|}=0$ mit $df(x_0):=A$ \\
+	        Schauen ob Grenzwert zu 0 wird, auch wieder Polarkoordinatentrick verwenden.
+	    \end{enumerate}
+	    
+	    \begin{itemize}
+	        \item Um zu zeigen, dass $f$ \textbf{nicht differenzierbar} in $x_0$ ist, kann folgendes verwendet werden:
+	        \begin{itemize}
+	            \item $f$ nicht stetig in $x_0$
+	            \item Partielle Ableitungen nicht stetig in $x_0$
+	            \item Nicht Differenzierbar in jede Richtung, dazu Vektor $\vec{v} = h\cdot(v_1,v_2)$ und in $\lim\limits_{h\to 0} \frac{f(h v_1,h v_2)-f(x_0)}{h}$ unterschiedliche Werte, z.B. links- und rechtsseitiger Grenzwert sind nicht gleich, aufpassen, wenn $h$ aus $\sqrt{h^2(v_1^2+v_2^2)}$ gezogen wird: $|h|\sqrt{(v_1^2+v_2^2)}$
+	            \item Für differenzierbare Funktionen hängen die Richtungsableitungen in $(0,0)$ linear von $v$ ab\\
+	            z.B. $df_x = 0$ und $df_y=-1$ ist aber Richtungsableitung in Richtung $(1,1)= 2$ ist, dann gilt nicht $g'(0)=df(0,0) v = 0 - 1\neq 2$ mit $g(t)=f(t\cdot v)$ somit hängt die Richtungsableitung nicht linear von $v$ ab und die Funktion ist nicht differenzierbar.
+	        \end{itemize}
+	    \end{itemize}
+	\end{enumerate}
+	
+	\subsubsection{Funktion ist $C^1$}
+	\begin{itemize}
+	    \item Zeigen, dass die partiellen Ableitungen überall stetig sind, meist Zusammensetzung aus stetig differenzierbaren Funktionen und in $(0,0)$ Grenzwert mit Polarkoordinaten-Trick betrachten
+	    \item Wenn \textbf{nicht differenzierbar}, dann nicht $C^1$
+	\end{itemize}
+	
+	
+	\section{Extremwerte}
+		\subsection{Ohne Nebenbedingung}
+				\subsection{Eindimensionale Funktion}
+					\begin{enumerate}
+						\item \textbf{Kandidaten}
+							\begin{itemize}
+								\item Intervallgrenzen (globale Extrema)
+								\item $f'(x) \overset{!}{=}0$
+							\end{itemize}
+						\item \textbf{Art von Extrema}
+							\begin{itemize}
+								\item (lokales) Maximum: $f''(x_0)<0$
+								\item (lokales) Minimum: $f''(x_0)>0$
+							\end{itemize}
+						\item \textbf{Vergleich lokale und globale Extrema}
+					\end{enumerate}
+				\subsection{Mehrdimensionale Funktion}
+					\begin{enumerate}
+						\item \textbf{Kandidaten}
+						\begin{equation*}
+							\nabla f(x_0)\overset{!}{=}0
+						\end{equation*}
+						\item \textbf{Art von Extrema}
+							\begin{itemize}
+								\item Maximum: $H_f(x_0)$ negativ definit
+								\item Minimum: $H_f(x_0)$ positiv definit
+							\end{itemize}
+					
+					\end{enumerate}
+		\subsection{Mit Nebenbedingungen}
+		
+		\subsubsection{Grundidee}
+		    \begin{itemize}
+		        \item Durch das Bilden einer neuen Funktion, der \textbf{Lagrange-Funktion} lässt sich mit der \textbf{Lagrange-Multiplikatoregel} die Nebenbedingung beachten.
+		    \end{itemize}
+	    
+	    \subsubsection{Langrange-Multiplikator-Regel}
+		    \begin{itemize}
+		        \item Sei $p_{0} \in S$ lokales Maximum oder Minimum von $f$ unter der Nebenbedingung $g\left(p_{0}\right)=0$, und sei $p_{0}$ regulärer Punkt von g. Dann existiert $\lambda=\left(\lambda_{1}, \ldots, \lambda_{l}\right) \in \mathbb{R}^{l}$, so dass für $L=f+\lambda g$ gilt: $d L\left(p_{0}\right)=d f\left(p_{0}\right)+\lambda d g\left(p_{0}\right)=0 $
+		        \item Die Kanditdaten für Extremalstellen von $f$ unter der Nebenbedingung $g=0$ sind die kritischen Punkte der Lagrange-Funktion $L$, die Variabel $\lambda=(\lambda _1,...,\lambda _2)$ heissen Lagrange-Multiplikator.
+		        \item $x_{0}$ heisst kritischer Punkt von $f$ auf $S=g^{-1}\{0\}$, falls $\lambda$ existiert mit $d L\left(x_{0}\right)=0$ wobei $L=f+\lambda g$
+		        \item Sobald kritische Punkte gefunden wurden, müssen diese mit der Hesse-Matrix von $L$ untersucht werden.
+		    \end{itemize}
+		    
+		
+				\begin{align*}
+					&\nabla L(\textbf{x}_0) \overset{!}{=} \textbf{0} \hspace{30pt} \text{mit } L=f(\textbf{x})-\sum_{i=1}^{n}\lambda_i \varphi_i\\
+					&\varphi_i :\text{Nebenbedingungen} \hspace{15pt} \lambda_i: \text{Lagrange-Multiplikatoren}
+				\end{align*}
+				\subsubsection{Vorgehen}
+					\begin{enumerate}
+						\item Nebenbedingungen zeichnen
+						\item Menge sollte abgeschlossen und beschränkt sein $\rightarrow$ existiert ein Maximum/Minimum (die Funktion sollte natürlich auf dem Bereich auch stetig sein)
+						\item Gradient berechnen
+						\begin{itemize}
+							\item[i)] innere Punkte: $\nabla f(\textbf{x}_0)\overset{!}{=} \textbf{0}$ ($\textbf{x}_0$ muss Element der Menge sein)
+							\item[ii)] Randpunkte: $\nabla L\overset{!}{=} \textbf{0}$ 
+						\end{itemize}
+						\item Löse Gleichungssystem mit Nebenbedingungen
+						\item Kandidaten der Extrema + Eckpunkte ($\nexists$ Ableitung) aufschreiben
+						\item Wenn nur globales Maxima und Minima gesucht wird, Kandidaten in $f(\textbf{x})$ einsetzen und vergleichen
+					    \item Sonst kritische Punkte mit Hesse-Matrix von $L$ untersuchen.
+						
+					\end{enumerate}
+					
+					\subsubsection{Beispiel}
+				    	\textbf{Beispiel}
+						\begin{equation*}
+							f(x, y, z)=4y-2z \hspace{15pt} \varphi_1=x^2+y^2-1 \hspace{10pt} \varphi_2=2x-y-z-2
+						\end{equation*}
+						\begin{enumerate}
+							\item Nebenbedingungen zeichnen
+							\item $f(x, y, z)$ ist stetig und die Menge M ist beschränkt und abgeschlossen $\rightarrow \exists$ Max/Min
+							\item keine inneren Punkte (schräg im Raum liegende Ellipse)
+							\begin{equation*}
+								\nabla \varphi_1=
+								\begin{pmatrix}
+									2x\\ 2y\\ 0
+								\end{pmatrix}
+								\hspace{10pt} \nabla \varphi_2=
+								\begin{pmatrix}
+									2\\ -1\\-1
+								\end{pmatrix}
+								\hspace{10pt} \nabla f=
+								\begin{pmatrix}
+									0\\ 4\\ -2
+								\end{pmatrix}
+							\end{equation*}
+							\item Gleichungssystem lösen \hspace{10pt} $\nabla f=\lambda_1 \nabla \varphi_1+\lambda_2 \nabla \varphi_2$
+							\begin{multicols*}{2}
+								\begin{itemize}
+									\item[I: ] $0 =2 \lambda_1 x+2 \lambda_2$
+									\item[II: ] $4=2 \lambda_1 y-\lambda_2$
+									\item[III: ] $2=\lambda_2$
+									\item[IV: ] $1=x^2+y^2$
+									\item[V: ] $2=2x-y-z$
+								\end{itemize}
+							\end{multicols*}
+							\begin{tabular}{ccc}
+								$\lambda_1=\pm \sqrt{13}$ &$\lambda_2 =2$ &$x=\mp \frac{2}{\sqrt{13}}$\\
+								$y=\pm \frac{3}{\sqrt{13}}$ &$z=\mp \frac{7}{\sqrt{13}-2}$ &\\
+							\end{tabular}
+							\item Punkte aufschreiben
+							\begin{align*}
+								P_1&=\left(\frac{-2}{\sqrt{13}}, \frac{3}{\sqrt{13}}, \frac{-7}{\sqrt{13}}-2 \right)\\
+								P_2&=\left(\frac{2}{\sqrt{13}}, \frac{-3}{\sqrt{13}}, \frac{7}{\sqrt{13}}-2 \right)\\
+							\end{align*}
+							\item Punkte vergleichen
+							\begin{align*}
+								f(P_1)&=\frac{26}{\sqrt{13}}+4\\
+								f(P_2)&=\frac{-26}{\sqrt{13}}+4
+							\end{align*}
+							Somit ist $P_1$ ein Maximum und $P_2$ ein Minimum
+						\end{enumerate}
+						
+					\begin{enumerate}
+						\item[i)] Es kann sein, dass der Rand nicht durch Nebenbedingungen darstellbar ist, dann kann man die Funktion direkt für den Rand auswerten und die Funktionswerte vergleichen
+						\item[ii)] Man kann den Rand auch parametrisieren und die Parametrisierung in $f(\textbf{x})$ einsetzen. Jetzt kann man wie gewohnt die Ableitung gleich 0 setzen und die Kandidaten berechnen
+					\end{enumerate}
+	
+	\section{Integration}
+	\subsection{Definitionen}
+	\subsubsection{Step-Function}
+	\begin{itemize}
+	    \item Sei $D=[a,b]$ mit $a<b$, eine Funktion $s:D\to\mathbb{R}$ ist eine Step-Function auf $D$, wenn $k\in\mathbb{N}$ und Zahlen $a=x_0<x_1<...<x_k=b$ existieren, so dass\\
+	    $s$ konstant und gleich $\sigma_i\in\mathbb{R}$ auf $]x_i,x_{i+1}[$ für alle $i$\\
+	    Das Integral von $s$ lautet: $\int_a^b s(t)\,dt=\sum_{i=0}^{k-1}\sigma _i(x_{i+1}-x_{i})$
+	\end{itemize}
+	\subsubsection{Fundamentaler Satz der Analysis}
+	\begin{itemize}
+	    \item Sei $D=[a,b]$ mit $a<b$, sei $g:D\to\mathbb{R}$ stetig. $f:D\to\mathbb{R}$ ist definiert durch $f(x)=\int_a^x g(t)\,dt$ und ist eine Stammfunktion von $g$ mit $f(a)=0$
+	\end{itemize}
+	\subsubsection{Riemann Summe}
+	\begin{itemize}
+	    \item Sei $D=[a,b]$ mit $a<b$, sei $g:D\to\mathbb{R}$ stetig\\
+	    $\int_{a}^{b} g(t) d t=\lim _{n \rightarrow+\infty} \frac{1}{n} \sum_{k=0}^{n-1} g\left(a+k \frac{b-a}{n}\right)=\lim _{n \rightarrow+\infty} \frac{1}{n} \sum_{k=0}^{n} g\left(a+k \frac{b-a}{n}\right)$
+	    \item Colin Dirren Version: $\lim _{n \rightarrow \infty} \frac{b-a}{n} \sum_{k=0}^{n} f\left(a+k \frac{b-a}{n}\right)=\int_{a}^{b} f(x) \mathrm{d} x$
+	\end{itemize}
+	\subsubsection{Grenzwert und Integral vertauschen}
+	\begin{itemize}
+	    \item Sei $f_n:\Omega\to\mathbb{R}$ eine Folge stetiger Funktionen und $[a,b]\subseteq\Omega$. Falls $f_n\to f$ gleichmässig konvergiert, so ist $f$ auf $[a,b]$ integrierbar und es gilt $\lim\limits_{n\to\infty}\int_a^b f_n(x)\,dx = \int_a^b \lim\limits_{n\to\infty}f_n(x)\,dx$ (Korollar 6.2.15, Kowalski)\\
+	    Merkregel: Bei gleichmässiger Konvergenz dürfen Limes und Integral vertauscht werden.
+	\end{itemize}
+	\subsubsection{Uneigentliche Integrale}
+	\begin{itemize}
+	    \item Wenn das Limit $\lim _{x \rightarrow+\infty} \int_{a}^{x} g(t) \,d t$ existiert, dann kann das so geschrieben werden: $\int_{a}^{+\infty} g(t) d t$
+	    \item Dasselbe, wenn $f$ ist auf $]a,b]$ definiert, dann $\int_{a}^{b} g(t) d t=\lim _{x \rightarrow a \atop x>a} \int_{x}^{b} g(t) d t$
+	    \item Achtung bei undefinierten Endpunkten auf beiden Seiten, dann muss dies exisiteren: $\int_{-\infty}^{+\infty} g(t) d t=\int_{-\infty}^{0} g(t) d t+\int_{0}^{+\infty} g(t) d t$
+	    
+	\end{itemize}
+	
+	\subsubsection{Ungleichungen mit Integralen}
+	\begin{itemize}
+	    \item Sei $I=[a,b]$ mit $a < b$\\
+	    1) Wenn $g_1,g_2:I\to\mathbb{R}$ stetig sind und $g_1 \leq g_2$, dann $\int_{a}^{b} g_{1}(t) d t \leqslant \int_{a}^{b} g_{2}(t) d t$\\
+	    2) Wenn $g\geq 0$ und stetig ist, dann für $a \leq c \leq d \leq b$ gilt: $\int_{c}^{d} g_{1}(t) d t \leqslant \int_{b}^{a} g_{2}(t) d t$\\
+	    3) Wenn $g\geq 0$ stetig, dann: $\int_{a}^{b} g_{1}(t) d t \geq 0$ und $=0$ wenn $g(x)=0$ für alle $x$
+	\end{itemize}
+	
+	\subsubsection{Abschätzung Betrag aussen und innen im Integral}
+	\begin{itemize}
+	    \item Sei $D$ ein Interval und $g:D\to\mathbb{R}$ eine beschränkte Funktion mit Stammfunktion, dann für $x_0, x\in D$ gilt:\\
+	    $|\int_{x_0}^x g(t)dt|\leq\int_{x_0}^x |g(t)|dt\leq M |x-x_0|$ mit $M \geq |g(t)|$ für alle $t \in [x_0,x]$, z.B. $M=\max\limits_{t\in[x_0,x]} f(t)$
+	\end{itemize}
+	
+	\subsubsection{Wegintegral}
+	\begin{itemize}
+	    \item $\int_\gamma \lambda := \int_0^1 \lambda(\gamma(t))\gamma'(t)\,dt$ Wegintegral von $\lambda$ längs $\gamma$
+	    \item Bei Skalarfeld: Sei $f: \mathbb{R}^n \rightarrow \mathbb{R}$ ein Skalarfeld und $\bm{\gamma}: [a, b] \rightarrow \mathbb{R}^n$ ein stückweise differenzierbarer Weg, dann ist das Integral von $f$ über $\bm{\gamma}$ wie folgt definiert:
+						$$ \int_{\bm{\gamma}} f(\textbf{x}) \,d s := \int _a^b f(\bm{\gamma}(t)) \| \dot{\bm{\gamma}}(t) \| _2 \,d t$$
+						
+	\end{itemize}
+	
+	\subsubsection{Konservatives Vektorfeld}
+	\begin{itemize}
+	    \item Vektorfeld heisst konservativ, falls für jeden geschlossenen Weg gilt: $\int_\gamma v\cdot\,d\vec{v}=0$
+	    \item Es gibt ein dazugehöriges Potential, wie dieses gefunden wird, ist in Kapitel "Potenzialfelder" beschrieben.
+	\end{itemize}
+	
+	\subsection{Integrationsregeln}
+	\subsubsection{Partielle Integration}
+	\begin{itemize}
+	    \item $\int_{x_{0}}^{x} g_{1}^{\prime}(t) g_{2}(t) d t=g_{1}(x) g_{2}(x)-g_{1}\left(x_{0}\right) g_{2}\left(x_{0}\right)-\int_{x_{0}}^{x} g_{1}(t) g_{2}^{\prime}(t) d t$
+	\end{itemize}
+	\subsubsection{Kettenregel / Substitutionsregel}
+	\begin{itemize}
+	    \item $\int_{x_{0}}^{x} h^{\prime}(t) g(h(t)) d t=\int_{h\left(x_{0}\right)}^{h(x)} g(t) d t$
+	    \item Sei $u = h(t)$ mit $du=h'(t)dt$, dann: $\int_{x_0}^x h'(t)g(h(t))\,dt=\int_{h(x_0)}^{h(x)}g(u)\,du$
+	\end{itemize}
+	\subsubsection{Wichtiger Variabelnwechsel}
+	\begin{itemize}
+	    \item $\int_{x_{0}}^{x} f(a t+b) d t=\frac{1}{a} \int_{a x_{0}+b}^{a x+b} f(u) d u$\\
+	    häufig gebraucht um $e^{at}$ auf eine bessere Form wie $e^t$ zu bringen
+	\end{itemize}
+	
+	\subsection{Häufige Integrale}
+	\subsubsection{Elementarfunktionen}
+	\begin{itemize}
+	    \item $\int t^{a} \,d t=\frac{1}{1+a} t^{a+1  \quad(a \neq-1)}$
+	    \item $ \int \frac{1}{t} \,d t=\log (t) $
+	    \item $\int_{1}^{x} \frac{1}{t} d t=\log (x)$
+	    \item $\int_{0}^{x} e^{t} d t=e^{x}-1$
+	    \item $\int e^{t} d t=e^{t}$
+	    \item $\int \cos (t) d t=\sin (t)$
+	    \item $ \int \sin (t) d t=-\cos (t)$
+	    \item $\int\ln x\,dx = x\ln (|x| )-x +C$
+	    \item $\int\log_a x\,dx = x\log_a |x| - \frac{x}{\ln a} = \frac{x\ln |x| - x}{\ln a}$
+	\end{itemize}
+	\subsubsection{Reziproke Funktionen}
+	\begin{itemize}
+	    \item $\int_{0}^{x} \frac{1}{1+t^{2}} d t=\arctan (x)$
+	    \item $\int \frac{1}{\sqrt{1-t^{2}}} d t=\arcsin (t)$
+	    \item $-\int \frac{1}{\sqrt{1-t^{2}}} d t=\arccos (t)$
+	    \item $\int \frac{1}{1-x^2}\,dx = \arctanh (x)$ für $x\in ]-1,1[$
+	\end{itemize}
+	\subsubsection{Potenz mal Exponential oder Trigonometrische Funktion}
+	\begin{itemize}
+	    \item Bsp.: $\int_{a}^{b} t^{k} e^{c t} d t$, kann berechnet werden durch partielle Integration, Potenzfunktion wird abgeleitet und Trigonometrische Funktion integriert bis Potenz verschwindet.
+	    \item Praktische Formel $I_n := \int x^n e^x \,dx = x^n e^x -n I_{n-1} = \left(\sum_{k=0}^{n} \frac{(-1)^{n-k} n !}{k !} x^{k}\right) e^{x}+C$
+	\end{itemize}
+	\subsubsection{Trigonometrische Funktion mit Exponentialfunktion}
+	\begin{itemize}
+	    \item Bsp.: $\int_{a}^{b} \cos (r t) e^{s t} d t$, kann berechnet werden durch zweifache partielle Integration, danach entsteht lineare Gleichung und Ausdruck kann nach links genommen werden.
+	    \item $\int_{a}^{b} \cos (r t) \cos (s t) d t$ wird genau gleich berechnet (Produkt Trigonometrische Funktionen)
+	\end{itemize}
+	\subsubsection{Potenzen von Trigonometrischen Funktionen}
+	\begin{itemize}
+	    \item Bsp.: $\int_{a}^{b} \cos (r t)^{k} d t$, wenn $\cos(x)^k$ als lineare Kombination von $\cos(mx)$ und $\sin(mx)$ ausgedrückt wird und dann integrieren.
+	\end{itemize}
+	\subsubsection{Orthogonale Relationen}
+	\begin{itemize}
+	    \item $\int_{0}^{2 \pi} \cos (n t) \sin (m t) d t=0$
+	    \item $\int_{0}^{2 \pi} \cos (n t) \cos (m t) d t=0 \text { if } n \neq m,$
+	    \item$\int_{0}^{2 \pi} \sin (n t) \sin (m t) d t=0 \text { if } n \neq m$ 
+	    \item$\int_{0}^{2 \pi} \cos (n t)^{2} d t=\pi \text { if } n \neq 0$ 
+	    \item$\int_{0}^{2 \pi} \sin (n t)^{2} d t=\pi \text { if } n \neq 0$
+	    \item$\int_{0}^{2 \pi} \sin (t)^{4} d t= \int_{0}^{2 \pi} \cos (t)^{4} \,d t=\frac{3\pi}{4}$
+	    \item$\int_{0}^{2 \pi} \sin (t)^{3} d t= \int_{0}^{2 \pi} \cos (t)^{3} \,d t=0$
+	    \item$\int_{0}^{2 \pi} \sin (t)^{2} d t= \int_{0}^{2 \pi} \cos (t)^{2} \,d t=\pi$
+	    
+	\end{itemize}
+	
+	\subsubsection{Vorgerechnete Integrale}
+\begin{itemize}
+    \item $\int \frac{1-x}{x^2+x+1}\,dx$, es wird versucht die Substitution $u=x^2+x+1$ mit $\frac{du}{dx}=(2x +1)$ anzuwenden. Dazu Integral aufteilen, damit ein Term die Substitution nutzen kann:\\
+    $-\frac{1}{2} \int \frac{2 x+1}{x^{2}+x+1} d x+\frac{3}{2} \int \frac{1}{x^{2}+x+1} d x$\\
+    Der erste Teil kann nun gut mit der Substitution gelöst werden, da der Zähler wegfällt:\\
+    $-\frac{1}{2} \int \frac{2 x+1}{x^{2}+x+1} d x=-\frac{1}{2} \int \frac{1}{u} d u=-\frac{1}{2} \log (|u|)+C_{2}=-\frac{1}{2} \log \left(\left|x^{2}+x+1\right|\right)+C_{2}$\\Für zweiten Teil wird quadratisch ergänzt mit einer zweiten Substitution:\\
+    $\begin{aligned}
+\frac{3}{2} \int \frac{1}{\left(x+\frac{1}{2}\right)^{2}+\frac{3}{4}} d x &=\frac{3}{2} \frac{4}{3} \int \frac{1}{\left(\sqrt{\frac{4}{3}}\left(x+\frac{1}{2}\right)\right)^{2}+1} d x \\
+&=\sqrt{3} \int \frac{1}{v^{2}+1} d v \\
+&=\sqrt{3} \arctan (v)+C_{3}=\sqrt{3} \arctan \left(\sqrt{\frac{4}{3}}\left(x+\frac{1}{2}\right)\right)+C_{3}
+\end{aligned}$
+\end{itemize}
+	
+	\subsubsection{Tangenssubstitution}
+	\begin{itemize}
+	    \item Mit der Substitution $t = t(x)= \tan (\frac{x}{2})$ und den Ausdrücken $\cos(x)=\frac{1-t^2}{1+t^2}$, $\sin (x)=\frac{2t}{1+t^2}$ und $t'(x)=\frac{1+t^2}{2}$ können eine Vielzahl Integrale trig. Funktionen gelöst werden. z.B.: $\int_0^{\frac{\pi}{2}}\frac{1}{\sin(x)+\cos(x)}\,dx$
+	\end{itemize}
+	
+	\subsubsection{Rotationskörper}
+	\begin{itemize}
+	    \item Die Funktion $f(x)$ wird hier um die $x$-Achse rotiert, das ist quasi eine Addierung aller Kreisscheiben mit dem Radius $f(x)$ bei $x$.
+	    \item $V=\pi \int_{a}^{b} f(x)^{2} \mathrm{~d} x$
+	\end{itemize}
+	
+	
+	\section{Integration in $\Rn$}
+	\subsection{Sätze}
+	\subsubsection{Satz von Fubini}
+	\begin{itemize}
+	    \item $Q=[a_1, b_1]\times \dots \times [a_n, b_n] \quad \quad f: Q \rightarrow \mathbb{R}$
+	    \item $\int_{Q}f(\textbf{x})\text{d}\textbf{x}=\int_{a_1}^{b_1}\dots \int_{a_n}^{b_n}f(x_1, \cdots, x_n)\text{d}x_1 \cdots x_n$
+	\end{itemize}
+	\begin{enumerate}
+	    \item Die Integrationsreihenfolge spielt keine Rolle, falls die Funktion $f$ auf dem Bereich $Q$ stetig ist
+	\end{enumerate}
+	
+	\subsubsection{Gebiet der Klasse $C^1$}
+	\begin{itemize}
+	    \item Ein Gebiet $\Omega \subset \mathbb{R}^{n}$ ist von der Klasse $C^{1}$ (bzw. $C_{p w}^{1}$, $C^{k}$ ), falls zu jedem Punkt $p \in \partial \Omega$ Koordinaten $\left(x^{\prime}, x^{n}\right) \in \mathbb{R}^{n-1} \times \mathbb{R}$, ein Quader $Q^{\prime} \subset \mathbb{R}^{n-1}$, eine Umgebung $\left.W=Q^{\prime} \times\right] c, d\left[\right.$ von $p$ und eine Funktion $\psi \in C^{1}\left(Q^{\prime}\right)$
+(bzw. $\left.\psi \in C_{p w}^{1}\left(Q^{\prime}\right), \psi \in C^{k}\left(Q^{\prime}\right)\right)$, existieren, so dass
+$$
+\Omega \cap W=\left\{\left(x^{\prime}, x^{n}\right) \in \mathbb{R}^{n} ; x^{\prime} \in Q^{\prime}, c<y<\psi(x)\right\} .
+$$
+	\end{itemize}
+	
+	\subsubsection{Satz von Green}
+	\begin{itemize}
+	    \item Sei $\Omega \subset Q \subset \mathbb{R}^{2}$ von der Klasse $C_{p w}^{1}$, und seien $g, h \in$ $C^{1}(\bar{\Omega}) .$ Dann gilt
+$$
+\int_{\Omega}\left(\frac{\partial h}{\partial x}-\frac{\partial g}{\partial y}\right) d \mu=\int_{\partial \Omega}(g d x+h d y)
+$$
+wobei der Rand von $\Omega$ so parametrisiert wird, dass $\Omega$ zur Linken liegt.
+    \item Allgemeinere Form: Sei $\Omega \subset Q \subset \mathbb{R}^{2}$ von der Klasse $C_{p w}^{1}$, und sei $v \in$ $C^{1}(\bar{\Omega}) .$ Dann gilt
+$$
+\int_{\Omega} \rot v d \mu=\int_{\partial }v\cdot\,d\vec{s}
+$$
+wobei der Rand von $\Omega$ so parametrisiert wird, dass $\Omega$ zur Linken liegt.
+	\end{itemize}
+    \subsubsection{Satz von Poincare}
+    \begin{itemize}
+        \item Sei $\Omega \subset \mathbb{R}^{2}$ in $C_{p w}^{1}$ beschränkt, zusammenhängend sowie einfach zusammenhängend, und sei $v \in C^{1}\left(\bar{\Omega} ; \mathbb{R}^{2}\right) .$ Dann sind äquivalent
+        \begin{enumerate}
+            \item $v$ ist konservativ,
+            \item $\operatorname{rot} v=0$.
+        \end{enumerate}
+    \end{itemize}
+    
+    \subsubsection{Transformationsregel}
+    \begin{itemize}
+        \item 2-dimensional: Sei $f(x,y)$ auf $\Omega$ integrabel mit Substitution $x=g(u,v),y=h(u,v)$ oder kompakt $(x,y)=\Phi(x,y)$ wobei $\Phi$ $C^1$-Diffeomorphismus ist, $\tilde{\Omega}=\Phi^{-1}(\Omega)$ Transformation lautet dann:\\
+        $$\int_{\Omega} f(x, y) d x d y=\int_{\tilde{\Omega}} f(g(u, v), h(u, v))|\operatorname{det} d \Phi| d u d v$$
+    
+        \item allgemein: $(x_1,...,x_n)=\Phi(u_1,...,u_n)$ oder kompakt $(x,y)=\Phi(x,y)$ wobei $\Phi$ $C^1$-Diffeomorphismus ist, $\tilde{\Omega}=\Phi^{-1}(\Omega)$ Transformation lautet dann:\\
+        $$\int_{\Omega} f\left(x_{1}, \ldots, x_{n}\right) d x_{1} \cdots d x_{n}=\int_{\tilde{\Omega}} f\left(g_{1}(u), \cdots, g_{n}(u)\right)|\operatorname{det} d \Phi| d u_{1} \cdots d u_{n}$$\\
+        mit Volumenelement im neuen Koordinatensystem: $$d x_{1} \cdots d x_{n}=|\operatorname{det} d \Phi| d u_{1} \cdots d u_{n}=\left|\operatorname{det}\left(\begin{array}{ccc}
+\frac{\partial g_{1}}{\partial u_{1}} & \cdots & \frac{\partial g_{1}}{\partial u_{n}} \\
+\vdots & \ddots & \vdots \\
+\frac{\partial g_{n}}{\partial u_{1}} & \cdots & \frac{\partial_{n_{n}}}{\partial u_{n}}
+\end{array}\right)\right| d u_{1} \cdots d u_{n}$$ 
+    \item Funktionalmatrix $d\Phi$ wird auch häufig so notiert: $\frac{\partial\left(x_{1}, \ldots, x_{n}\right)}{\partial\left(u_{1}, \ldots, u_{n}\right)}$
+    \end{itemize}
+	
+	\subsubsection{Elementarfiguren sind Jordan-messbar und Bemerkung zu Transformationen}
+	\begin{itemize}
+	    \item Elementarfiguren Jordanmessbar.
+ \item Ein beschränktes \(\Omega \subset \mathbb{R}^{n}\) ist gemäss Bemerkung 8.1.2.ii) Jordan-messbar genau dann, wenn zu jedem \(\epsilon>0\) Elementarfiguren \(E, G \subset \mathbb{R}^{n}\) existieren mit \(E \subset \Omega \subset G\) und
+$$
+\mu(G \backslash E)=\mu(G)-\mu(E)<\epsilon,
+$$
+also wenn
+$$
+\mu(\partial \Omega)=0
+$$
+In diesem Fall gilt
+$$
+\mu(\Omega)=\inf \{\mu(G) ; G \supset \Omega \text { El.Fig. }\}=\sup \{\mu(E) ; E \subset \Omega \text { El.Fig. }\}
+$$
+    \item Translationen und Rotationen verändern Flächeninhalt nicht
+	\end{itemize}
+	
+	\subsubsection{$C^1_{pw}$-Gebiet}
+	\begin{itemize}
+	    \item Definition 8.4.2. Ein Gebiet \(\Omega \subset \mathbb{R}^{n}\) ist von der Klasse \(C^{1}\) (bzw. \(C_{p w}^{1}\),  \(\left.C^{k}\right)\), falls zu jedem Punkt \(p \in \partial \Omega\) Koordinaten \(\left(x^{\prime}, x^{n}\right) \in \mathbb{R}^{n-1} \times \mathbb{R}\), ein Quader \(Q^{\prime} \subset \mathbb{R}^{n-1}\), eine Umgebung \(\left.W=Q^{\prime} \times\right] c, d\left[\right.\) von \(p\) und eine Funktion \(\psi \in C^{1}\left(Q^{\prime}\right)\)
+(bzw. \(\left.\psi \in C_{p w}^{1}\left(Q^{\prime}\right), \psi \in C^{k}\left(Q^{\prime}\right)\right)\), existieren, so dass
+$$
+\Omega \cap W=\left\{\left(x^{\prime}, x^{n}\right) \in \mathbb{R}^{n} ; x^{\prime} \in Q^{\prime}, c<y<\psi(x)\right\} 
+$$
+	\end{itemize}
+
+    \subsubsection{Zerlegung $[0,1]^2$}
+    \begin{itemize}
+        \item $P_{n}:=\left\{Q_{k, l}^{(n)}:=\left[\frac{k}{n}, \frac{k+1}{n}\right] \times\left[\frac{l}{n}, \frac{l+1}{n}\right] \mid k, l \in\{0, \ldots, n-1\}\right\}, \quad \forall n \in \mathbb{N}$
+        \item Darauf können dann Treppenfunktionen gebaut werden. z.B für $x^2 + xy$\\
+        \(l_{n}:=\sum_{k=0}^{n-1} \sum_{l=0}^{n-1}\left(\frac{k^{2}}{n^{2}}+\frac{k l}{n^{2}}\right) \chi_{Q_{k, l}^{(n)}}\)\\
+        \(h_{n}:=\sum_{k=0}^{n-1} \sum_{l=0}^{n-1}\left(\frac{(k+1)^{2}}{n^{2}}+\frac{(k+1)(l+1)}{n^{2}}\right) \chi_{Q_{k, l}^{(n)}}\) \\
+        $l_n \leq f \leq h_n$ mit $\chi_{Q_{k, l}^{(n)}}=\frac{1}{n^2}$\\
+        Es gilt: \(\limsup _{n \rightarrow \infty} \int_{[0,1] \times[0,1]} l_{n} d \mu \leq \int_{[0,1] \times[0,1]} f d \mu\) und \(\liminf _{n \rightarrow \infty} \int_{[0,1] \times[0,1]} h_{n} d \mu \leq \int_{[0,1] \times[0,1]} f d \mu\)
+        
+    \end{itemize}
+	
+	\subsection{Integration über Normalbereich}
+	\begin{itemize}
+	    \item Sei $\Omega \coloneqq \left\{(x, y) \in \mathbb{R}^2 \mid a \le x \le b, f(x) \le y \le g(x) \right\}$ ein Normalbereich, dann gilt für das Integral
+		\begin{equation*}
+			\int_{\Omega}f(x, y)\text{d}S=\int_{a}^{b}\int_{f(x)}^{g(x)}f(x, y)\text{d}y \text{d}x
+		\end{equation*}
+		\begin{enumerate}{Anmerkungen}
+			\item [i)] Die Integrationsreihenfolge ist wichtig
+			\item [ii)] Für höhere Dimensionen bleibt das Prinzip das Gleiche
+		\end{enumerate}
+	\end{itemize}
+	
+	\subsection{Oberflächenintegral}
+					\begin{itemize}
+						\item \textbf{Oberflächenintegral erster Art (über Skalarfeld)}\\
+						Sei $f: \mathbb{R}^3 \rightarrow \mathbb{R}$ ein Skalarfeld und $A$ eine Fläche die mit $\Phi: B \rightarrow \mathbb{R}^3$ ($B \subset \mathbb{R}^2$) parametrisiert wird. Das Oberflächenintegral von $f$ über $A$ lautet
+						$\iint_A f(\textbf{x}) \diff S = \iint_B f(\Phi) \left \Vert \frac{\partial \Phi}{\partial u} \times \frac{\partial \Phi}{\partial v} \right \Vert_2 \diff u \diff v$\\
+						\item \textbf{Oberflächenintegral zweiter Art (über Vektorfeld)}\\
+						Sei $\textbf{K}: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ ein Vektorfeld und $A$ eine Fläche die mit $\Phi: B \rightarrow \mathbb{R}^3$ ($B \subset \mathbb{R}^2$) parametrisiert wird. Das Oberflächenintegral von $\textbf{K}$ über $A$ lautet
+						$\iint_A \textbf{K}(\textbf{x})  \cdot \diff \textbf{o} = \iint_B \textbf{K}(\Phi) \cdot \left ( \frac{\partial \Phi}{\partial u} \times \frac{\partial \Phi}{\partial v} \right) \diff u \diff v$
+						\begin{itemize}
+					    	\item[i)] Dieses Integral wird auch häufig als Flussintegral bezeichnet
+							\item[ii)] Im Allgemeinen besteht das (vektorielle) Wegelement aus $\diff \textbf{o}=\vec{n} \diff o $, wobei $\vec{n}$ das Einheitsnormalenfeld bezeichnet
+						\end{itemize}
+					\end{itemize}
+	
+	\subsection{Volumenintegral}
+					\begin{itemize}
+					    \item Sei $f: \mathbb{R}^3 \rightarrow \mathbb{R}$ ein Skalarfeld, dann lautet das Volumenintegral (über das Volumen $V$) wie folgt $\iiint_V f(\textbf{x}) \diff V = \int_V f(\textbf{x}) \diff V $
+					\begin{itemize} 
+						\item[i)] Meistens spricht man von einem Volumenintegral, wenn man über ein 3-dimensionales Volumen integriert, aber grundsätzlich kann die Dimension auch höher sein
+						\item[ii)] Falls man das Volumen von $V$ berechnen möchte, kann man als Skalarfeld die Indikatorfunktion ($f(x, y, z) = 1$ für $(x, y, z) \in V$) wählen
+						\item[iii)] Das Volumenelement $\diff V$ berechnet sich mit einer geeigneten Parametrisierung $\Phi(\textbf{x})$ (siehe Transformationssatz)
+						$ \diff V = \vert \det(D\Phi(\textbf{x}))\vert \diff \textbf{x}$
+					\end{itemize}
+					\end{itemize}
+	\subsection{Schwerpunkt}
+					\begin{itemize}
+					    \item Sei $K \subset \mathbb{R}^n$ ein Körper und bezeichne $S_k=(s_{x_1}, \dots, s_{x_n}) \in \mathbb{R}^n$ den Schwerpunkt von $K$, dann gilt
+					\begin{equation*}	s_{x_i}=\frac{1}{\text{vol}(K)}\int_{K}x_i \text{d}V
+					\end{equation*}
+					\begin{itemize}
+						\item[i)] Symmetrien von $K$ beachten $\rightarrow$ spart Zeit
+					\end{itemize}
+					\end{itemize}
+					
+					
+					
+	
+	\section{Potenzialfelder}
+	\subsubsection{Definition}
+	\begin{itemize}
+	    \item Ein \textbf{Potenzial} von $f$ auf $\Omega$ ist eine stetig differenzierbare Funktion $\Phi$, welche $f=\nabla \Phi$ auf $\Omega$ erfüllt.
+	\end{itemize}
+	\subsubsection{Integrabilitätsbedingungen für Potenzialfelder}
+	\begin{itemize}
+	    \item Sei das stetige, differenzierbare Vektorfeld $\vec{v}:\Omega\subseteq\Rn\to\Rn$ gegeben. Ist $\vec{v}$ ein Potenzialfeld, so gelten die Integrabilitätsbedingungen: \\
+	    $\frac{\partial v_i}{\partial x_j}=\frac{\partial v_j}{\partial x_i},\quad \forall i\neq j,\quad i,j\in\{1,...,n\}$\\
+	    Ist $\Omega$ einfach zusammenhängend, so gilt $\vec{v}$ Potenzialfeld $\iff $ Integrabilitätsbedingungen erfüllt. (Annulierung der Rotation)
+	\end{itemize}
+	\subsection{Finden eines Potenzials, Anleitung}
+	\begin{itemize}
+	    \item Sei $\vec{v}(x,y)=e^{xy}(1+xy,x^2)$. Wir versuchen ein Potential für $\vec{v}$ zu finden, also dass $\vec{v}=\nabla \Phi$ gilt. Somit kann das Wegintegral von $\vec{v}$ Einfach mit $\Psi(\gamma_1)-\Psi(\gamma_1)$ berechnet werden.
+	    \item Es gilt $\vec{v}=\begin{pmatrix}
+	    e^{xy}(1+xy) \\ e^{xy}x^2
+	    \end{pmatrix}= \begin{pmatrix}
+	        \frac{\partial\Psi}{\partial x} \\ \frac{\partial\Psi}{\partial y}
+	    \end{pmatrix} = \nabla \Psi$ 
+	    \begin{enumerate}
+	        \item Als erster Schritt integrieren wir über $y$ und betrachten $x$ als eine Konstante: $\frac{\partial \Psi}{\partial y}=e^{xy}x^2\Rightarrow \Psi = \int e^{xy} x^2\,dy = xe^{xy}+C(x)$\\
+	        Da bei der Integration x als Konstante betrachtet werden kann, kann $C$ eventuell Funktion von $x$ sein.
+	        \item Partielle Ableitung nach $x$, Resultat muss gleich erster Komponente sein: $\frac{\partial \Psi}{\partial x}=e^{xy}+xe^{xy}+C'=e^{xy}+xye^{xy}$\\
+	        Also $C'=0$ also $C=const$
+	        \item Somit ist $\Psi=xe^{xy}$ das gesuchte Potenzial, das bis auf additive Konstante bestimmt ist. Also $\int_\gamma \vec{v}\,d\vec{s}=\Psi(\gamma_1)-\Psi(\gamma_1)$
+	    \end{enumerate}
+	\end{itemize}
+	
+	\section{Vektoranalysis}
+    \subsection{Skalarfeld}
+    	\begin{itemize}
+    	    \item Jedem Punkt wird eine Zahl (Skalar) zugeordnet $\rightarrow$ Gradient wirkt auf ein Skalarfeld
+    	\begin{equation*}
+    		f: \mathbb{R}^n \rightarrow \mathbb{R} \hspace{10pt} f(x)=f(x_1, \dots, x_n)
+    	\end{equation*}
+    	\end{itemize}
+    \subsection{Vektorfeld}
+    	\begin{itemize}
+    	    \item Jedem Punkt wird ein Vektor zugeordnet
+        	\begin{equation*}
+        		\textbf{K}: \mathbb{R}^n \rightarrow \mathbb{R}^m \hspace{10pt} \textbf{K}(x)=
+        		\begin{pmatrix}
+        			K_1(x_1, \dots, x_n)\\
+        			\vdots\\
+        			K_m(x_1, \dots, x_n)
+        		\end{pmatrix}
+        	\end{equation*}
+    	\end{itemize}
+    	\subsubsection{Divergenz}
+    		\begin{itemize}
+    		    \item Die Divergenz eines Vektorfeldes gibt die ''Quellendichte'' an (Skalarfeld)
+        		\begin{equation*}
+        			\textbf{K}: \mathbb{R}^n \rightarrow \mathbb{R}^n \hspace{10pt} \text{div}(K)=\nabla \cdot \textbf{K}=\frac{\partial K_1}{\partial x_1}+ \cdots +\frac{\partial K_n}{\partial x_n}
+        		\end{equation*}
+    		\end{itemize}
+    	\subsubsection{Rotation}
+    		\begin{itemize}
+    		    \item Falls $\textbf{K}:\mathbb{R}^3 \rightarrow \mathbb{R}^3$, dann gilt für die Rotation von $\textbf{K}$\\
+    		\begin{equation*}
+    			\text{rot}(\textbf{K})=\nabla \times \textbf{K}=
+    			\begin{pmatrix}
+    				\partial_x\\
+    				\partial_y\\
+    				\partial_z
+    			\end{pmatrix}
+    			\times
+    			\begin{pmatrix}
+    				K_1\\ K_2\\ K_3
+    			\end{pmatrix}
+    			=
+    			\begin{pmatrix}
+    				\frac{\partial K_3}{\partial y} - \frac{\partial K_2}{\partial z}\\[5pt]
+    				\frac{\partial K_1}{\partial z} - \frac{\partial K_3}{\partial x}\\[5pt]
+    				\frac{\partial K_2}{\partial x} - \frac{\partial K_1}{\partial y}
+    			\end{pmatrix}
+    		\end{equation*}
+    		\end{itemize}
+    	\subsubsection{Identitäten}
+    		\begin{itemize}
+    			\item $\text{div}(f\cdot K)=\nabla f \cdot K+f \cdot \text{div}(K)$
+    			\item $\text{div}(K\times L)=L\cdot \text{rot}(K)-K\cdot \text{rot}(L)$
+    			\item $\text{rot}(\nabla f)=0$
+    			\item $\text{div}(\nabla f)=\Delta f=\sum_{k=1}^{n}\frac{\partial^2 f}{\partial x_k^2} \hspace{30pt} \text{(Laplace-Operator)}$
+    			\item $\text{div}(\text{rot}(K))=0$
+    			\item $\text{div}(f\cdot \text{rot}(K))=\nabla f \cdot \text{rot(K)}$
+    		\end{itemize}
+    	\subsubsection{Satz von Green (2d-Stokes)}
+    		\begin{itemize}
+    		    \item \begin{equation*}
+    			\oint_{\partial D} \textbf{K} \cdot \diff \textbf{s}=\iint_D \frac{\partial K_2}{\partial x}-\frac{\partial K_1}{\partial y} \text{d}S
+    		\end{equation*}\\
+    		Anmerkung:
+    		\begin{itemize}
+    			\item[i)] Das Umlaufintegral muss dabei mathematisch positive Umlaufrichtung haben
+    			\item[ii)] Man kann so auch die Fläche von $D$, mithilfe eines Linienintegrals, berechnen
+    			\begin{equation*}
+    				\textbf{K}=
+    				\begin{pmatrix}
+    					0\\ x
+    				\end{pmatrix}
+    				\hspace{10pt} \rightarrow \text{vol}(D)=\iint_D 1 \text{d}x\text{d}y=\oint_{\partial D}
+    				\begin{pmatrix}
+    				0\\ x
+    				\end{pmatrix}
+    				\cdot \diff \textbf{s}
+    			\end{equation*}
+    		\end{itemize}
+    		\end{itemize}
+    	\subsubsection{Satz von Stokes (3-dim)}
+    		\begin{itemize}
+                \item Der Satz von Stokes erlaubt es Flussintegrale mithilfe von Wegintegralen zu lösen und umgekehrt.	
+	    	    \item Es seien \(\vec{v}=\left(v_{1}, v_{2}, v_{3}\right)\) ein stetig differenzierbares Vektorfeld auf einem Gebiet \(\Omega \subset \mathbb{R}^{3}\) und \(C \subset \Omega\) eine offene Fläche durch die geschlossene \(C_{p w}^{1}\) Kurve \(\gamma=\partial C\) berandet. Dann gilt $$\int_{\gamma=\partial C} \vec{v} \cdot d \vec{s}=\int_{C} \operatorname{rot}(\vec{v}) \cdot \vec{n} d o$$\\
+    		    Die Kurve \(\gamma\) läuft in positiver mathematischer Richtung.
+    		    
+    		\begin{itemize}
+    			\item[i)] Nach Konvention lassen sich die Richtungen des (vektoriellen) Wegelements $\diff \vec{s}$ und des (vektoriellen) Flächenelements $\vec{n}\diff o$ gemäss der rechten-Hand-Regel bestimmen (der Daumen entpricht dem Einheitsnormalenfeld und die Finger bescheiben die Richtung des Weges)
+    			\item[ii)] Falls nur $\text{rot}(\textbf{K})$ gegeben ist, kann man durch raten ein passendes Vektorfeld $\textbf{K}$ bestimmen
+    		\end{itemize}
+    		\end{itemize}
+    	\subsubsection{Satz von Gauss}
+    		\begin{itemize}
+		        \item Satz von Gauss vereinfacht Berechnung von Flussintegralen via Umwandlung in Volumenintegrale:
+    		    \item Sei eine beschränkte Umgebung $V$ mit Rand $\partial V\in C^1_{pw}$, dann gilt:
+    		    \begin{equation*}
+    			\int_{\partial V}\vec{v} \cdot \vec{n}\diff o=\int_{\partial V}\vec{v} \cdot \diff \vec{o}=\int_V \text{div}(\vec{v})\diff \mu
+    		\end{equation*} \\
+    		wobei $\vec{n}$ die nach aussen gerichtete Normale längs $\partial V$ bezeichnet.
+    		\begin{itemize}
+    			\item[i)] $V$ kann $\partial V$ auch nur enthalten, man muss einfach das zusätzliche Flussintegral subtrahieren 
+    		\end{itemize}
+    		\end{itemize}
+	
+	\subsubsection{Kochrezept Flussintegral}
+	\begin{itemize}
+	    \item \textbf{Gegeben}: Vektorfeld \(\vec{v}\), Fläche \(S \quad\quad\) \textbf{Gesucht}: Flussintegral \(\iint_{S} \vec{v} \cdot \vec{n} d o\)\\
+        Schritt 1: Parametrisiere die Fläche \(S\), d.h. finde
+        $$
+        \Phi:[a, b] \times[c, d] \rightarrow \mathbb{R}^{3},(u, v) \rightarrow \Phi(u, v)=\left(\Phi_{1}(u, v), \Phi_{2}(u, v), \Phi_{3}(u, v)\right)
+        $$\\
+        Schritt 2: Berechne \(\Phi_{u}=\frac{\partial \Phi}{\partial u}\) und \(\Phi_{v}=\frac{\partial \Phi}{\partial v}\) indem du jede Komponente von \(\Phi\) nach \(u\) respektive \(v\) partiell ableitest. Berechne ferner das Kreuzprodukt. Sicherstellen, dass Normalenvektor in die richtige Richtung zeigt.
+        $$
+        \Phi_{u} \times \Phi_{v}
+        $$\\
+        Schritt 3: Benutze die Formel
+        $$
+        \int_{S} \vec{v} \cdot \vec{n} d o=\pm \int_{a}^{b} \int_{c}^{d} \vec{v}(\Phi(u, v)) \cdot\left(\Phi_{u} \times \Phi_{v}\right) d u d v
+        $$
+        Entscheide nach dem Vorzeichen (je nach Situation).
+	\end{itemize}
+	
+	\subsubsection{Kochrezept Flächenberechnung mit Satz von Green auf der Ebene}
+	\begin{itemize}
+	    \item Gegeben: \(C \subset \mathbb{R}^{2}\) beschränkt mit \(C_{p w}^{1}\) -Rand \(\partial C\). Gesucht: \(\mu(C)\).
+	    
+	    \begin{enumerate}
+    	    \item Parametrisiere den Rand von \(C\) mit der Kurve
+            $$\gamma:[a, b] \rightarrow \mathbb{R}^{2}, t \rightarrow \gamma(t)$$
+            Beachte dabei, dass die Parametrisierung in mathematisch positiver Richtung verläuft (d.h. so dass die Menge \(C\) immer links steht).
+            \item Berechne \(\dot{\gamma}\) (jede Komponente nach dem Parameter \(t\) ableiten).
+            \item Wende die Formel $$\mu(C)=\int_{\gamma=\partial C} \vec{v} \cdot d \vec{s}$$ an, mit \(\vec{v}=(0, x)\).
+    	\end{enumerate}
+    	\item Anstatt $\vec{v}=(0,x)$ kann man natürlich auch ein anderes Vektorfeld mit $\rot \vec{v}=1$ nehmen.
+	\end{itemize}
+	
+	
+	
+	\section{Topologie}
+	\subsection{Begriffe}
+	\subsubsection{Kompakte Menge}
+	\begin{itemize}
+	    \item $K\subseteq \mathbb{R}^d$ heisst \textbf{kompakt}, falls jede Folge $(x_k)_{k\in\mathbb{N}}\subseteq K$ einen Häufungspunkt in $K$ besitzt. D.h. falls eine Teilfolge $B\subseteq\mathbb{N}$ und ein $x_0\in K$ exisitieren mit $x_k\to x_0\quad (k\to\infty, k\in B)$
+	    \item $\mathbb{R}$ ist nicht kompakt
+	    \item Wenn $K$ kompakt ist, dann ist $K$ beschränkt und es gilt: $a=\inf K = \min K, \quad b=\sup K =\max K$
+	    \item $K$ ist (folgen)-kompakt $\iff$ $K$ ist beschränkt und abgeschlossen.
+	\end{itemize}
+	
+	\subsubsection{Offener Ball}
+	\begin{itemize}
+	    \item Sei $\xZeroRd$. Der offene Ball vom Radius $r>0$ um $x_0$ ist die Menge: $B_r(x_0)=\{x\in\Rd;|x-x_0|<r\}$
+	    \item $x_0 \in \Omega$ heisst \textbf{innerer Punkt} von $\Omega$ falls $\exists r > 0: B_r(x_0)\subseteq \Omega$
+	    \item $\Omega \in \Rd$ heisst \textbf{offen}, falls jedes $x_0\in \Omega$ ein innerer Punkt ist 
+	    \item $[a,b[$ ist nicht offen, da $a$ kein innerer Punkt ist
+	\end{itemize}
+	
+	\subsubsection{Eigenschaften offener Mengen}
+	\begin{itemize}
+	    \item $\O, \Rd $ sind offen
+	    \item $\Omega_1,\Omega_2\subseteq\Rd$ sind offen $\Rightarrow \Omega_1 \cap \Omega_2$ offen
+	    \item $\Omega_i\subseteq\Rd$ sind offen $\cup_{\forall i} \quad \Omega_i$ ist offen
+	\end{itemize}
+	
+	\subsubsection{Abgeschlossene Menge}
+	\begin{itemize}
+	    \item Eine Teilmenge $A\subseteq \mathbb{R}^n$ heisst \textbf{abgeschlossen}, falls das Komplement $A^c$, $\Rd \backslash A$ offen ist.
+	\end{itemize}
+	\subsubsection{Eigenschaften abgeschlossene Menge}
+	\begin{itemize}
+	    \item $\O, \Rd $ sind abgeschlossen
+	    \item $A_1,A_2$ sind abgeschlossen $\Rightarrow A_1 \cup A_2$ abgeschlossen, $(A_1\cup A_2)^c=(A_1^c\cap A_2^c)=\Omega_1 \cap \Omega_2$
+	    \item $A_i$ abgeschlossen $\cap_{\forall i} \quad A_i$ ist abgeschlossen
+	\end{itemize}
+	
+	\subsubsection{Inneres / offener Kern einer Menge}
+	\begin{itemize}
+	    \item Die Menge der inneren Punkte von $\Omega$ $\int(\Omega)=\cup_{U\subseteq \Omega, U \text{ offen }}U:=\interior{\Omega}$\\
+	    heisst \textbf{offener Kern} oder \textbf{Inneres} von $\Omega$
+	    \item Inneres einer Menge ist die grösste offene Menge die in $\Omega$ ist
+	\end{itemize}
+	
+	\subsubsection{Abschluss einer Menge}
+	\begin{itemize}
+	    \item Der Abschluss $\overline{\Omega}$ einer Menge $\Omega$ ist die kleinste abgeschlossene Menge $A$ die $\Omega$ enthält
+	    \item Für $\Omega \subseteq \Rd$ gilt: $\text{clos}(\Omega)=\overline{\Omega}=\{\xZeroRd;\exists(x_k)_{k\in\mathbb{N}}\subseteq\Omega, k\to\infty \implies x_k \to x_0\}$ 
+	\end{itemize}
+	
+	\subsubsection{Rand einer Menge}
+	\begin{itemize}
+	    \item Der Rand ($\partial \Omega$) einer Menge $\Omega$ ist $\text{clos}(\Omega)\interior{\Omega}$
+        \item $\partial\Omega =\{x\in\Rd;\forall r > 0 :B_r(x)\cap\Omega \neq \O\neq B_r(x)\backslash\Omega\}$
+    \end{itemize}
+	
+	\subsubsection{Eigenschaften Rand / Inneres / Abschluss}
+	\begin{itemize}
+	    \item $\partial\Omega=\overline{\Omega}\backslash\interior{\Omega}=\overline{\Omega}\cap(\Rd\backslash\interior{\Omega})$ ist abgeschlossen
+	    \item $\interior{\Omega}\subseteq\Omega\subseteq\overline{\Omega}$ folgt $\overline{\Omega}=\interior{\Omega}\cup\partial\Omega$ und Zerlegung ist disjunkt
+	    \item $\Omega\subseteq\Rd $ abgeschlossen $\iff \Omega=\overline{\Omega}=\interior{\Omega}\cup\partial\Omega\iff \partial\subseteq\Omega$
+	    \item $\partial\mathbb{Q}=\overline{\mathbb{Q}}\backslash\interior{Q}=\mathbb{R}$
+	    
+	\end{itemize}
+	
+	\subsubsection{Relativ abgeschlossen und relativ offen}
+	\begin{itemize}
+	    \item Sei $X\subseteq\Rn$
+	    \item $A \subset X \text { relativ offen } \Longleftrightarrow \exists B \subset \mathbb{R}^{n} \text { offen, mit } A=B \cap X$\\
+	    Bsp.: $X=[0,1)$, $A=[0,\frac{1}{2})$ ist in $X$ relativ offen, da mit $B=(-\frac{1}{2},\frac{1}{2})$ offen und $ A=B\cap X = (-\frac{1}{2},\frac{1}{2})\cap [0,1)$ ist.
+	    
+	    \item $A \subset X \text { relativ abgeschlossen } \Longleftrightarrow \exists B \subset \mathbb{R}^{n} \text { abgeschlossen, mit } A=B \cap X$
+	\end{itemize}
+	
+	\subsection{Norm auf $\Rd$}
+	\subsubsection{Definition}
+	\begin{itemize}
+	    \item Eine \textbf{Norm} auf $\Rd$ ist eine Abbildung $\| \cdot\|:\Rd\to\mathbb{R}$ mit den Eigenschaften für alle $x,y\in\mathbb{R}^d,\alpha\in\mathbb{R}$:\\
+	    \begin{enumerate}
+	        \item Definitheit: $\| x \|\geq 0, \|x\|=0\iff x=0$
+	        \item Positive Homogenität: $\|\alpha x\|=\alpha \|x\|$
+	        \item Dreiecks-Ungleichung $\|x+y\|\leq \|x\|+\|y\|$
+	    \end{enumerate}
+	\end{itemize}
+	
+	\subsubsection{Äquivalenz zweier Normen}
+	\begin{itemize}
+	    \item Zwei Normen $\|\cdot\|^{(1)},\|\cdot\|^{(2)}:\Rd\to\mathbb{R}$ heissen äquivalent, falls $C>0$ existiert mit: \\
+	    $\frac{1}{C}\|x\|^{(1)}\leq \|x\|^{(2)}\leq C \|x\|^{(1)}, \quad \forall x\in\Rd$\\
+	    \item Äquivalente Normen definieren dieselben offenen Mengen
+	\end{itemize}
+	
+	\subsection{Topologisches Kriterium für Stetigkeit}
+	\subsubsection{Satz 4.5.1}
+	\begin{itemize}
+	    \item Sei $f:\Omega\to\mathbb{R}^d, x_0\in\Omega$ Es sind äquivalent:
+	    \item \begin{enumerate}
+    	    \item $f$ ist stetig an der Stelle $x_0$ gemäss Folgenkriterium
+    	    \item $\forall \epsilon>0,\exists \delta>0, \forall x \in \Omega: \|x-y\|<\delta \Rightarrow \|f(x)-f(y)\|\leq \epsilon$ (Weierstrass Epsilon-Delta Kriterium)
+    	    \item Für jede Umgebung $V$ von $f(x_0)$ in $\Rd$ ist $U=f^{-1}$ eine Umgebung von $x_0$ in $\Omega$
+	\end{enumerate}
+	\end{itemize}
+	\subsubsection{Satz 4.5.2 folgt aus Satz 4.5.1}
+	\begin{itemize}
+	    \item Für $f:\Omega\to\Rd$ sind äquivalent:
+	    \begin{enumerate}
+	        \item $f$ ist stetig in allen Punkten von $\Omega$
+	        \item Das Urbild $U=f^{-1}(V) $ jeder offenen Menge $V\subseteq \mathbb{R}^n$ ist relativ offen.
+	        \item Das Urbild $A = f^{-1}(B)$ jeder abgeschlossenen Menge $B\subseteq\mathbb{R}^d$ ist relativ abgeschlossen.
+	    \end{enumerate}
+	\end{itemize}
+	
+	\subsection{Folgenkriterium für Abgeschlossenheit}
+	\begin{itemize}
+	    \item Für \(A \subset \mathbb{R}^{d}\) sind äquivalent:
+	    \begin{enumerate}
+	        \item \(A\) ist abgeschlossen
+	        \item \(\forall\left(x_{k}\right)_{k \in \mathbb{N}} \subset A: x_{k} \rightarrow x_{0}(k \rightarrow \infty) \Rightarrow x_{0} \in A\)
+	    \end{enumerate}
+	    \item Bsp.: Abgeschlossenheit der Menge $D:=\{(x,y)\in\mathbb{R}^2: x\geq 0 y\geq 0, 3x + y \leq 3\}$\\
+	    Sei nun $(x_n,y_n)$ eine beliebige Folge in $D$, die gegen Punkt $(x,y)\in\mathbb{R}^2$ konvergiert. Dann gilt $\lim\limits_{n\to\infty}x_n=x,\quad\lim\limits_{n\to\infty}y_n=y$\\
+	    Damit gilt auch $\lim\limits_{n\to\infty}3x_n+y_n=3x+y$.\\
+	    Es gilt $x_n\geq 0, y_n\geq 0, 3x_n + y_n \leq 3, \quad \forall n \in \mathbb{N}$, da $(x_n,y_n)\in D$ folgt auch $x\geq 0,y\geq 0,3x+y\leq 3$ und somit $(x,y)\in D$ und laut Satz oben ist somit $D$ abgeschlossen.
+	    \item Andere Möglichkeit: Alles stetige Funktionen auf $\mathbb{R}^2$ $g_{1}(x, y):=x, g_{2}(x, y):=y, g_{3}(x, y):=3 x+y$\\
+	    Satz 4.5.2 sagt, dass Urbilder abgeschlossener Mengen unter stetigen Funktionen sind relativ abgeschlossen. Ebenfalls ist Durchschnitt abgeschlossener Mengen auch abgeschlossen.\\
+	    $D=g_{1}^{-1}\left(\left[0,+\infty[) \cap g_{2}^{-1}\left(\left[0,+\infty[) \cap g_{3}^{-1}(]-\infty, 3\right]\right)\right.\right.$\\
+	    Ebenfalls ist $D$ beschränkt, da $x,y\geq 0,\quad\forall (x,y)\in D$ und für die obere Schranke $3x\leq 3x+y\leq 3 \Rightarrow x\leq 1$ und $y\leq 3x+y \leq 3 \Rightarrow y\leq 3$ und somit $\|(x, y)\| \leq \sqrt{1^{2}+3^{2}}=\sqrt{10}<+\infty$ also ist $D$ kompakt.
+	\end{itemize}
+	
+	\subsection{Beispiele Abschluss, Inneres und Rand}
+	\begin{itemize}
+	    \item \begin{tabular}{|c|c|c|c|}
+        	\hline
+        	Menge & $\overline{\text{Abschluss}}$ & Inneres$\interior{}$ & Rand $\partial$ \\
+        	\hline
+        	$[0,1]$ & $[0,1]$ & $]0,1[$ & $\{0,1\}$ \\
+        	\hline
+        	$\O $ & $\O$ & $\O$ & $\O$ \\
+        	\hline
+        	$[-1,0[\cup ]0,1[ $ & $[-1,1]$ & $]-1,0[\cup]0,1[$ & $\{-1,0,1\}$ \\
+        	\hline
+        	$\{0\} $ & $\{0\} $ & $\O$ & $\{0\}$ \\
+        	\hline
+        	$\mathbb{Q} $ & $\mathbb{R} $ & $\O$ & $\mathbb{R}$ \\
+        	\hline
+        	$[0,\infty[ $ & $[0,\infty[ $ & $]0,\infty[$ &  $\{0\}$ \\
+        	\hline
+        	$Y=\{\frac{1}{n}:n\in\mathbb{N}\} $ & $Y\cup \{0\} $ & $\O$ & $Y\cup \{0\}$ \\
+        	\hline
+    	\end{tabular}
+    	
+    	\item $\bar{A} \supset \overline{\stackrel{\circ}{\overline{A}}},\quad \stackrel{\circ}{A}\subset \stackrel{\circ}{\overline{\stackrel{\circ}{A}}}, \quad \overline{\stackrel{\circ}{A}}= \bar{\stackrel{\circ}{\overline{\stackrel{\circ}{A}}}},\quad \stackrel{\circ}{\overline{A}}= {\stackrel{\circ}{\overline{\stackrel{\circ}{\overline{A}}}}}$
+    	\item Wahr: $\overline{A_{1} \cup A_{2}} \subset \overline{A_{1}} \cup \overline{A_{2}}$
+    	\item Wahr, da linke Seite sicherlich Abschluss von $A_1, A_2$ enthält: $\overline{A_{1} \cup A_{2}} \supset \overline{A_{1}} \cup \overline{A_{2}}$
+    	\item Wahr, da rechte Seite bereits $A_1\cap A_2$ enthält: $\overline{A_{1} \cap A_{2}} \subset \overline{A_{1}} \cap \overline{A_{2}}$
+    	\item Falsch: $\overline{A_{1} \cap A_{2}} \supset \overline{A_{1}} \cap \overline{A_{2}}$, da $A_1=\mathbb{Q},A_2=\mathbb{R}\backslash\mathbb{Q}$ Gegenbeispiel
+	\end{itemize}
+	\section{Sonstiges}
+	\subsection{Mitternachtsformel}
+	\begin{itemize}
+	    \item $ax^2 + bx +c = 0, \quad x_{1,2}=\frac{-b \pm \sqrt{b^2 -4 ac}}{2a}$
+	\end{itemize}
+	\subsection{pq-Formel}
+	\begin{itemize}
+	    \item Für ein Polynom von Form \(x^2 + px + q\) sind die Nullstellen:\\
+	    \[x_{1,2} = -\frac{p}{2} \pm \sqrt{\left( \frac{p}{2}\right)^2 -q}\]
+	\end{itemize}
+	
+	\subsection{Trigonometrische Grössen}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+    	\hline
+    	Grad &$0^\circ$ &$30^\circ$ &$45^\circ$ &$60^\circ$ &$90^\circ$ &$120^\circ$ &$135^\circ$ &$150^\circ$ &$180^\circ$\\
+    	\hline
+    	$\varphi$ &$0$ &$\frac{\pi}{6}$ &$\frac{\pi}{4}$ &$\frac{\pi}{3}$ &$\frac{\pi}{2}$ &$\frac{2\pi}{3}$ &$\frac{3\pi}{4}$ &$\frac{5\pi}{6}$ &$\pi$\\
+    	\hline
+    	$\sin(\varphi)$ &$0$ &$\frac{1}{2}$ &$\frac{\sqrt{2}}{2}$ &$\frac{\sqrt{3}}{2}$ &$1$ &$\frac{\sqrt{3}}{2}$ &$\frac{\sqrt{2}}{2}$ &$\frac{1}{2}$ &$0$\\
+    	\hline
+    	$\cos(\varphi)$ &$1$ &$\frac{\sqrt{3}}{2}$ &$\frac{\sqrt{2}}{2}$ &$\frac{1}{2}$ &$0$ &$-\frac{1}{2}$ &$-\frac{\sqrt{2}}{2}$ &$-\frac{\sqrt{3}}{2}$ &$-1$\\
+    	\hline
+    	$\tan(\varphi)$ &$0$ &$\frac{\sqrt{3}}{3}$ &$1$ &$\sqrt{3}$ &$\pm \infty$ &-$\sqrt{3}$ &$-1$ &$-\frac{\sqrt{3}}{3}$ &$0$\\
+    	\hline 
+	\end{tabular}
+	
+	\subsection{Additionstheoreme}
+	\begin{itemize}
+	    \item $\cos(x)^2+\sin(x)^2=1$
+	    \item $\sin (x)=\sqrt{1-\cos (x)^{2}}$
+	    \item $\sin (y)=\sqrt{1-\cos (y)^{2}}$
+	    
+	    \item $\cos(x\pm y)=\cos(x)\cos(y)\mp\sin(x)\sin(y)$
+	    \item $\sin(x\pm y)=\sin(x)\cos(y)\pm\cos(x)\sin(y)$
+	    \item $\sin(x)\sin(y)=\frac{1}{2}(\cos(x-y)-\cos(x+y))$
+    	\item $\cos(x)\cos(y)=\frac{1}{2}(\cos(x-y)+\cos(x+y))$
+    	\item $\sin(x)\cos(y)=\frac{1}{2}(\sin(x-y)+\sin(x+y))$
+    	
+    	\item $\sin(\arccos(x))=\sqrt{1-x^2}$
+    	\item $\cos(\arcsin(x))=\sqrt{1-x^2}$
+    	
+    	\item $\cos(x) = \cos(\frac{x}{2})^2 - \sin( \frac{x}{2})^2 = 2\cos(\frac{x}{2})^2 - 1$
+    	
+    	\subsubsection{Potenzen}
+	    \item $\sin^2(x)=\frac{1}{2}(1-\cos(2x))$
+    	\item $\cos^2(x)=\frac{1}{2}(1+\cos(2x))$
+    	\item $\sin ^{3}(x)=\frac{1}{4}(3 \sin (x)-\sin (3 x))$
+        \item $\cos ^{3}(x)=\frac{1}{4}(3 \cos (x)+\cos (3 x))$
+    	\item $\sin ^{4}(x)=\frac{1}{8}(\cos (4 x)-4 \cos (2 x)+3)$
+    	\item $\cos ^{4}(x)=\frac{1}{8}(\cos (4x)+4 \cos (2 x)+3)$
+	    \item $\sin^n(x)=\frac{1}{2^n}\sum_{k=0}^{n}\binom{n}{k}\cos\left((n-2k)(x-\frac{\pi}{2})\right)$
+    	\item $\cos^n(x)=\frac{1}{2^n}\sum_{k=0}^{n}\binom{n}{k}\cos\left(x(n-2k)\right)$
+    	\item$ 1+\tan^2(x)=\frac{1}{\cos^2(x)}$
+	    
+	    \subsubsection{Verschiebungen}
+	    \item $\cos (x+\pi)=-\cos (x)$
+	    \item $\sin (x+\pi)=-\sin (x)$
+	    \item $\cos (x+2 \pi)=\cos (x)$
+	    \item $\sin (x+2 \pi)=\sin (x)$
+	    \item $\cos \left(x+\frac{1}{2} \pi\right)=-\sin (x)$
+	    \item $\sin \left(x+\frac{1}{2} \pi\right)=\cos (x)$
+	    
+	    \subsubsection{Hyperbolische Identitäten}
+	    \item $\cosh (x) = \cos(ix) \iff \cosh(ix)=\cos(x)$
+	    \item $\sinh (x)=-i \sin (ix) \iff -i \sinh(ix) = \sin(x)$
+	    \item $\cosh(x)^2-\sinh(x)^2=1, \quad \forall x \in \mathbb{C}$
+	    \item $1-e^{ixn}=e^{i\frac{xn}{2}}(e^{-i\frac{xn}{2}}-e^{i\frac{nx}{2}})$
+	    \item $\sinh^2(x)=\frac{\cosh(2x)-1}{2}$
+    	\item $\cosh^2(x)=\frac{\cosh(2x)+1}{2}$
+    	
+    	\item $\sinh(x)=-i\sin(ix)=\frac{e^x-e^{-x}}{2}$
+    	\item $\cosh(x)=\cos(ix)=\frac{e^x+e^{-x}}{2}$
+    	
+    	\item $\text{arsinh}(x)=\ln\left(x+\sqrt{x^2+1}\right)$
+    	\item $\text{arcosh}(x)=\ln\left(x+\sqrt{x^2-1}\right)$
+    	\item $\sinh(\text{arcosh}(x))=\sqrt{x^2-1}$
+    	\item $\cosh(\text{arsinh}(x))=\sqrt{x^2+1}$
+    	\item $1-\text{tanh}^2(x)=\frac{1}{\cosh^2(x)}$
+	\end{itemize}
+	
+	\subsection{Tangenssubstitution}
+	\begin{itemize}
+	    \item $\cos (x) = \frac{1-t^2}{1+t^2}$ mit $t(x) = \tan (\frac{x}{2})$ (wichtig für Tangenssubstitution für bestimmte Integrale)
+	    \item $\sin (x) = \frac{2t}{1+t^2}$ mit $t(x) = \tan (\frac{x}{2})$ (wichtig für Tangenssubstitution für bestimmte Integrale)
+	    \item $\sin^2(x)=\frac{t^2}{1+t^2}$ mit $t(x)=\tan(x)$
+	    \item $\cos^2(x)=\frac{1}{1+t^2}$ mit $t(x)=\tan(x)$
+	\end{itemize}
+	
+	\subsection{Umkehrfunktionen}
+	\begin{itemize}
+	    \item $(\sinh(x))^{-1} = \ln(x+\sqrt{x^2 + 1}) = arsinh(x)$ $\mathbb{R}\to\mathbb{R}$
+	    \item $(\cosh(x))^{-1} = \ln(x+\sqrt{x^2 - 1}) = arcosh(x)$ $[1,\infty]\to [0,\infty]$
+	\end{itemize}
+	
+	\subsection{Inverse einer Matrix}
+	\begin{itemize}
+	    \item 
+					\begin{equation*}
+						A^{-1}=\frac{1}{\det(A)}\cdot
+						\begin{pmatrix}
+							a_{22} &-a_{12}\\
+							-a_{21} &a_{11}
+						\end{pmatrix}
+					\end{equation*}
+	\end{itemize}
+	
+	\subsection{Definitheit einer Matrix}
+	\begin{itemize}
+					\item \textbf{Möglichkeit I (2x2-Matrizen)}\\
+					Eigenwerte $\lambda_i$ mit $\det(A-\lambda_i I_n) \overset{!}{=}0$
+					\begin{itemize}
+						\item $\lambda_i>0 $ positiv definit (semi bei $\ge$)
+						\item $\lambda_i<0 $ negativ definit (semi bei $\le$)
+						\item $\lambda_i>0$, $\lambda_j<0$ indefinit
+					\end{itemize}
+					\item \textbf{Möglichkeit II (3x3-Matrizen)}\\
+					Hauptminoren $A_i$ berechnen
+					\begin{equation*}
+					A_i=\det
+					\begin{vmatrix}
+					a_{11} &\cdots &a_{1i}\\
+					\vdots &\ddots &\vdots\\
+					a_{i1} &\cdots &a_{ii}
+					\end{vmatrix}
+					\end{equation*}
+					\begin{itemize}
+						\item $A_1>0$, $A_2>0$, $\cdots$, $A_n>0$ $\rightarrow$ positiv definit
+						\item $A_1<0$, $A_2>0$, $\cdots$ $\rightarrow$ negativ definit
+						\item Kein Muster $\rightarrow$ indefinit
+					\end{itemize}
+				\end{itemize}
+	
+	\subsection{Diagonalisierung einer Matrix}
+	\begin{itemize}
+	    \item Sei $A \in \mathbb{R}^{n\times n}$
+	    
+	\end{itemize}
+	\begin{enumerate}
+	    \item Charakteristisches Polynom aufstellen mit $\det ( A - \lambda \cdot I_n)$ und auflösen. Die Nullstellen sind die Eigenwerte $\gamma _n$
+	    \item Eigenvektoren $\vec{v}_n$ zu den verschiedenen Eigenwerten finden mit Basis von Kern von $E_n = A - \gamma_n \cdot I_n$ 
+	    \item Sei nun $D:=\text{diag}(\gamma_1, ...,\gamma_n)$ und $S:=[\vec{v}_1 ... \vec{v}_n]$
+	    \item $A=S D S^{-1}$
+	\end{enumerate}
+	
+	
+	\subsection{Binomischer Lehrsatz}
+	\subsubsection{Eigenschaften}
+	\begin{itemize}
+	    \item $\binom{n}{k} = \frac{n \cdot (n-1) \dotsm (n-k+1)}{1 \cdot 2 \dotsm k} = \frac{n!}{(n-k)! \cdot{k!}}$
+	    \item $(x+y)^n = \sum_{k=0}^{n}\binom{n}{k} x^{n-k}y^{k}$
+	    \item $\binom n0 = 1 = \binom nn$
+	    \item $\binom n1 = n = \binom n{n-1}$
+	    \item $\binom nk = \frac{n-k+1}{k} \binom{n}{k-1}$
+	    \item $\binom nk = \frac{n}{k} \cdot \binom{n-1}{k-1} \Leftrightarrow k \cdot \binom nk = n \cdot \binom{n-1}{k-1}$
+	    \item $\binom{n+1}{k+1} = \binom nk + \binom n{k+1}$
+	    \item Symmetrie: $\binom nk = \binom n{n-k}$
+	\end{itemize}
+	\subsubsection{Beispiele}
+	\begin{itemize}
+	    \item $(x+y)^3=\binom{3}{0}\, x^{3} + \binom{3}{1}\, x^{2}y + \binom{3}{2}\, xy^{2} + \binom{3}{3}\, y^{3}=x^3+3\,x^2y+3\,xy^2+y^3$
+	    \item $(x-y)^3=\binom{3}{0}\, x^{3} + \binom{3}{1}\, x^{2}(-y) + \binom{3}{2}\, x(-y)^{2} + \binom{3}{3}\,(-y)^{3}=x^3-3\,x^2y+3\,xy^2-y^3$
+	    \item $\big(a + i b\big)^n = \sum\limits_{k=0}^n \binom{n}{k} a^{n-k} b^k i^k=\sum_{k=0, \atop k\text{ gerade}}^n \binom nk (-1)^{\frac k2} a^{n-k}b^k + \mathrm i \sum_{k=1, \atop k\text{ ungerade}}^n \binom nk (-1)^{\frac{k-1}2} a^{n-k}b^k$
+	\end{itemize}
+	\subsection{Polynom Umformung}
+	\begin{itemize}
+	    \item $x^n-1= (x-1) (x^n-1+...+x+1)$
+	    \item $\frac{2x^2}{x^2+1}=\frac{2x^2+2-2}{x^2+1}= 2-\frac{2}{x^2+1}$
+	    \item $a^{3}-b^{3}=(a-b)\left(a^{2}+a b+b^{2}\right)$
+	\end{itemize}
+	
+	\subsection{$\max$-Funktion als Ausdruck}
+	\begin{itemize}
+	    \item $\max (f(x),g(x))=\frac{1}{2}(f(x)+g(x) + | f(x)-g(x) |)$ somit ist $\max (f(x),g(x))$ auch stetig, da es Kombination aus stetigen Funktionen ist. 
+	\end{itemize}
+	
+	\subsection{Punktmengen}
+	\subsubsection{Kreis}
+	\begin{itemize}
+	    \item Fläche: $A=\pi r^2$ \hspace{30pt} Umfang: $U=2r\pi$
+		$K=\left\{(x, y)\in \mathbb{R}^2 \mid (x-x_0)^2+(y-y_0)^2 = r^2 \right\}$	
+		$r \in \mathbb{R}^{>0}$ ist der Radius des Kreises
+	\end{itemize}
+		
+	\subsubsection{Kugel}
+	\begin{itemize}
+	    \item Volumen: $V=\frac{4}{3}\pi r^3$ \hspace{15pt} Oberfläche: $S=4\pi r^2$
+		$K=\left\{(x, y, z)\in \mathbb{R}^3 \mid (x-x_0)^2+(y-y_0)^2+(z-z_0)^2 = r^2 \right\}$
+		$r \in \mathbb{R}^{>0}$ ist der Radius des Kreises
+	\end{itemize}
+		
+	\subsubsection{Kreiszylinder}
+	\begin{itemize}
+	    \item Volumen: $V=\pi r^2 h\quad\quad$  Mantelfläche: $M=2\pi r h$\\
+		Oberfläche: $S=M+2\cdot G=2\pi r h+2\pi r^2$\\
+		$Z=\left\{(x, y, z)\in \mathbb{R}^3 \left \vert  (x-x_0)^2+(y-y_0)^2 =r^2, \quad 0\le z \le h \right. \right\}$
+		$r \in \mathbb{R}^{>0}$ ist der Radius des Kreiszylinders
+	\end{itemize}
+		
+	\subsubsection{Kegel}
+	\begin{itemize}
+	    \item Volumen: $V=\frac{1}{3}\pi r^2h\quad\quad$ Oberfläche: $S=\pi r^2+\pi r\sqrt{h^2+r^2}$\\
+		$K=\left\{(x, y, z)\in \mathbb{R}^3 \left \vert  x^2+y^2 = \frac{r^2}{h^2}(h-z)^2 \right. \right\}$
+		$r, h \in \mathbb{R}^{>0}$ ist der Radius bzw. die Höhe des Kegels
+	\end{itemize}
+		
+	\subsubsection{Ellipse}
+	\begin{itemize}
+	    \item $a, b \in \mathbb{R}^{>0}$ bezeichnet die Halbachsen der Ellipse
+		$E=\left\{(x, y)\in \mathbb{R}^2 \large \left \vert \frac{(x-x_0)^2}{a^2}+\frac{(y-y_0)^2 }{b^2}= 1 \right. \right\}$
+		\item Parametrisierung des Randes einer Ellipse mit Mittelpunkt in $(0,0)$:\\
+		$$\gamma(t):=(a \cos (t), b \sin (t)), \gamma(t)':=(-a \sin (t), b \cos (t))$$
+	\end{itemize}
+		
+	\subsubsection{Ellipsoid}
+	\begin{itemize}
+	    \item $a, b, c \in \mathbb{R}^{>0}$ bezeichnet die Halbachsen des Ellipsoides
+		$E=\left\{(x, y, z)\in \mathbb{R}^3 \large \left \vert  \frac{(x-x_0)^2}{a^2}+\frac{(y-y_0)^2}{b^2} +\frac{(z-z_0)^2}{c^2}= 1 \right. \right\}$
+		\item Subsititution für Ellipsoid Gebiet Integral kann zuerst in Kugelkoordinaten transformiert werden und dann mit Subsitution für Kugelkoordinaten gelöst werden: $$\begin{gathered}
+F: \mathbb{R}^{3} \rightarrow \mathbb{R}^{3}, F(x, y, z):=\left(\begin{array}{c}
+a x \\
+b y \\
+c z
+\end{array}\right) \\
+\int_{E(a, b, c, R)} 1 d \mu=\int_{B_{R}(0)}|\operatorname{det} d F(x, y, z)| d z d y d x=\operatorname{abc }\mu\left(B_{R}(0)\right)
+\end{gathered}$$
+	\end{itemize}
+		
+	\subsubsection{Elliptisches Paraboloid}
+	\begin{itemize}
+	    \item $a, b \in \mathbb{R}^{>0}$ bezeichnet die Halbachsen der elliptischen Querschnitte
+		$P=\left\{(x, y, z)\in \mathbb{R}^3 \large \left \vert  \frac{(x-x_0)^2}{a^2}+\frac{(y-y_0)^2}{b^2}= z-z_0, \hspace{5pt} z>z_0 \right. \right\}$
+	\end{itemize}
+		
+	\subsubsection{Torus}
+	\begin{itemize}
+	    \item $r, R \in \mathbb{R}^{>0}$ bezeichnen $r<R$ die Radien des Torus
+		\begin{small}
+			$T=\left\{(x, y, z)\in \mathbb{R}^3 \large \left \vert  \left( \sqrt{(x-x_0)^2+(y-y_0)^2}-R\right)^2 +(z-z_0)^2=r^2 \right. \right\}$
+		\end{small}\\
+	Anmerkungen:
+	\begin{itemize}
+		\item[i)] Die Gleichungen beschreiben nur die Randpunkte $\partial P$ der Punktmengen $P$ (sonst $\le$)
+		\item[ii)] Die Zahlen $x_0, y_0, z_0$ beschreiben jeweils die Translation in die jeweilige Achsenrichtung (meistens 0)
+	\end{itemize}
+	\end{itemize}
+		
+	
+	\subsection{Parametrisierungen}	
+	\label{sec:param}
+	\subsubsection{Polarkoordinaten}
+		\begin{itemize}
+		    \item Sei:
+		\begin{align*}
+			&\Phi: (0, \infty)\times [0, 2\pi) \rightarrow \mathbb{R}^2 & \Phi(r, \varphi)&=
+			\begin{pmatrix}
+				r\cos(\varphi)\\ r\sin(\varphi)
+			\end{pmatrix}\\
+			&\det (D\Phi (r, \varphi))=r,\quad dV = r\,dr\,d\varphi\\
+			& \text{Ellipse } x=ra \cos{\varphi}, y= rb \sin{\varphi}, \,dV = abr\,dr\,d\varphi
+		\end{align*}
+	    Anmerkungen:
+		\begin{itemize}
+			\item[i)] Falls man eine Ellipse parametrisieren möchte, dann wählt man für die Parametrisierung $\Phi(\varphi) = (a\cos(\varphi), b\sin(\varphi))^T$, wobei $a$ und $b$ die Halbachsen der Ellipse beschreiben
+		\end{itemize}
+		\end{itemize}
+	\subsubsection{Zylinderkoordinaten}
+		\begin{itemize}
+		    \item Sei:
+		\begin{align*}
+			&\Phi: (0, \infty)\times (-\pi, \pi)\times \mathbb{R} \rightarrow \mathbb{R}^3 & \Phi(r, \varphi, h)=
+			\begin{pmatrix}
+				r\cos(\varphi)\\ r\sin(\varphi)\\ h
+			\end{pmatrix}\\
+			&\det (D\Phi (r, \varphi, h))=r, \quad \,dV=r\,dr\,d\varphi\,dz
+		\end{align*}
+		\item In Serie 11 wurde gezeigt, dass $\Phi$ ein Diffeomorphismus ist und das Bild von $\Phi$ entspricht $\mathbb{R}^3$ ohne die Halbebene $\{(x,y,z)\in\mathbb{R}^3 | y=0,x\leq 0\}$
+		\end{itemize}
+	\subsubsection{Kugelkoordinaten}
+		\begin{itemize}
+		    \item Sei:
+		\begin{align*}
+			&\Phi: (0, \infty)\times (-\pi, \pi)\times (0, \pi) \rightarrow \mathbb{R}^3 \hspace{5pt} \Phi(r, \varphi, \vartheta)=
+			\begin{pmatrix}
+				r\cos(\varphi)\sin(\vartheta)\\
+				r\sin(\varphi)\sin(\vartheta)\\ 
+				r\cos(\vartheta)
+			\end{pmatrix}\\
+			&\det (D\Phi (r, \varphi, \vartheta))=r^2\sin(\vartheta)\\
+			& \,dV = r^2 \sin{\vartheta}\,dr\,d\vartheta\,d\varphi, \quad \,dA = \vec{e_r}r^2 \sin{\vartheta}\,d\vartheta\,d\varphi
+		\end{align*}
+	    Anmerkungen:
+		\begin{itemize}
+		    \item In Serie 11 wurde gezeigt, dass $\Phi$ ein Diffeomorphismus ist und das Bild von $\Phi$ entspricht $\mathbb{R}^3$ ohne die Halbebene $\{(x,y,z)\in\mathbb{R}^3 | y=0,x\leq 0\}$
+			\item[i)] $\vartheta$ ist der Polarwinkel und ist der Winkel zwischen der Polrichtung und dem Punkt $P$ auf der Kugeloberfläche
+			\item[ii)] $\varphi$ ist der Azimutwinkel und der gleiche Winkel wie bei den Polar- bzw. Zylinderkoordinaten
+		\end{itemize}
+		\end{itemize}
+	\subsubsection{Reguläre Flächen}
+		\begin{itemize}
+		    \item Eine reguläre Fläche ist eine 2-dimensionale, differenzierbare Untermannigfaltigkeit des $\mathbb{R}^3$ Lässt sich diese Fläche $S \subset \mathbb{R}^3$ durch eine differenzierbare Funktion $f: I \subset \mathbb{R}^2 \rightarrow \mathbb{R}^3$, \hspace{5pt} $f(x, y)=z$ beschreiben, dann gilt für die Parametrisierung $\Phi$ von $S$
+		\begin{align*}
+			&\Phi: I \rightarrow \mathbb{R}^3 & \Phi(x, y)=
+			\begin{pmatrix}
+				x\\ y\\ f(x, y)
+			\end{pmatrix}
+		\end{align*}
+		Anmerkung:
+		\begin{itemize}
+			\item[i)] Diese Parametrisierung braucht man häufig zur Berechnung von Oberflächenintegralen (Integralsatz von Gauss/Stokes)
+			\item[ii)] Die allgemeine Funktionaldeterminante von $\Phi(x, y)$ lässt sich folgendermassen berechnen:
+			\begin{equation*}
+				\sqrt{\det \left((D\Phi(x, y))^T\cdot D\Phi(x, y)\right)}=\left \Vert \frac{\partial \Phi}{\partial x} \times \frac{\partial \Phi}{\partial y} \right \Vert
+			\end{equation*} 
+		\end{itemize}	
+		\end{itemize}
+	
+    \section{Komplexe Zahlen, $\mathbb{C}$}
+    \subsection{Rechenregeln}
+						\begin{itemize}
+							\item $ x = \text{Re } z = \frac{z + \overline{z}}{2} $
+							\item $ y = \text{Im } z = \frac{z - \overline{z}}{2i}$
+							\item $ z \in \mathbb{R} \Longleftrightarrow z = \overline{z} $
+							\item $ \overline{\overline{z}} = z $
+							\item $ \overline{ \left( \frac{1}{z} \right)} = \frac{1}{(\overline{z})}$
+							\item $ \overline{z_1 + z_2} = \overline{z_1} + \overline{z_2}$
+							\item $ \overline{z_1 \cdot z_2} = \overline{z_1} \cdot \overline{z_2} $
+						\end{itemize}
+        \subsection{Sonstiges}
+        \subsubsection{Wurzel einer komplexen Zahl}
+        \begin{itemize}
+            \item $x^k = y$ \\
+            $\Rightarrow x_n = | y | ^{\frac{1}{k}} e^{\frac{i\theta}{k}+\frac{2\pi i \cdot n}{k}}$ für $0 \leq n < k$ mit $\theta = \arg(y)$
+        \end{itemize}
+        \subsubsection{$\Re (z)$ und $\Im (z)$ als Formel}
+        \begin{itemize}
+            \item $\Re (z) = \frac{z+\overline{z}}{2}$ 
+            \item $\Im (z) = \frac{z-\overline{z}}{2i}$
+        \end{itemize}
+        \subsubsection{Parallelogramm-Gesetz}
+        \begin{itemize}
+            \item $| z+w | ^2+ | z-w | ^2=2 | z | ^2+2 | w | ^2, \quad \forall z, w \in \mathbb{C}$ mit $|z|^2=z\overline{z}$
+        \end{itemize}
+		\subsubsection{Wurzel von $i=\sqrt{i}$}
+		\begin{itemize}
+		    \item $i=z^2\implies \sqrt{i}=e^{i\frac{pi}{4}}=\cos (\frac{\pi}{4})+i\sin(\frac{\pi}{4})=\frac{1+i}{\sqrt{2}}$
+		\end{itemize}
+		
+		\section{Zusätzliche Integrale von Colin Dirrens Zusammenfassung}
+				\subsubsection{Substitutionen}
+					\label{sec:substitution}
+					\vspace{-7pt}
+					\begin{small}
+						\begin{align*}
+							&\int \frac{g'(x)}{g(x)}\text{d}x &u(x)&=g(x) &\text{d}x&=\frac{\text{d}u}{g'(x)}\\
+							&\int f(g(x))\cdot g'(x)\text{d}x &u(x)&=g(x) &\text{d}x&=\frac{\text{d}u}{g'(x)}\\
+							&\int f(e^x, \sinh(x), \cosh(x))\text{d}x &u(x)&=e^x &\text{d}x&=\frac{\text{d}u}{e^x}\\			
+							&\int f(x, \sqrt{1-x^2})\text{d}x &x&=\sin(u) &\text{d}x&=\cos(u)\text{d}u\\
+							&\int f(x, \sqrt{1+x^2})\text{d}x &x&=\sinh(u) &\text{d}x&=\cosh(u)\text{d}u\\
+							&\int f(x, \sqrt{x^2-1})\text{d}x &x&=\cosh(u) &\text{d}x&=\sinh(u)\text{d}u\\
+							&\int f\left(\frac{1}{\sqrt{a^2-x^2}}\right)\text{d}x &u(x)&=\frac{x}{a} &\text{d}x&=a\text{d}u\\
+							&\int f\left(\sqrt{1+\frac{1}{x^2}}\right)\text{d}x &u(x)&=\sqrt{x^2-1} &\text{d}x&=\frac{\sqrt{x^2-1}}{x} \text{d}u\\
+							&\int R(\sin(x), \cos(x))\text{d}x &u(x)&=\tan\left(\frac{x}{2}\right) &\text{d}x&=\frac{2}{1+u^2}\text{d}u
+						\end{align*}
+						\begin{equation*}
+							\rightarrow \sin(x)=\frac{2u}{1+u^2} \hspace{22pt} \rightarrow \cos(x)=\frac{1-u^2}{1+u^2}
+						\end{equation*}
+					\end{small}
+				\subsubsection{Potenzen und Wurzeln}
+					\vspace{-7pt}
+					\begin{align*}
+						\int \sqrt{1-x^2}\text{d}x&= \frac{1}{2} \left(x\sqrt{1-x^2}+\arcsin(x)\right)+C\\
+						\int \frac{1}{\sqrt{1-x^2}}\text{d}x&=\arcsin(x)+C\\
+						\int -\frac{1}{1-x^2}\text{d}x&=\arccos(x)+C\\
+						\int \frac{1}{1+x^2}\text{d}x&=\arctan(x)+C
+					\end{align*}
+				\subsubsection{Exponential- und Logarithmusfunktionen}
+					\vspace{-7pt}
+					\begin{align*}
+						\int a^{kx}\text{d}x&=\frac{a^{kx}}{k\ln(a)} +C &a>1\\
+						\int \ln(x)\text{d}x&=x\left(\ln\vert x \vert -1 \right)+C &x>0\\
+						\int x^ne^{ax}\text{d}x&=e^{ax}\sum_{k=0}^{n}(-1)^k \frac{n!}{(n-k)!} \frac{x^{n-k}}{a^{k+1}}+C	
+					\end{align*}
+				\subsubsection{Hyperbolische Funktionen}
+					\vspace{-7pt}
+					\begin{align*}
+						\int \frac{1}{\sqrt{1+x^2}}\text{d}x&=\text{arsinh}(x)+C\\
+						\int \frac{1}{\sqrt{x^2-1}}\text{d}x&=\text{arcosh}(x)+C &x>1\\
+						\int \frac{1}{1-x^2}\text{d}x&=\text{artanh}(x)+C
+					\end{align*}
+				\subsubsection{Trigonometrische Funktionen}	
+					\vspace{-7pt}
+					\begin{align*}
+						\int \tan(x) \text{d}x&=-\ln\vert \cos(x) \vert + C\\
+						\int \frac{1}{\cos^2(x)}\text{d}x&=\tan(x)+C\\
+						\int \sin^2(x)\text{d}x&= \frac{x}{2}-\frac{\sin(x)\cos(x)}{2}+C\\
+						\int \cos^2(x)\text{d}x&= \frac{x}{2}+\frac{\sin(x)\cos(x)}{2}+C\\
+						\int \sin(x)\cos(x)\text{d}x&= \frac{1}{2}\sin^2(x)+C\\
+						\int \sin^n(x)\text{d}x&=\frac{n-1}{n}\int \sin^{n-2}(x)\text{d}x-\frac{\sin^{n-1}(x)\cos(x)}{n}\\
+						\int \cos^n(x)\text{d}x&=\frac{n-1}{n}\int \cos^{n-2}(x)\text{d}x+\frac{\cos^{n-1}(x)\sin(x)}{n}\\
+						\int \cot(x)\text{d}x&= \ln\vert \sin(x) \vert +C\\
+						\int \csc(x)\text{d}x&=-\ln \vert \csc(x)+\cot(x)\vert +C\\
+						\int \sec(x)\text{d}x&= \ln \vert \sec(x)+\tan(x) \vert +C\\
+						\int \arcsin(x)\text{d}x&= x\cdot \arcsin(x)+\sqrt{1-x^2}+C\\
+						\int \arccos(x)\text{d}x&=x\cdot \arccos(x)-\sqrt{1-x^2}+C
+					\end{align*}
+		
+		\section{Fourierreihe}
+		\begin{itemize}
+		    \item Nur kurz behandelt und sowieso Koma Stoff, aber schadet nicht:
+		    \item Let \(f: \mathbb{R} \rightarrow \mathbb{R}\) be a \(2 \pi\) -periodic continuous function which has a representation
+$$
+f(x)=a_{0}+\sum_{k=1}^{+\infty}\left(a_{k} \cos (k x)+b_{k} \sin (k x)\right)
+$$
+where the series on the right converges uniformly on \([0,2 \pi] .\) Then we have
+$$a_{0} =\frac{1}{2 \pi} \int_{0}^{2 \pi} f(t) d t$$
+$$
+a_{m}=\frac{1}{\pi} \int_{0}^{2 \pi} f(t) \cos (m t) d t, \quad b_{m}=\frac{1}{\pi} \int_{0}^{2 \pi} f(t) \sin (m t) d t, \quad \text { for } m \in \mathbb{N}
+$$
+		\end{itemize}
+		
+	    \section{Disclaimer}
+	    \begin{itemize}
+	        \item Diese Zusammenfassung wurde von Jeremias Baur im FS2021 erstellt. Sie basiert auf der Vorlesung Analysis 1 von Prof. Kowalski und Analysis 2 von Prof. Rivière. Sie basiert auf einer ursprünglichen Zusammenfassung von . Ein paar Themenbereiche wurden
+erweitert und spezifiziert Es besteht keine Garantie auf Korrektheit. Fehler können bei jebaur@ethz.ch gemeldet werden.
+	        \item \textbf{Benutzung dieser Zusammenfassung auf eigene Gefahr!}
+	    \end{itemize}
+    \end{multicols*}
+\setcounter{secnumdepth}{2}
+\end{document}

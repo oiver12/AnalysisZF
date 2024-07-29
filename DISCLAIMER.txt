@@ -1,0 +1,6 @@
+Diese Zusammenfassung wurde verfasst auf Basis der Vorlesung Analysis 1 & 2 (HS22 & FS23) von Prof. T. Rivière und dem Skript "Analysis für Informatik" von Prof. Michael Struwe, einzelne Teile wurden auch aus der Zusammenfassung von Jeremias Baur übernommen. 
+
+Ich übernehme keine Haftung über mögliche Fehler in der Zusammenfassung (Es hat sicherlich ein paar drinnen, da ich teils Sätze umformuliert habe). Die zum pdf zugehörige .tex file ist im zip enthalten, falls jemand die Zusammenfassung anpassen/umschreiben/verbessern will.  
+
+
+Viel Glück bei der Prüfung :)
