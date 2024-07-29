@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2024.7.19)  28 JUL 2024 22:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2024.7.19)  29 JUL 2024 12:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -876,24 +876,24 @@ File: l3backend-pdftex.def 2024-03-14 L3 backend support: PDF output (pdfTeX)
 ) (./AnalysisZF.aux)
 \openout1 = `AnalysisZF.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 114.
-LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -948,7 +948,8 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 114.
+Package hyperref Info: Link coloring OFF on input line 121.
+ (./AnalysisZF.out) (./AnalysisZF.out)
 \@outlinefile=\write4
 \openout4 = `AnalysisZF.out'.
 
@@ -959,7 +960,7 @@ Class scrartcl Info: loading recommended package `bookmark'.
 (scrartcl)           `bookmarkpackage=false' before \begin{document} and
 (scrartcl)           you can avoid this message adding:
 (scrartcl)             \usepackage{bookmark}
-(scrartcl)           before \begin{document} on input line 114.
+(scrartcl)           before \begin{document} on input line 121.
  (/usr/share/texlive/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
  (/usr/share/texlive/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
@@ -967,598 +968,598 @@ File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
 \BKM@id=\count380
 ))
 \c@lstlisting=\count381
-Package tocbasic Info: setting babel extension for `lol' on input line 114.
+Package tocbasic Info: setting babel extension for `lol' on input line 121.
 \scr@dte@lstlisting@maxnumwidth=\skip79
  (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks45
 \inpenc@posthook=\toks46
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 124.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 131.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 124.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 131.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 267--268
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 267--268
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
 
  []
 
 <Bilder/Surjektiv.JPG, id=43, 795.72281pt x 430.60875pt>
 File: Bilder/Surjektiv.JPG Graphic file (type jpg)
 <use Bilder/Surjektiv.JPG>
-Package pdftex.def Info: Bilder/Surjektiv.JPG  used on input line 308.
+Package pdftex.def Info: Bilder/Surjektiv.JPG  used on input line 315.
 (pdftex.def)             Requested size: 97.58386pt x 52.80751pt.
 <Bilder/Injektiv.JPG, id=44, 814.54312pt x 429.85594pt>
 File: Bilder/Injektiv.JPG Graphic file (type jpg)
 <use Bilder/Injektiv.JPG>
-Package pdftex.def Info: Bilder/Injektiv.JPG  used on input line 326.
+Package pdftex.def Info: Bilder/Injektiv.JPG  used on input line 333.
 (pdftex.def)             Requested size: 97.58386pt x 51.49521pt.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./Bilder/Surjektiv.JPG> <./Bilder/Injektiv.JPG>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 485.
+(hyperref)                removing `math shift' on input line 492.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\exp' on input line 485.
+(hyperref)                removing `\exp' on input line 492.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 485.
+(hyperref)                removing `superscript' on input line 492.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 485.
+(hyperref)                removing `math shift' on input line 492.
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 763--766
+Underfull \hbox (badness 10000) in paragraph at lines 770--773
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 771--774
+Underfull \hbox (badness 10000) in paragraph at lines 778--781
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 779--782
+Underfull \hbox (badness 10000) in paragraph at lines 786--789
 
  []
 
 <Bilder/z_02.jpg, id=154, 858.95906pt x 392.96812pt>
 File: Bilder/z_02.jpg Graphic file (type jpg)
 <use Bilder/z_02.jpg>
-Package pdftex.def Info: Bilder/z_02.jpg  used on input line 877.
+Package pdftex.def Info: Bilder/z_02.jpg  used on input line 884.
 (pdftex.def)             Requested size: 132.76569pt x 60.73553pt.
 [3 <./Bilder/z_02.jpg>]
 <Bilder/z_03.jpg, id=197, 596.2275pt x 217.5628pt>
 File: Bilder/z_03.jpg Graphic file (type jpg)
 <use Bilder/z_03.jpg>
-Package pdftex.def Info: Bilder/z_03.jpg  used on input line 958.
+Package pdftex.def Info: Bilder/z_03.jpg  used on input line 965.
 (pdftex.def)             Requested size: 132.76569pt x 48.44492pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1011.
+(hyperref)                removing `math shift' on input line 1018.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1011.
+(hyperref)                removing `superscript' on input line 1018.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1011.
+(hyperref)                removing `math shift' on input line 1018.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1011.
+(hyperref)                removing `math shift' on input line 1018.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1011.
+(hyperref)                removing `math shift' on input line 1018.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1021.
+(hyperref)                removing `math shift' on input line 1028.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1021.
+(hyperref)                removing `superscript' on input line 1028.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1021.
+(hyperref)                removing `math shift' on input line 1028.
 
 [4 <./Bilder/z_03.jpg>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1232.
+(hyperref)                removing `math shift' on input line 1239.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1232.
+(hyperref)                removing `math shift' on input line 1239.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1232.
+(hyperref)                removing `math shift' on input line 1239.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1232.
+(hyperref)                removing `superscript' on input line 1239.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1232.
+(hyperref)                removing `math shift' on input line 1239.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1259.
+(hyperref)                removing `math shift' on input line 1266.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1259.
+(hyperref)                removing `subscript' on input line 1266.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1259.
+(hyperref)                removing `math shift' on input line 1266.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1268.
+(hyperref)                removing `math shift' on input line 1275.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1268.
+(hyperref)                removing `math shift' on input line 1275.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1294.
+(hyperref)                removing `math shift' on input line 1301.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1294.
+(hyperref)                removing `math shift' on input line 1301.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1309.
+(hyperref)                removing `math shift' on input line 1316.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1309.
+(hyperref)                removing `superscript' on input line 1316.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1309.
+(hyperref)                removing `math shift' on input line 1316.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1309.
+(hyperref)                removing `math shift' on input line 1316.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1309.
+(hyperref)                removing `superscript' on input line 1316.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1309.
+(hyperref)                removing `math shift' on input line 1316.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1328.
+(hyperref)                removing `math shift' on input line 1335.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1328.
+(hyperref)                removing `superscript' on input line 1335.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Omega' on input line 1328.
+(hyperref)                removing `\Omega' on input line 1335.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1328.
+(hyperref)                removing `math shift' on input line 1335.
 
 [5]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1386.
+(hyperref)                removing `math shift' on input line 1393.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1386.
+(hyperref)                removing `math shift' on input line 1393.
 
 <Bilder/Delta_Epsilon_Kriterium.png, id=299, 2200.22pt x 1232.605pt>
 File: Bilder/Delta_Epsilon_Kriterium.png Graphic file (type png)
 <use Bilder/Delta_Epsilon_Kriterium.png>
-Package pdftex.def Info: Bilder/Delta_Epsilon_Kriterium.png  used on input line 1395.
+Package pdftex.def Info: Bilder/Delta_Epsilon_Kriterium.png  used on input line 1402.
 (pdftex.def)             Requested size: 199.14853pt x 111.55032pt.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1408.
+(hyperref)                removing `math shift' on input line 1415.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1408.
+(hyperref)                removing `math shift' on input line 1415.
 
 [6 <./Bilder/Delta_Epsilon_Kriterium.png>]
 <Bilder/Umgebung.jpg, id=363, 416.30531pt x 288.3272pt>
 File: Bilder/Umgebung.jpg Graphic file (type jpg)
 <use Bilder/Umgebung.jpg>
-Package pdftex.def Info: Bilder/Umgebung.jpg  used on input line 1634.
+Package pdftex.def Info: Bilder/Umgebung.jpg  used on input line 1641.
 (pdftex.def)             Requested size: 71.6946pt x 49.6529pt.
 <Bilder/TopoStetigkeit.png, id=364, 817.55438pt x 282.30469pt>
 File: Bilder/TopoStetigkeit.png Graphic file (type png)
 <use Bilder/TopoStetigkeit.png>
-Package pdftex.def Info: Bilder/TopoStetigkeit.png  used on input line 1677.
+Package pdftex.def Info: Bilder/TopoStetigkeit.png  used on input line 1684.
 (pdftex.def)             Requested size: 265.53137pt x 91.68762pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1683.
+(hyperref)                removing `math shift' on input line 1690.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1683.
+(hyperref)                removing `math shift' on input line 1690.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1761.
+(hyperref)                removing `math shift' on input line 1768.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1761.
+(hyperref)                removing `superscript' on input line 1768.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1761.
+(hyperref)                removing `math shift' on input line 1768.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1788.
+(hyperref)                removing `math shift' on input line 1795.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1788.
+(hyperref)                removing `superscript' on input line 1795.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1788.
+(hyperref)                removing `math shift' on input line 1795.
 
 [7 <./Bilder/Umgebung.jpg> <./Bilder/TopoStetigkeit.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1888.
+(hyperref)                removing `math shift' on input line 1895.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1888.
+(hyperref)                removing `math shift' on input line 1895.
 
 <Bilder/RiemannSumme.png, id=412, 510.40688pt x 361.35pt>
 File: Bilder/RiemannSumme.png Graphic file (type png)
 <use Bilder/RiemannSumme.png>
-Package pdftex.def Info: Bilder/RiemannSumme.png  used on input line 1975.
+Package pdftex.def Info: Bilder/RiemannSumme.png  used on input line 1982.
 (pdftex.def)             Requested size: 66.38284pt x 46.99368pt.
 <Bilder/R-Integral.png, id=413, 673.01437pt x 574.39594pt>
 File: Bilder/R-Integral.png Graphic file (type png)
 <use Bilder/R-Integral.png>
-Package pdftex.def Info: Bilder/R-Integral.png  used on input line 2025.
+Package pdftex.def Info: Bilder/R-Integral.png  used on input line 2032.
 (pdftex.def)             Requested size: 63.72841pt x 54.38411pt.
 [8 <./Bilder/RiemannSumme.png> <./Bilder/R-Integral.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2191.
+(hyperref)                removing `math shift' on input line 2198.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2191.
+(hyperref)                removing `math shift' on input line 2198.
 
 <Bilder/DGL_Partikulare.jpeg, id=462, 2868.7175pt x 2396.955pt>
 File: Bilder/DGL_Partikulare.jpeg Graphic file (type jpg)
 <use Bilder/DGL_Partikulare.jpeg>
-Package pdftex.def Info: Bilder/DGL_Partikulare.jpeg  used on input line 2242.
+Package pdftex.def Info: Bilder/DGL_Partikulare.jpeg  used on input line 2249.
 (pdftex.def)             Requested size: 265.53137pt x 221.86116pt.
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 2273--2274
+Underfull \hbox (badness 10000) in paragraph at lines 2280--2281
 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2436.
+(hyperref)                removing `math shift' on input line 2443.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 2436.
+(hyperref)                removing `superscript' on input line 2443.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2436.
+(hyperref)                removing `math shift' on input line 2443.
 
 <Bilder/PartiellAbleitung.png, id=500, 1217.2978pt x 562.35094pt>
 File: Bilder/PartiellAbleitung.png Graphic file (type png)
 <use Bilder/PartiellAbleitung.png>
-Package pdftex.def Info: Bilder/PartiellAbleitung.png  used on input line 2447.
+Package pdftex.def Info: Bilder/PartiellAbleitung.png  used on input line 2454.
 (pdftex.def)             Requested size: 265.53137pt x 122.66216pt.
 [10 <./Bilder/DGL_Partikulare.jpeg>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2496.
+(hyperref)                removing `math shift' on input line 2503.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 2496.
+(hyperref)                removing `superscript' on input line 2503.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2496.
+(hyperref)                removing `math shift' on input line 2503.
 
 <Bilder/Kettenregel_0.png, id=528, 769.37437pt x 280.79906pt>
 File: Bilder/Kettenregel_0.png Graphic file (type png)
 <use Bilder/Kettenregel_0.png>
-Package pdftex.def Info: Bilder/Kettenregel_0.png  used on input line 2543.
+Package pdftex.def Info: Bilder/Kettenregel_0.png  used on input line 2550.
 (pdftex.def)             Requested size: 116.83444pt x 42.64076pt.
 <Bilder/Kettenregel.png, id=529, 676.77844pt x 237.88875pt>
 File: Bilder/Kettenregel.png Graphic file (type png)
 <use Bilder/Kettenregel.png>
-Package pdftex.def Info: Bilder/Kettenregel.png  used on input line 2565.
+Package pdftex.def Info: Bilder/Kettenregel.png  used on input line 2572.
 (pdftex.def)             Requested size: 130.11182pt x 45.73291pt.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2635.
+(hyperref)                removing `math shift' on input line 2642.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 2635.
+(hyperref)                removing `superscript' on input line 2642.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2635.
+(hyperref)                removing `math shift' on input line 2642.
 
 [11 <./Bilder/PartiellAbleitung.png> <./Bilder/Kettenregel_0.png> <./Bilder/Kettenregel.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2669.
+(hyperref)                removing `math shift' on input line 2676.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2669.
+(hyperref)                removing `math shift' on input line 2676.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2669.
+(hyperref)                removing `math shift' on input line 2676.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2669.
+(hyperref)                removing `math shift' on input line 2676.
 
 [12]
 <Bilder/Potential.png, id=612, 459.21562pt x 424.58624pt>
 File: Bilder/Potential.png Graphic file (type png)
 <use Bilder/Potential.png>
-Package pdftex.def Info: Bilder/Potential.png  used on input line 3008.
+Package pdftex.def Info: Bilder/Potential.png  used on input line 3015.
 (pdftex.def)             Requested size: 92.93759pt x 85.9264pt.
 
-Overfull \hbox (1.0782pt too wide) in paragraph at lines 3047--3048
+Overfull \hbox (1.0782pt too wide) in paragraph at lines 3054--3055
  [][][] 
  []
 
-
-/home/oliver/Documents/ETH/Semester2/Analysis/AnalysisZF/AnalysisZF.tex:3049: LaTeX Error: Unicode character ̈ (U+0308)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3049     Falls dies f̈
-                         uer alle Punkte $p \in M$ gilt, so nennen wir M ein...
-You may provide a definition with
-\DeclareUnicodeCharacter 
+[13 <./Bilder/Potential.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 3092--3097
+\OT1/cmr/m/n/8 Das Ur-bild je-des re-gul[]aren Wer-tes ($\OML/cmm/m/it/8 g[]\OT1/cmr/m/n/8 (\OML/cmm/m/it/8 z[]\OT1/cmr/m/n/8 )$) ist ei-ne $\OML/cmm/m/it/8 C[]$\OT1/cmr/m/n/8 -
+ []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3050.
+(hyperref)                removing `math shift' on input line 3146.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 3050.
+(hyperref)                removing `superscript' on input line 3146.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3050.
+(hyperref)                removing `math shift' on input line 3146.
 
-<Bilder/Quader.png, id=613, 442.65375pt x 348.55219pt>
+<Bilder/Quader.png, id=657, 442.65375pt x 348.55219pt>
 File: Bilder/Quader.png Graphic file (type png)
 <use Bilder/Quader.png>
-Package pdftex.def Info: Bilder/Quader.png  used on input line 3077.
+Package pdftex.def Info: Bilder/Quader.png  used on input line 3173.
 (pdftex.def)             Requested size: 66.38284pt x 52.26993pt.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3088.
+(hyperref)                removing `math shift' on input line 3184.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 3088.
+(hyperref)                removing `superscript' on input line 3184.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3088.
+(hyperref)                removing `math shift' on input line 3184.
 
-[13 <./Bilder/Potential.png>]
-<Bilder/Jordan-Messbar.png, id=657, 627.09282pt x 536.75531pt>
+[14 <./Bilder/Quader.png>]
+<Bilder/Jordan-Messbar.png, id=688, 627.09282pt x 536.75531pt>
 File: Bilder/Jordan-Messbar.png Graphic file (type png)
 <use Bilder/Jordan-Messbar.png>
-Package pdftex.def Info: Bilder/Jordan-Messbar.png  used on input line 3207.
+Package pdftex.def Info: Bilder/Jordan-Messbar.png  used on input line 3303.
 (pdftex.def)             Requested size: 66.38284pt x 56.81552pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3293.
+(hyperref)                removing `math shift' on input line 3393.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 3293.
+(hyperref)                removing `superscript' on input line 3393.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 3293.
+(hyperref)                removing `subscript' on input line 3393.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3293.
+(hyperref)                removing `math shift' on input line 3393.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3293.
+(hyperref)                removing `math shift' on input line 3393.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 3293.
+(hyperref)                removing `superscript' on input line 3393.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3293.
+(hyperref)                removing `math shift' on input line 3393.
 
-<Bilder/Stueckweise_Gebit.png, id=658, 255.20343pt x 260.47313pt>
+<Bilder/Stueckweise_Gebit.png, id=689, 255.20343pt x 260.47313pt>
 File: Bilder/Stueckweise_Gebit.png Graphic file (type png)
 <use Bilder/Stueckweise_Gebit.png>
-Package pdftex.def Info: Bilder/Stueckweise_Gebit.png  used on input line 3316.
+Package pdftex.def Info: Bilder/Stueckweise_Gebit.png  used on input line 3416.
 (pdftex.def)             Requested size: 66.38284pt x 67.7532pt.
-[14 <./Bilder/Quader.png> <./Bilder/Jordan-Messbar.png>]
-<Bilder/Substitutionsregel.png, id=703, 474.27188pt x 199.49532pt>
+<Bilder/Substitutionsregel.png, id=690, 474.27188pt x 199.49532pt>
 File: Bilder/Substitutionsregel.png Graphic file (type png)
 <use Bilder/Substitutionsregel.png>
-Package pdftex.def Info: Bilder/Substitutionsregel.png  used on input line 3399.
+Package pdftex.def Info: Bilder/Substitutionsregel.png  used on input line 3499.
 (pdftex.def)             Requested size: 103.55707pt x 43.5573pt.
+<Bilder/Kugelkoordinaten.png, id=691, 746.79pt x 528.97626pt>
+File: Bilder/Kugelkoordinaten.png Graphic file (type png)
+<use Bilder/Kugelkoordinaten.png>
+Package pdftex.def Info: Bilder/Kugelkoordinaten.png  used on input line 3545.
+(pdftex.def)             Requested size: 130.11182pt x 92.16058pt.
+[15 <./Bilder/Jordan-Messbar.png> <./Bilder/Stueckweise_Gebit.png> <./Bilder/Substitutionsregel.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 3554--3555
+
+ []
+
+
+Underfull \hbox (badness 5862) in paragraph at lines 3589--3590
+[]\OT1/cmr/m/it/7 Die all-ge-mei-ne Funk-ti-ons-de-ter-mi-nan-te $\OML/cmm/m/it/7 ^^^ \OT1/cmr/m/n/7 : \U/msb/m/n/7 R[] \OMS/cmsy/m/n/7 ! \U/msb/m/n/7 R[]$ \OT1/cmr/m/it/7 ist
+ []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3502.
+(hyperref)                removing `math shift' on input line 3605.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 3502.
+(hyperref)                removing `superscript' on input line 3605.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3502.
+(hyperref)                removing `math shift' on input line 3605.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3505.
+(hyperref)                removing `math shift' on input line 3608.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 3505.
+(hyperref)                removing `superscript' on input line 3608.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3505.
+(hyperref)                removing `math shift' on input line 3608.
 
-<Bilder/Stokes.png, id=704, 1114.91531pt x 507.39563pt>
+<Bilder/Stokes.png, id=736, 1114.91531pt x 507.39563pt>
 File: Bilder/Stokes.png Graphic file (type png)
 <use Bilder/Stokes.png>
-Package pdftex.def Info: Bilder/Stokes.png  used on input line 3535.
+Package pdftex.def Info: Bilder/Stokes.png  used on input line 3638.
 (pdftex.def)             Requested size: 199.14853pt x 90.63046pt.
-[15 <./Bilder/Stueckweise_Gebit.png> <./Bilder/Substitutionsregel.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3549.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 3549.
+(hyperref)                removing `math shift' on input line 3652.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3549.
+(hyperref)                removing `superscript' on input line 3652.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3567.
+(hyperref)                removing `math shift' on input line 3652.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 3567.
+(hyperref)                removing `math shift' on input line 3670.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3567.
+(hyperref)                removing `superscript' on input line 3670.
 
-<Bilder/Oberflachenintegral_BSP.png, id=748, 211.54031pt x 211.54031pt>
-File: Bilder/Oberflachenintegral_BSP.png Graphic file (type png)
-<use Bilder/Oberflachenintegral_BSP.png>
-Package pdftex.def Info: Bilder/Oberflachenintegral_BSP.png  used on input line 3598.
-(pdftex.def)             Requested size: 41.42218pt x 41.41965pt.
-[16 <./Bilder/Stokes.png> <./Bilder/Oberflachenintegral_BSP.png>] (./sections/Ubersicht.tex [17] [18]
-<Bilder/Trigonometric_functions.png, id=832, 2569.6pt x 1534.73375pt>
-File: Bilder/Trigonometric_functions.png Graphic file (type png)
-<use Bilder/Trigonometric_functions.png>
-Package pdftex.def Info: Bilder/Trigonometric_functions.png  used on input line 337.
-(pdftex.def)             Requested size: 265.53137pt x 158.58751pt.
-<Bilder/unit-circle.jpg, id=833, 1185.96924pt x 1185.96924pt>
-File: Bilder/unit-circle.jpg Graphic file (type jpg)
-<use Bilder/unit-circle.jpg>
-Package pdftex.def Info: Bilder/unit-circle.jpg  used on input line 343.
-(pdftex.def)             Requested size: 265.53137pt x 265.52863pt.
-<Bilder/Sinh_cosh_tanh.png, id=834, 1027.84pt x 1284.8pt>
-File: Bilder/Sinh_cosh_tanh.png Graphic file (type png)
-<use Bilder/Sinh_cosh_tanh.png>
-Package pdftex.def Info: Bilder/Sinh_cosh_tanh.png  used on input line 351.
-(pdftex.def)             Requested size: 265.53137pt x 331.90324pt.
-<Bilder/arsinh.png, id=835, 1927.2pt x 1284.8pt>
-File: Bilder/arsinh.png Graphic file (type png)
-<use Bilder/arsinh.png>
-Package pdftex.def Info: Bilder/arsinh.png  used on input line 359.
-(pdftex.def)             Requested size: 252.25398pt x 168.16692pt.
-<Bilder/arcosh.png, id=836, 1927.2pt x 1284.8pt>
-File: Bilder/arcosh.png Graphic file (type png)
-<use Bilder/arcosh.png>
-Package pdftex.def Info: Bilder/arcosh.png  used on input line 363.
-(pdftex.def)             Requested size: 252.25398pt x 168.16692pt.
-<Bilder/artanh.png, id=837, 1927.2pt x 1284.8pt>
-File: Bilder/artanh.png Graphic file (type png)
-<use Bilder/artanh.png>
-Package pdftex.def Info: Bilder/artanh.png  used on input line 367.
-(pdftex.def)             Requested size: 252.25398pt x 168.16692pt.
- [19 <./Bilder/Trigonometric_functions.png> <./Bilder/unit-circle.jpg> <./Bilder/Sinh_cosh_tanh.png> <./Bilder/arsinh.png> <./Bilder/arcosh.png> <./Bilder/artanh.png>] [20]) (./AnalysisZF.aux)
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 3670.
+
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 3701.
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 3701.
+
+Underfull \hbox (badness 10000) in paragraph at lines 3715--3717
+
+ []
+
+[16 <./Bilder/Kugelkoordinaten.png> <./Bilder/Stokes.png>]
+<Bilder/Integrals_1.png, id=770, 443.6575pt x 1270.7475pt>
+File: Bilder/Integrals_1.png Graphic file (type png)
+<use Bilder/Integrals_1.png>
+Package pdftex.def Info: Bilder/Integrals_1.png  used on input line 3833.
+(pdftex.def)             Requested size: 238.97574pt x 455.2389pt.
+<Bilder/Integrals_2.png, id=771, 389.455pt x 361.35pt>
+File: Bilder/Integrals_2.png Graphic file (type png)
+<use Bilder/Integrals_2.png>
+Package pdftex.def Info: Bilder/Integrals_2.png  used on input line 3836.
+(pdftex.def)             Requested size: 159.31508pt x 108.11911pt.
+ [17 <./Bilder/Integrals_1.png> <./Bilder/Integrals_2.png>]
+<Bilder/Integrals_all.png, id=804, 1426.32875pt x 989.6975pt>
+File: Bilder/Integrals_all.png Graphic file (type png)
+<use Bilder/Integrals_all.png>
+Package pdftex.def Info: Bilder/Integrals_all.png  used on input line 3840.
+(pdftex.def)             Requested size: 816.58514pt x 551.9767pt.
+<Bilder/Integrals_all_2.png, id=805, 1414.28375pt x 988.69376pt>
+File: Bilder/Integrals_all_2.png Graphic file (type png)
+<use Bilder/Integrals_all_2.png>
+Package pdftex.def Info: Bilder/Integrals_all_2.png  used on input line 3843.
+(pdftex.def)             Requested size: 816.59496pt x 551.97508pt.
+ [18 <./Bilder/Integrals_all.png>]
+<Bilder/Anhang_1.png, id=810, 1415.2875pt x 940.51375pt>
+File: Bilder/Anhang_1.png Graphic file (type png)
+<use Bilder/Anhang_1.png>
+Package pdftex.def Info: Bilder/Anhang_1.png  used on input line 3846.
+(pdftex.def)             Requested size: 816.61302pt x 512.14648pt.
+ [19 <./Bilder/Integrals_all_2.png>] [20 <./Bilder/Anhang_1.png>] (./AnalysisZF.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
  ***********
-
-
-Package rerunfilecheck Warning: File `AnalysisZF.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `AnalysisZF.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package rerunfilecheck Info: File `AnalysisZF.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 34562 strings out of 474104
- 695092 string characters out of 5746018
+ 34500 strings out of 474104
+ 694368 string characters out of 5746018
  2016493 words of memory out of 5000000
- 55715 multiletter control sequences out of 15000+600000
- 569183 words of font info for 76 fonts, out of 8000000 for 9000
+ 55700 multiletter control sequences out of 15000+600000
+ 569777 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,21n,107p,10988b,872s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb>
-Output written on AnalysisZF.pdf (20 pages, 4249716 bytes).
+ 108i,19n,107p,10988b,872s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb>
+Output written on AnalysisZF.pdf (20 pages, 5018942 bytes).
 PDF statistics:
- 2073 PDF objects out of 2073 (max. 8388607)
- 1916 compressed objects within 20 object streams
- 692 named destinations out of 1000 (max. 500000)
- 2799 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1938 PDF objects out of 2073 (max. 8388607)
+ 1782 compressed objects within 18 object streams
+ 642 named destinations out of 1000 (max. 500000)
+ 2586 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -94,6 +94,13 @@
 % equation box        
 \newcommand{\eqbox}[1]{\fcolorbox{black}{white}{\hspace{0.5em}#1\hspace{0.5em}}} 
 \newcommand{\eqboxf}[1]{\fcolorbox{black}{formulabox}{\hspace{0.5em}#1\hspace{0.5em}}} 
+\newcommand{\eqboxbig}[1]{%
+  \fcolorbox{black}{white}{%
+    \begin{minipage}{\linewidth-2\fboxsep-2\fboxrule}%
+      \strut #1 \strut
+    \end{minipage}%
+  }%
+}
 
 %macros 
 \newcommand{\vect}[1]{\mathbf{#1}}
@@ -3046,7 +3053,96 @@
     \begin{center}
         \eqbox{$\{(x_{\sigma(1)}, \dots, x_{\sigma(n)}):x \in M \cap U_p\} = graph(f) = \{(y,f(y)): y \in V_p\}$}
     \end{center}
-    Falls dies f̈uer alle Punkte $p \in M$ gilt, so nennen wir M eine d-dimensionale $C^k$-Untermannigfaltigkeit des $\mathbb{R}^n$.
+    Falls dies fuer alle Punkte $p \in M$ gilt, so nennen wir M eine d-dimensionale $C^k$-Untermannigfaltigkeit des $\mathbb{R}^n$
+    Die Funktion kann also lokal als Graph einer Funktion dargestellt werden, welche eine kleinere Dimension haben kann.
+    \subsection*{Immersion, Submession}
+    $\textbf{Immersion}$: $f$ ist in $p$ eine Immersion genau dann wenn $df(p)$ injektiv ist. Falls $f$ für
+    alle $p \in U$ eine Immersion ist, dann ist $f$ eine Immersion.
+    Eine Matrix ist genau dann injektiv, wenn gilt:
+    \begin{center}
+        \eqbox{$Rang(M) = $ Anzahl der Spalten der Matrix}
+    \end{center}
+    $\textbf{Submersion}$: $f$ ist in $p$ eine Submersion genau dann wenn $df(p)$ surjektiv ist. Falls $f$ für
+    alle $p \in U$ eine Submersion ist, dann ist $f$ eine Submersion.
+    Eine Matrix ist genau dann surjektiv, wenn gilt:
+    \begin{center}
+        \eqbox{$Rang(M) = $ Anzahl der Zeilen der Matrix}
+    \end{center}
+    \subsection*{Einbettung}
+    Sei $V \subseteq \mathbb{R}^d$ offen und $\psi: V \rightarrow \mathbb{R}^n$.
+    Wie nenen $\psi$ eine $C^k$ Einbettung, wenn:
+    \begin{itemize}
+        \item $\psi$ eine Immersion ist
+        \item $\psi$  $C^k$ ist
+        \item $\psi$ injektiv ist
+        \item $\psi^{-1}$ stetig ist
+    \end{itemize}
+    Falls $\psi$ eine $C^k$ Einbettung ist, dann ist das Bild $\psi(V)$ eine $C^k$-Untermannigfaltigkeit des $\mathbb{R}^n$ der Dimension d.
+    (Eine Einbettung stellt also eine Funktion dar, die von der tieferen d-Dimension in die hoere n-Dimension geht und die Untermannigfaltigkeit einbettet in den umliegenden Raum).
+    \subsection*{Satz vom regulären Wert}
+    \subsubsection*{Regulärer Wert}
+    Sei $U_0 \in \mathbb{R}^n$ offen, $g \in C^k (U_0 ; R^l )$ und $z_0 \in \mathbb{R}^l$ . Dann
+    ist $y_0$ ein regulärer Wert für g genau dann wenn g eine $\textbf{Submersion}$ ist in jedem Punkt
+    von
+    \begin{center}
+        \eqbox{$g^{-1}(z_0) = \{x \in U_0 : g(x) = z_0\}$}
+    \end{center}
+    Sonst ist $z_0$ ein singulärer Wert von g.
+    \subsubsection*{Satz vom regulären Wert}
+    Das Urbild jedes regulären Wertes ($g^{-1}(z_0)$) ist eine $C^k$-Untermannigfaltigkeit des $\mathbb{R}^n$ mit der Dimension $n-l$.\\
+    \begin{example}
+        \textbf{Beispiel}\\
+        Die Funktion $g: \mathbb{R}^2 \rightarrow \mathbb{R}$ mit $g(x,y) = x^2 + y^2$ hat den regulären Wert $1$. Das Urbild von $1$ ist der Einheitskreis, welcher eine 1-dimensionale Untermannigfaltigkeit des $\mathbb{R}^2$ ist.
+    \end{example}
+    \subsection*{Tangentialraum}
+    Sei $M \subseteq \mathbb{R}^n$ eine d-dimensionale Teilmannigfaltigkeit Der Tangentialraum von M bei $p \ in M$ ist definiert durch:
+    \begin{center}
+        \eqboxbig{$T_pM=\{(p,\gamma'(0)):\exists \epsilon > 0, \gamma: (-\epsilon, \epsilon) \rightarrow M$ differenzierbar mit $\gamma(0) = 0\}$ $\subseteq T_p \mathbb{R}^n = \{p\} \times \mathbb{R}^n$}
+    \end{center}
+    Der Tangentialraum ist die Menge aller Geschwindigkeitsvektoren von kurzen Wegen durch p in M.
+    Der Tangentialraum von $c^1$-Untermannigfaltigkeiten der Dimension d im Punkt $x_0 \in M$ (wobei $M \subseteq \mathbb{R}^n$) kann folgendermassen berechnet werden:
+    \begin{center}
+        \begin{itemize}
+            \item Sei $U \subseteq \mathbb{R}^n$ eine offene Umgebung von $x_0, V \subseteq \mathbb{R}^d$
+                  offen und $f \in C^1(V, \mathbb{R}^{n-d})$, so dass:
+                  \begin{center}
+                      $M \cap =$ graph(f) = $\{(y, f(y)):y \in V\}$
+                  \end{center}
+                  Wir bezeichnen die erste Komponente von $x_0 \in \mathbb{R}^d \times \mathbb{R}^{n-d}$ mit $y_0$. Der Tangentialraum kann berechnet werden als:
+                  \begin{center}
+                      \eqbox{$T_{x_0}M = graph(Df(y_0))$}
+                  \end{center}
+            \item Sei $y_0 \in V$ und $\psi : V \rightarrow \mathbb{R}^n$ so, dass:
+                  \begin{center}
+                      $\psi(y_0)=x_0. \vspace*{10pt} \psi(V)=M \cap U$
+                  \end{center}
+                  und $\psi$ im Punkt $y_0$ eine Immersion. Dann der Tangentialraum berechnet werden aus:
+                  \begin{center}
+                      \eqbox{$T_{x_0}M = im(D\psi(y_0))$}
+                  \end{center}
+            \item Sei $g:U \rightarrow \mathbb{R}^{n-d}$ so, dass
+                  \begin{center}
+                      $M \cap U = g^{-1}(g(x_0))$
+                  \end{center}
+                  und g im Punkt $x_0$ eine Submersion ist. Dann kann der Tangentialraum berechnet werden als:
+                  \begin{center}
+                      \eqbox{$T_{x_0}M = ker(Dg(x_0))$}
+                  \end{center}
+        \end{itemize}
+    \end{center}
+    \vspace*{10pt}
+    \begin{example}
+        \textbf{Beispiel}\\
+        Der Tangentialraum in jedem Punkt von $M = \{x \in \mathbb{R}^2: x_1 x_2=1\}$ ist gegeben als:\\
+        1. Da 1 ein regulärer Wert von $g(x_1,x_2)=x_1 x_2$ ist, ist $M$ eine 1-dimensionale Untermannigfaltigkeit des $\mathbb{R}^2$. \\
+        2. Der Tangentialraum in jedem Punkt von $M$ ist gegeben als:
+        \begin{center}
+            $Dg(x)= \begin{pmatrix} x_2, x_1 \end{pmatrix}$ \\
+            $ker(Dg(x))=\{v \in \mathbb{R}^2:Dg(x)*v=0\} = \{(v_1, v_2) \in \mathbb{R}^2:x_2v_1+x_1v_2=0\}$ \\
+            $\Rightarrow v_2=-\frac{x_2}{x_1}v_1 =-\frac{1}{x_1^2}*v_1$ \\
+            $\Rightarrow ker(Dg(x)) = \{(t, -\frac{1}{x_1^2}t):t \in \mathbb{R}\} = T_xM$
+        \end{center}
+    \end{example}
     \section{Integration in $\R^n$}
 
 
@@ -3289,6 +3385,10 @@
     \end{center}
 
     wobei der Rand von $\Omega$ so parametrisiert wird, dass $\Omega$ \textbf{zur Linken} liegt.
+    Falls $\gamma:[a, b] \rightarrow \partial \Omega$ eine solche Parametrisierung ist, so gilt:
+    \begin{center}
+        $\iint_\Omega \ rot(\textbf{K}(x,y)) \ d\mu $ = $\int_{\partial \Omega} <\textbf{K}(\gamma (t)), \dot{\gamma}(t)> \ dt$
+    \end{center}
 
     \subsubsection{Gebiet der Klasse $C^1_{stw}$ in $\R^2$}
 
@@ -3434,34 +3534,29 @@
             \end{pmatrix}$ \quad und \quad $\det(d\Phi_{(r, \Theta, \varphi)}) = r^2 \sin(\Theta)$
     \end{center}
 
-    Desweiteren gilt: Bild($\Phi) = \R^3 \setminus \{(x,y,z) \in \R^3; \, y = 0, x \leq 0\}$.
-
-
-
-
-
-
+    \begin{center}
+        \begin{minipage}{0.5\linewidth}
+            \begin{center}
+                Desweiteren gilt: Bild($\Phi) = \R^3 \setminus \{(x,y,z) \in \R^3; \, y = 0, x \leq 0\}$.
+            \end{center}
+        \end{minipage}
+        \begin{minipage}{0.49\linewidth}
+            \begin{center}
+                \includegraphics[width=1\linewidth]{Bilder/Kugelkoordinaten.png}
+            \end{center}
+        \end{minipage}
+    \end{center}
     \subsection{Oberflächenmass und Flussintegral}
     %https://video.ethz.ch/lectures/d-math/2022/spring/401-0232-00L/25701150-98ca-4c82-a6fe-f812ac4074a9.html
 
-    \subsubsection{Lokale Immersion}
-
-    Sei $U \subset \R^2$ offen und $\Phi \in C^1(U, \R^3)$ \emph{injektiv}. $\Phi$ bildet eine lokale Immersion, falls $d\Phi(x) \in M_{3 \times 2}(\R)$ \textbf{für alle} $(x,y) \in U$ regulär ist ($Rang = 2$).
-
-    \begin{center}
-        \eqbox{Rang$(d\Phi) = 2 \Leftrightarrow \dfrac{\partial \Phi}{\partial x}$, $\dfrac{\partial \Phi}{\partial y}$ linear unabhängig $\Leftrightarrow \dfrac{\partial \Phi}{\partial x} \times \dfrac{\partial \Phi}{\partial y} \neq 0$}
-    \end{center}
-
-    Bem: Diese Bedingung ist notwendig, damit es lokal eine Ebene in $\R^3$ abbildet (schöne Oberfläche), sonst wäre es lokal teils eine Linie. \medskip
-
-    Bem: Sei $\psi \in C^1(Q, \R)$ wobei $Q = [a,b] \times [c,d]$ mit $\phi(x,y) := \begin{pmatrix}
-            x \\ y \\ \psi(x,y) \\
-        \end{pmatrix}$. Dann ist $\phi(x,y)$ \emph{immer} eine lokale Immersion.
-
     \subsubsection{Der Oberflächeninhalt}
 
-    Sei $\Phi: U \subset \R^2 \to \R^3$ eine lokale Immersion. Sei $\overline{\Omega} \subset U$ beschränkt und Jordan messbar. Der 2-dimensionale Flächeninhalt von $S = \Phi(\overline{\Omega})$ ist
+    Sei $\Phi: U \subset \R^2 \to \R^3$ eine lokale Immersion. Sei $\overline{\Omega} \subset U$ beschränkt und Jordan messbar.\\
 
+    Die Parametrisierung der Oberflaeche wird als Einbettung gegeben: Sei $\psi \in C^1(Q, \R)$ wobei $Q = [a,b] \times [c,d]$ mit $\phi(x,y) := \begin{pmatrix}
+            x \\ y \\ \psi(x,y) \\
+        \end{pmatrix}$. $\phi(x,y)$ ist dann \emph{immer} eine lokale Immersion. \\
+    Der 2-dimensionale Flächeninhalt von $S = \Phi(\overline{\Omega})$ ist
     \begin{center}
         \eqboxf{$\displaystyle \mu_2(\Phi(\Omega)) := \int_\Omega \underbrace{|| \partial_x \Phi \times \partial_y \Phi|| d\mu}_{=: d o} = \int_S do$}
     \end{center}
@@ -3485,7 +3580,15 @@
     \begin{center}
         \eqbox{$\vec{n} = \dfrac{\partial_x \Phi \times \partial_y \Phi}{|| \partial_x \Phi \times \partial_y \Phi ||}$}
     \end{center}
-
+    \begin{example}
+        \textbf{Anmerkung}
+        \begin{enumerate}
+            \item[1)] Der Normalenvektor ist ein Einheitsvektor.
+            \item[2)] Der Normalenvektor steht senkrecht auf der Fläche.
+            \item[3)] Der Normalenvektor ist das Vektorprodukt der Tangentialvektoren (Ableitung $\rightarrow$ Vektor Tangential zur Flaeche). Und steht daher senkrecht zur Fläche.
+            \item[4)] Die allgemeine Funktionsdeterminante $\phi: \R^n \rightarrow \R^m$ ist $\sqrt[]{det((D\phi)^T \cdot D\phi)}$ im Fall von $\R^3 \rightarrow \R^2$ ist dies $\sqrt[]{det((D\phi)^T \cdot D\phi)} = || \partial_x \Phi \times \partial_y \Phi ||$
+        \end{enumerate}
+    \end{example}
     \subsubsection{Das Flussintegral}
 
     Sei $V = \begin{pmatrix}
@@ -3581,126 +3684,107 @@
 
 
 
-    \subsection{Beispiel eines Oberflächenintegrals}
+    \subsection{Beispiel intrinsischer Rand, Koorientierung, induzierte Orientierung des Randes und Flächeninhalt}
 
-    Wir berechnen die Oberfläche $S = \Phi(B_1^2(0))/2$ (nur obere Halbkugel).
-
+    Wir haben die Kugelkappe gegebn $\Sigma := \{x \in S^2 | x_3 \geq a\}$ mit $a \in (0,1)$
+    Um die Fläche berechnen zu könnnen müssen wir die Kugelkappe parametrisieren. Dazu benutzen wir eine Einbettung:
     \begin{center}
-        \begin{minipage}{0.6\linewidth}
-            \begin{center}
-                $\Phi(x,y) = \begin{pmatrix}
-                        x \\ y \\ \sqrt{1 - x^2 - y^2} \\
-                    \end{pmatrix}$
-            \end{center}
-        \end{minipage}
-        \begin{minipage}{0.39\linewidth}
-            \begin{center}
-                \includegraphics[width=0.4\linewidth]{Bilder/Oberflachenintegral_BSP.png}
-            \end{center}
-        \end{minipage}
+        $\psi: \bar{B}^2_{\sqrt{1-a^2}} \rightarrow \R^3, \psi(y_1, y_2)=\begin{bmatrix*}
+                y_1 \\ y_2 \\ \sqrt{1-y_1^2-y_2^2}
+            \end{bmatrix*}$
     \end{center}
-
-    Wir bekommen also:
-
+    1. Es muss nun gezeigt werden, dass $\psi$ eine Untermannigfaltigkeit ist. Daher muss gezeigt werden, dass $\psi$ eine Einbettung ist. Weil $\bar{B}^2_{\sqrt{1-a^2}}$ eine Rand hat, ist es eine Untermannigfaltigkeit mit Rand (da eingeschränkt). \\
+    2. Der intrinsische Rand ist der 1-dimensionale Rand der Kugelkappe. Dieser kann aus der globalen Parametrisierung bestimmt werden:
     \begin{center}
-        $\partial_x \Phi = \begin{pmatrix}
-                1 \\ 0 \\ - \frac{x}{\sqrt{1 - x^2 - y^2}} \\
-            \end{pmatrix} \qquad \partial_y \Phi = \begin{pmatrix}
-                0 \\ 1 \\ - \frac{y}{\sqrt{1 - x^2 - y^2}} \\
-            \end{pmatrix}$ \medskip
-
-        $\partial_x \Phi \times \partial_y \Phi = \begin{pmatrix}
-                \frac{x}{\sqrt{1 - x^2 - y^2}} \\ \frac{y}{\sqrt{1 - x^2 - y^2}} \\ 1 \\
-            \end{pmatrix} \Rightarrow || \partial_x \Phi \times \partial_y \Phi || = \dfrac{1}{\sqrt{1 - (x^2 + y^2)}}$
+        $\partial\Sigma = \psi(\partial \bar{B}^2_{\sqrt{1-a^2}})=\{\begin{bmatrix}
+                y_1 \\ y_2 \\ \sqrt{1-y_1^2-y_2^2}
+            \end{bmatrix} | (y_1, y_2) \in \R^2, y_1^2+y_2^2=1-a$\}
     \end{center}
-
-    Wir benutzen nun die Substitutionsregel mit Polarkoordinaten:
-
+    Der Rand kann natürlich auch mit cos(t) sin(t) auf einer Höhe von a parametrisiert werden. \\
+    3. Die Koorientierung ist gegeben durch ein Einheitsnormalvektor
     \begin{center}
-        $\mu_2(S) = \displaystyle \int\limits_{B_1^2(0)} || \partial_x \Phi \times \partial_y \Phi|| d\mu = \int\limits_{-\pi}^\pi \left( \int\limits_0^1 \dfrac{r}{\sqrt{1 - r^2}} dr \right) d\Theta = 2\pi$
+        $v(\psi(z)) = \dfrac{\partial_{y1} \psi \times \partial_{y2} \psi}{|| \partial_{y1} \psi \times \partial_{y2} \psi ||}$
     \end{center}
-
-    Wir integrieren nun die Höhe $f(x,y,z) = z$ auf der Oberfläche $S$:
-
+    4. Die induzierte Orientierung des Randes ist gegeben durch die Koorientierung und die Parametrisierung des Randes.
     \begin{center}
-        $\displaystyle \int\limits_S  f do = \int\limits_{-\pi}^{\pi} \left( \int\limits_0^1 \dfrac{r \cdot \sqrt{1 - r^2}}{\sqrt{1 - r^2}} dr \right) d\Theta = 2\pi \left[\dfrac{r^2}{2}\right]^1_0 = \pi = \dfrac{1}{2} \mu_2(S)$
+        $T: \partial \bar{B}^2_{\sqrt{1-a^2}} \rightarrow \R^2, T(\psi(y)) = \frac{1}{||d\psi(y)\tilde{T}(y)||}d\psi(y)\tilde{T}(y)$ \\
+        Wobei: $\tilde{T}(y) = \frac{1}{\sqrt{1-a^2}} \begin{bmatrix}
+                -y_2 \\ y_1
+            \end{bmatrix}$
     \end{center}
+    $\tilde{T}$ ist die positive Orientierung auf dem Kreis $\bar{B}^2_{\sqrt{1-a^2}}$, sodass die Kreisscheibe immer zur Linken liegt.
+    5. Der Flächeninhalt lässt sich mithilfe des Betrages des Einheitsnormalvektors berechnen \\
+
+    \begin{small}
+        \subsection{Punktmengen}
+
+        Sei der Radius $r > 0$ und der Index 0 markiert das Zentrum. Dann gilt: \medskip
+
+        Kreis: $K = \left\{(x, y)\in \mathbb{R}^2; (x-x_0)^2+(y-y_0)^2 = r^2 \right\}$ \medskip
+
+        Kugel: $K = \left\{(x, y, z)\in \mathbb{R}^3; (x-x_0)^2+(y-y_0)^2+(z-z_0)^2 = r^2 \right\}$ \medskip
+
+        Zylinder: $Z=\left\{(x, y, z)\in \mathbb{R}^3; (x-x_0)^2+(y-y_0)^2 =r^2, \, 0\le z \le h \right\}$ \medskip
+
+        Kegel: $K=\left\{(x, y, z)\in \mathbb{R}^3; x^2+y^2 = \frac{r^2}{h^2}(h-z)^2 \right\}$ \medskip
+
+        Ellipse: $E=\left\{(x, y)\in \mathbb{R}^2; \frac{(x-x_0)^2}{a^2}+\frac{(y-y_0)^2 }{b^2} = r^2 \right\}$ \medskip
+
+        Ellipsoid: $E=\left\{(x, y, z)\in \mathbb{R}^3; \frac{(x-x_0)^2}{a^2}+\frac{(y-y_0)^2}{b^2} +\frac{(z-z_0)^2}{c^2} = r^2 \right\}$
+
+        \subsection{Volumen eines Ellipsoid}
+
+        Für eine Berechnung des Volumens eines Ellipsoids benutzt man die folgendermassen angepassten Kugelkoordinanten:
+
+        \begin{center}
+            $F(r, \Theta, \varphi) := \begin{pmatrix}
+                    a \cdot r \sin(\Theta) \cos(\varphi) \\ b \cdot r \sin(\Theta) \sin(\varphi) \\ c \cdot r \cos(\Theta) \\
+                \end{pmatrix}$ und $\det(dF_{(r, \Theta, \varphi)}) = abc \cdot r^2 \sin(\Theta)$
+        \end{center}
+
+        $\int_{E(a, b, c, R)} 1 d \mu=\int_{B_{R}(0)}|\det d F(x, y, z)| d z d y d x = abc \mu\left(B_{R}(0)\right)$
+
+        \subsection{Kochrezepte}
+
+        \subsubsection{Integralgrenzen von einem Hyper- und Hypograph bestimmen}
+
+        \begin{enumerate}
+            \item Die Variable für das äusserste Integral wählen (oft $x$), alle anderen Variablen in der Mengengleichung auf $0$ setzen. Nun kann man die Grenze für die erste Variable herauslesen.
+            \item Die Variable vom zweitäussersten Integral (oft $y$) auswählen, alle anderen Variablen in der Menge \textbf{ausser die schon bestimmte Variable} auf $0$ setzen.
+            \item[2.5] Analoger Schritt für die 3te Variable.
+            \item Nun hat man die Integralgrenzen bestimmt und kann fortfahren mit der Berechnung vom Integral.
+        \end{enumerate}
 
 
-    \subsection{Punktmengen}
+        \subsubsection{Kochrezept Volumenberechnung}
 
-    Sei der Radius $r > 0$ und der Index 0 markiert das Zentrum. Dann gilt: \medskip
+        \begin{enumerate}
+            \item Das Integrationsgebiet $\Phi(\Omega)$ (bzw. Integrationsgrenzen) bestimmen in den passenden Koordinatentransformationen.
 
-    Kreis: $K = \left\{(x, y)\in \mathbb{R}^2; (x-x_0)^2+(y-y_0)^2 = r^2 \right\}$ \medskip
-
-    Kugel: $K = \left\{(x, y, z)\in \mathbb{R}^3; (x-x_0)^2+(y-y_0)^2+(z-z_0)^2 = r^2 \right\}$ \medskip
-
-    Zylinder: $Z=\left\{(x, y, z)\in \mathbb{R}^3; (x-x_0)^2+(y-y_0)^2 =r^2, \, 0\le z \le h \right\}$ \medskip
-
-    Kegel: $K=\left\{(x, y, z)\in \mathbb{R}^3; x^2+y^2 = \frac{r^2}{h^2}(h-z)^2 \right\}$ \medskip
-
-    Ellipse: $E=\left\{(x, y)\in \mathbb{R}^2; \frac{(x-x_0)^2}{a^2}+\frac{(y-y_0)^2 }{b^2} = r^2 \right\}$ \medskip
-
-    Ellipsoid: $E=\left\{(x, y, z)\in \mathbb{R}^3; \frac{(x-x_0)^2}{a^2}+\frac{(y-y_0)^2}{b^2} +\frac{(z-z_0)^2}{c^2} = r^2 \right\}$
-
-    \subsubsection{Volumen eines Ellipsoid}
-
-    Für eine Berechnung des Volumens eines Ellipsoids benutzt man die folgendermassen angepassten Kugelkoordinanten:
-
-    \begin{center}
-        $F(r, \Theta, \varphi) := \begin{pmatrix}
-                a \cdot r \sin(\Theta) \cos(\varphi) \\ b \cdot r \sin(\Theta) \sin(\varphi) \\ c \cdot r \cos(\Theta) \\
-            \end{pmatrix}$ und $\det(dF_{(r, \Theta, \varphi)}) = abc \cdot r^2 \sin(\Theta)$
-    \end{center}
-
-    $\int_{E(a, b, c, R)} 1 d \mu=\int_{B_{R}(0)}|\det d F(x, y, z)| d z d y d x = abc \mu\left(B_{R}(0)\right)$
+                  \textbf{Achtung}: Auf die Einschränkungen der Koordinatentransformation achten (z.B. $r \in ]0,\pi[$).
+            \item[1.5] Evtl. bemerken, dass die Koordinatentransformation eine Halbebene nicht trifft, dies aber vernachlässigbar ist beim Transformationssatz.
+            \item Den Transformationssatz anwenden ($\det(d\Phi)$ nicht vergessen).
+        \end{enumerate}
 
 
+        \subsubsection{Kochrezept Oberflächeninhalt}
 
+        \begin{enumerate}
+            \item Die Menge anschauen und bestimmen um was für ein Objekt es sich handelt, Skizzen helfen! \textbf{Man berechnet die Oberfläche stückweise}. Einfache Fläche, wie Kreisflächen, kann man direkt mit den bekannten Formeln berechnen.
+            \item Schwerere Oberflächen muss man mit folgendem Vorgehen berechnen:
+                  \begin{itemize}
+                      \item Eine Achse vorläufig entfernen, d.h. Variable auf $0$ setzen in der Mengengleichung. Man schaut von nun an von dieser Achse aus auf das Objekt. (z.B.: Man entfernt $z$ $\Rightarrow$ man schaut von oben).
+                      \item Skizze von dem neuen 2D-Gebiet erstellen und dann die Ungleichungen (am Ende die Integralgrenzen) der zwei übrig bleibenden Variablen für das 2D-Gebiet bestimmen.
+                      \item Mit der ursprünglichen Mengengleichung eine Funktion $\psi(x,y)$ für die entfernte Variable bestimmen. \textbf{Achtung}: Es kann sein, dass hier zwei Funktionen herauskommen, in diesem Fall muss man den Oberflächeninhalt für \textbf{beide} berechnen (evtl. Symmetrie!).
+                      \item Lokale Immersion der Form $\phi(x,y) := \begin{pmatrix}
+                                    x \\ y \\ \psi(x,y) \\
+                                \end{pmatrix}$ bilden.
+                      \item Oberflächeninhalt(e) berechnen mit der bekannten Formel, das Integrationsgebiet ist das zuvor bestimmte 2D-Gebiet.
+                  \end{itemize}
+            \item \textbf{Alle} Oberflächeninhalt zusammenaddieren.
+        \end{enumerate}
 
-    \subsection{Kochrezepte}
-
-
-    \subsubsection{Integralgrenzen von einem Hyper- und Hypograph bestimmen}
-
-    \begin{enumerate}
-        \item Die Variable für das äusserste Integral wählen (oft $x$), alle anderen Variablen in der Mengengleichung auf $0$ setzen. Nun kann man die Grenze für die erste Variable herauslesen.
-        \item Die Variable vom zweitäussersten Integral (oft $y$) auswählen, alle anderen Variablen in der Menge \textbf{ausser die schon bestimmte Variable} auf $0$ setzen.
-        \item[2.5] Analoger Schritt für die 3te Variable.
-        \item Nun hat man die Integralgrenzen bestimmt und kann fortfahren mit der Berechnung vom Integral.
-    \end{enumerate}
-
-
-    \subsubsection{Kochrezept Volumenberechnung}
-
-    \begin{enumerate}
-        \item Das Integrationsgebiet $\Phi(\Omega)$ (bzw. Integrationsgrenzen) bestimmen in den passenden Koordinatentransformationen.
-
-              \textbf{Achtung}: Auf die Einschränkungen der Koordinatentransformation achten (z.B. $r \in ]0,\pi[$).
-        \item[1.5] Evtl. bemerken, dass die Koordinatentransformation eine Halbebene nicht trifft, dies aber vernachlässigbar ist beim Transformationssatz.
-        \item Den Transformationssatz anwenden ($\det(d\Phi)$ nicht vergessen).
-    \end{enumerate}
-
-
-    \subsubsection{Kochrezept Oberflächeninhalt}
-
-    \begin{enumerate}
-        \item Die Menge anschauen und bestimmen um was für ein Objekt es sich handelt, Skizzen helfen! \textbf{Man berechnet die Oberfläche stückweise}. Einfache Fläche, wie Kreisflächen, kann man direkt mit den bekannten Formeln berechnen.
-        \item Schwerere Oberflächen muss man mit folgendem Vorgehen berechnen:
-              \begin{itemize}
-                  \item Eine Achse vorläufig entfernen, d.h. Variable auf $0$ setzen in der Mengengleichung. Man schaut von nun an von dieser Achse aus auf das Objekt. (z.B.: Man entfernt $z$ $\Rightarrow$ man schaut von oben).
-                  \item Skizze von dem neuen 2D-Gebiet erstellen und dann die Ungleichungen (am Ende die Integralgrenzen) der zwei übrig bleibenden Variablen für das 2D-Gebiet bestimmen.
-                  \item Mit der ursprünglichen Mengengleichung eine Funktion $\psi(x,y)$ für die entfernte Variable bestimmen. \textbf{Achtung}: Es kann sein, dass hier zwei Funktionen herauskommen, in diesem Fall muss man den Oberflächeninhalt für \textbf{beide} berechnen (evtl. Symmetrie!).
-                  \item Lokale Immersion der Form $\phi(x,y) := \begin{pmatrix}
-                                x \\ y \\ \psi(x,y) \\
-                            \end{pmatrix}$ bilden.
-                  \item Oberflächeninhalt(e) berechnen mit der bekannten Formel, das Integrationsgebiet ist das zuvor bestimmte 2D-Gebiet.
-              \end{itemize}
-        \item \textbf{Alle} Oberflächeninhalt zusammenaddieren.
-    \end{enumerate}
-
-
-
+    \end{small}
 
     \subsection{Einfache Geometrieformeln}
 
@@ -3717,9 +3801,50 @@
             \bottomrule
         \end{tabular}
     \end{center}
-\end{multicols*}
-\input{sections/Ubersicht.tex}
+    \section*{Anhang}
 
+    \subsection{Integralsubstitutionen}
+    \begin{small}
+        \begin{align*}
+             & \int \frac{g'(x)}{g(x)}\text{d}x                     & u(x) & =g(x)                         & \text{d}x & =\frac{\text{d}u}{g'(x)}          \\
+             & \int f(g(x))\cdot g'(x)\text{d}x                     & u(x) & =g(x)                         & \text{d}x & =\frac{\text{d}u}{g'(x)}          \\
+             & \int f(e^x, \sinh(x), \cosh(x))\text{d}x             & u(x) & =e^x                          & \text{d}x & =\frac{\text{d}u}{e^x}            \\
+             & \int f(x, \sqrt{1-x^2})\text{d}x                     & x    & =\sin(u)                      & \text{d}x & =\cos(u)\text{d}u                 \\
+             & \int f(x, \sqrt{1+x^2})\text{d}x                     & x    & =\sinh(u)                     & \text{d}x & =\cosh(u)\text{d}u                \\
+             & \int f(x, \sqrt{x^2-1})\text{d}x                     & x    & =\cosh(u)                     & \text{d}x & =\sinh(u)\text{d}u                \\
+             & \int f\left(\frac{1}{\sqrt{a^2-x^2}}\right)\text{d}x & u(x) & =\frac{x}{a}                  & \text{d}x & =a\text{d}u                       \\
+             & \int f\left(\sqrt{1+\frac{1}{x^2}}\right)\text{d}x   & u(x) & =\sqrt{x^2-1}                 & \text{d}x & =\frac{\sqrt{x^2-1}}{x} \text{d}u \\
+             & \int R(\sin(x), \cos(x))\text{d}x                    & u(x) & =\tan\left(\frac{x}{2}\right) & \text{d}x & =\frac{2}{1+u^2}\text{d}u
+        \end{align*}
+        \subsubsection*{Tangenssubstitution}
+
+        Sei $t(x) = \tan(\frac{x}{2})$ mit $x \in ]-\pi, \pi[$. Dann gilt
+
+        \begin{center}
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{l l} \toprule
+                $\cos(x) = \dfrac{1 - t^2(x)}{1 + t^2(x)}$ & $\sin(x) = \dfrac{2 t(x)}{1 + t^2(x)}$   \\
+                $\cos^2(x) = \dfrac{1}{1 + t^2(x)}$        & $\sin^2(x) = \dfrac{t^2(x)}{1 + t^2(x)}$ \\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+    \end{small}
+    \begin{center}
+        \includegraphics[width=0.9\linewidth, height=0.8\textheight]{Bilder/Integrals_1.png}
+    \end{center}
+    \begin{center}
+        \includegraphics[width=0.6\linewidth, height=0.19\textheight]{Bilder/Integrals_2.png}
+    \end{center}
+\end{multicols*}
+\begin{center}
+    \includegraphics[height=0.99\textheight, width=\textwidth]{Bilder/Integrals_all.png}
+\end{center}
+\begin{center}
+    \includegraphics[height=0.99\textheight, width=\textwidth]{Bilder/Integrals_all_2.png}
+\end{center}
+\begin{center}
+    \includegraphics[height=0.99\textheight, width=\textwidth]{Bilder/Anhang_1.png}
+\end{center}
 
 \setcounter{secnumdepth}{2}
 \end{document}
